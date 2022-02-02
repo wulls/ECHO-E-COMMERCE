@@ -8,8 +8,21 @@
 
 <body>
  <div class="greenbg">
-  <img src="" class="logo">
-   <button onclick="document.location='#'">Daftar</button>
-  <button onclick="document.location='#'">Masuk</button>
+  <img src="image/logo.png" class="logo">
+   <div class="buttonposition">
+    <button onclick="document.location='#'" class="button">Daftar</button>
+   <button onclick="document.location='#'" class="button">Masuk</button>
+  </div>
  </div>
+ 
+ <div class="search">
+  <div class="searchsymbol">
+   <input type="image" src="" width="30">
+    </div>
+   </div>
+  
+  <div class="rekomendasistore">
+   <div class="store">
+    </div>
+  </div>
 </body>
