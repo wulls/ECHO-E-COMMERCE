@@ -179,9 +179,8 @@ form.sign-in-form {
   width: 100%;
   transition: transform 1.1s ease-in-out;
   transition-delay: 0.2s;
-  width: 250px;
-  height: 250px;
-  left: 1040px;
+  width: 350px;
+  height: 350px;
   top: 168px;
 
 }
@@ -197,7 +196,7 @@ form.sign-in-form {
 
 .left-panel {
   pointer-events: all;
-  padding: 3rem 17% 2rem 12%;
+  padding: 3rem 50% 2rem 10%;;
 }
 
 .right-panel {
