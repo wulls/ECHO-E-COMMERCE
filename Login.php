@@ -14,32 +14,41 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+		
+          <form action="main page.php" class="sign-in-form" meThod="post">
             <h2 class="title">Sign in</h2>
+			
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" name="username" placeholder="Username" required />
             </div>
+			
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" name="password" placeholder="Password" required />
             </div>
+			
             <input type="submit" value="Login" class="btn solid" />
             <a href = "#" class="social-text">Lupa Password ?</a>
+			
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
               </a>
+			  
               <a href="#" class="social-icon">
                 <i class="fab fa-twitter"></i>
               </a>
+			  
               <a href="#" class="social-icon">
                 <i class="fab fa-instagram"></i>
               </a>
+			  
               <a href="#" class="social-icon">
                 <i class="fab fa-linkedin-in"></i>
-              </a>
+              </a> 
             </div>
+			
           </form>
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
