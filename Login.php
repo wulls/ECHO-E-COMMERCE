@@ -7,7 +7,7 @@
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="stylelogin.css" />
+    <link rel="stylesheet" href="css/stylelogin.css" />
     <title>Sign in & Sign up Form</title>
   </head>
   <body>
@@ -25,7 +25,7 @@
               <input type="password" placeholder="Password" />
             </div>
             <input type="submit" value="Login" class="btn solid" />
-            <p class="social-text">Our social media platforms</p>
+            <a href = "#" class="social-text">Lupa Password ?</a>
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
@@ -60,7 +60,7 @@
                 <input type="re-password" placeholder="Re-Password" />
               </div>
             <input type="submit" class="btn" value="Sign up" />
-            <p class="social-text">Our social media platforms</p>
+            <a href = "#" class="social-text">Lupa Password ?</a>
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
