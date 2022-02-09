@@ -1,8 +1,8 @@
 <?php
-session_start();
-//if(!isset($_SESSION['username'])){
-// include_once ('header.php');
-//}
+//session_start();
+if(!isset($_SESSION['username'])){
+ include_once ('navbarlogin.php');
+}
 if (isset($_SESSION['username'])) {
 include_once ('navbarlogin.php');
 }
@@ -38,9 +38,8 @@ include_once ('navbarlogin.php');
 
       if($rows<1){
         header("Location:login.php");
-      }if($rows==1){
-
       }
+
       while($data = mysqli_fetch_array($query)){
       ?>
 
