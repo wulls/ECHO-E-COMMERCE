@@ -52,6 +52,14 @@
           </form>
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
+			<div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="First Name" />
+            </div>
+			<div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Last Name" />
+            </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Username" />
@@ -60,14 +68,14 @@
               <i class="fas fa-envelope"></i>
               <input type="email" placeholder="Email" />
             </div>
+			<div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Phone Number" />
+            </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
-            <div class="input-field">
-                <i class="fas fa-lock"></i>
-                <input type="re-password" placeholder="Re-Password" />
-              </div>
             <input type="submit" class="btn" value="Sign up" />
             <a href = "#" class="social-text">Lupa Password ?</a>
             <div class="social-media">
