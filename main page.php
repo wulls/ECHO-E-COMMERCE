@@ -1,3 +1,13 @@
+<?php
+session_start();
+//if(!isset($_SESSION['username'])){
+// include_once ('header.php');
+//}
+if (isset($_SESSION['username'])) {
+include_once ('navbarlogin.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -28,20 +38,12 @@
 
       if($rows<1){
         header("Location:login.php");
-      }if($rows=1){
-        
+      }if($rows==1){
+
       }
       while($data = mysqli_fetch_array($query)){
       ?>
 
-        <!-- Navigation-->
-        <nav class="navbar">
-            <div class="container">
-                <a class="navbar-brand" href="#!"></a>
-                <img src="image/logo.png" class="logo">
-                <a class="btn btn-primary" href="#">Sign In</a>
-            </div>
-        </nav>
         <!-- Masthead-->
         <header class="masthead">
             <div class="container position-relative">

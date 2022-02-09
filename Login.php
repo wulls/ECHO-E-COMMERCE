@@ -50,6 +50,9 @@
             </div>
 			
           </form>
+		  
+		  <!--php-->
+		  
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
 			<div class="input-field">
