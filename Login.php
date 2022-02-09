@@ -69,7 +69,7 @@
               <input type="email" placeholder="Email" />
             </div>
 			<div class="input-field">
-              <i class="fas fa-user"></i>
+              <i class="fas fa-phone"></i>
               <input type="text" placeholder="Phone Number" />
             </div>
             <div class="input-field">
