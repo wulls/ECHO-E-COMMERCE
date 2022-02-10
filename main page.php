@@ -9,6 +9,8 @@ if (isset($_SESSION['username'])) {
 include_once ('navbarlogin.php');
 echo $_SESSION['username'];
 }
+
+session_destroy();
 ?>
 
 <!DOCTYPE html>

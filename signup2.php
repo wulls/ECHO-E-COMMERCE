@@ -28,9 +28,9 @@ $rows2 = mysqli_num_rows($query2);
 		$query3 = mysqli_query($con, $sql3);
 		
 		if($query3){
-		 session_start();
-		 $_SESSION['username2']=$username;
-		 header("Location: main page.php");
+		 // session_start();
+		 // $_SESSION['username2']=$username;
+		 header("Location: login.php");
 		}else{
 		 echo "something went wrong";
 		 }
