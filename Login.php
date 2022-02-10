@@ -15,7 +15,7 @@
       <div class="forms-container">
         <div class="signin-signup">
 		
-          <form action="main page.php" class="sign-in-form" meThod="post">
+          <form action="login2.php" class="sign-in-form" method="post">
             <h2 class="title">Sign in</h2>
 			
             <div class="input-field">
@@ -51,35 +51,35 @@
 			
           </form>
 		  
-		  <!--php-->
-		  
-          <form action="#" class="sign-up-form">
+          <form action="signup2.php" class="sign-up-form" method="post">
             <h2 class="title">Sign up</h2>
 			<div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="First Name" />
+              <input type="text" placeholder="First Name" name="firstname" required  />
             </div>
 			<div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Last Name" />
+              <input type="text" placeholder="Last Name" name="lastname" required />
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Username" name="username2" required />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" name="email" required />
             </div>
 			<div class="input-field">
               <i class="fas fa-phone"></i>
-              <input type="text" placeholder="Phone Number" />
+              <input type="text" placeholder="Phone Number" name="phone" required />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" name="password2" required />
             </div>
             <input type="submit" class="btn" value="Sign up" />
+			
+			
             <a href = "#" class="social-text">Lupa Password ?</a>
             <div class="social-media">
               <a href="#" class="social-icon">
@@ -110,7 +110,7 @@
               Sign up
             </button>
           </div>
-          <img src="Trolley1.png" class="image" alt="" />
+          <img src="image/Trolley1.png" class="image" alt="" />
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -122,11 +122,11 @@
               Sign in
             </button>
           </div>
-          <img src="Trolley1.png" class="image" alt="" />
+          <img src="image/Trolley1.png" class="image" alt="" />
         </div>
       </div>
     </div>
 
-    <script src="loginjs.js"></script>
+    <script src="js/loginjs.js"></script>
   </body>
 </html>

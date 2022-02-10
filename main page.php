@@ -1,11 +1,16 @@
-<?php
+<?php include "database connection.php";
+
 session_start();
-//if(!isset($_SESSION['username'])){
-// include_once ('header.php');
-//}
+if(!isset($_SESSION['username'])){
+ include_once ('navbar.php');
+}
+
 if (isset($_SESSION['username'])) {
 include_once ('navbarlogin.php');
+echo $_SESSION['username'];
 }
+
+session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +20,7 @@ include_once ('navbarlogin.php');
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Landing Page - Start Bootstrap Theme</title>
+        <title>Trolley</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -28,7 +33,7 @@ include_once ('navbarlogin.php');
     <body>
 
       <!--php-->
-      <?php include "database connection.php";
+      <!--?php include "database connection.php";
       $username = $_POST["username"];
       $password = $_POST["password"];
 
@@ -38,11 +43,10 @@ include_once ('navbarlogin.php');
 
       if($rows<1){
         header("Location:login.php");
-      }if($rows==1){
-
       }
+
       while($data = mysqli_fetch_array($query)){
-      ?>
+      ?-->
 
         <!-- Masthead-->
         <header class="masthead">
@@ -95,12 +99,34 @@ include_once ('navbarlogin.php');
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
 		<h2 class="txtrekomtoko">Rekomendasi Toko</h2>
-            <div class="container">
+		
+		<div class="container">
+         <div class="row">
+		  <?php //buat tarik nama dan image store dari database
+		   $sql = "SELECT * FROM merchant;";
+		   $result = mysqli_query($con,$sql);
+		 
+		 while($row=mysqli_fetch_array($result)){
+					echo "<div class='col-lg-4'>";
+						echo "<div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>";
+							echo "<div class='features-icons-icon d-flex'>";
+								echo "<img src=".$row['image']." alt='logo store' class='text-primary logotoko'>";
+							echo "</div>";
+						echo "<h4>".$row['merchantName']."</h4>";
+					// echo "<p class='lead mb-0'>Jalan Jalur Sutera Barat Kav. 16</p>";
+				echo "</div>";
+			echo "</div>";
+		 }
+		?>
+		</div>
+            </div>
+		
+            <!--<div class="container">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex">
-							 <!-- <i class="bi-window m-auto text-primary"></i> -->
+							 <!-- <i class="bi-window m-auto text-primary"></i>
 							 <img src="image/logo toko/foodhall.jpeg" alt="logo foodhall" class="text-primary logotoko">
 							  </div>
                             <h3>Food Hall Mall Alam Sutera</h3>
@@ -110,7 +136,7 @@ include_once ('navbarlogin.php');
                     <div class="col-lg-4">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex">
-							 <!-- <i class="bi-layers m-auto text-primary"></i> -->
+							 <!-- <i class="bi-layers m-auto text-primary"></i>
 							 <img src="image/logo toko/ranch.png" alt="logo foodhall" class="text-primary logotoko">
 							  </div>
                             <h3>Ranch Market The Breeze</h3>
@@ -120,7 +146,7 @@ include_once ('navbarlogin.php');
                     <div class="col-lg-4">
                         <div class="features-icons-item mx-auto mb-0 mb-lg-3">
                             <div class="features-icons-icon d-flex">
-							 <!-- <i class="bi-terminal m-auto text-primary"></i> -->
+							 <!-- <i class="bi-terminal m-auto text-primary"></i>
 							 <img src="image/logo toko/foodhall.jpeg" alt="logo foodhall" class="text-primary logotoko">
 							  </div>
                             <h3>Hypermart Supermal Karawaci</h3>
@@ -128,7 +154,7 @@ include_once ('navbarlogin.php');
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </section>
         <!-- Image Showcases-->
         <!-- <section class="showcase"> -->
@@ -271,6 +297,6 @@ include_once ('navbarlogin.php');
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-      <?php } ?>
+      <!--?php } ?-->
     </body>
 </html>
