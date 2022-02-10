@@ -1,4 +1,4 @@
-<?php
+<?php include "database connection.php";
 
 session_start();
 if(!isset($_SESSION['username'])){
@@ -7,6 +7,7 @@ if(!isset($_SESSION['username'])){
 
 if (isset($_SESSION['username'])) {
 include_once ('navbarlogin.php');
+echo $_SESSION['username'];
 }
 ?>
 
