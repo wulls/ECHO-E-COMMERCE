@@ -1,8 +1,10 @@
 <?php
-//session_start();
+
+session_start();
 if(!isset($_SESSION['username'])){
- include_once ('navbarlogin.php');
+ include_once ('navbar.php');
 }
+
 if (isset($_SESSION['username'])) {
 include_once ('navbarlogin.php');
 }
@@ -28,7 +30,7 @@ include_once ('navbarlogin.php');
     <body>
 
       <!--php-->
-      <?php include "database connection.php";
+      <!--?php include "database connection.php";
       $username = $_POST["username"];
       $password = $_POST["password"];
 
@@ -41,7 +43,7 @@ include_once ('navbarlogin.php');
       }
 
       while($data = mysqli_fetch_array($query)){
-      ?>
+      ?-->
 
         <!-- Masthead-->
         <header class="masthead">
@@ -270,6 +272,6 @@ include_once ('navbarlogin.php');
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-      <?php } ?>
+      <!--?php } ?-->
     </body>
 </html>

@@ -15,7 +15,7 @@
       <div class="forms-container">
         <div class="signin-signup">
 		
-          <form action="main page.php" class="sign-in-form" method="post">
+          <form action="login2.php" class="sign-in-form" method="post">
             <h2 class="title">Sign in</h2>
 			
             <div class="input-field">
@@ -110,7 +110,7 @@
               Sign up
             </button>
           </div>
-          <img src="Trolley1.png" class="image" alt="" />
+          <img src="image/Trolley1.png" class="image" alt="" />
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -122,11 +122,11 @@
               Sign in
             </button>
           </div>
-          <img src="Trolley1.png" class="image" alt="" />
+          <img src="image/Trolley1.png" class="image" alt="" />
         </div>
       </div>
     </div>
 
-    <script src="loginjs.js"></script>
+    <script src="js/loginjs.js"></script>
   </body>
 </html>
