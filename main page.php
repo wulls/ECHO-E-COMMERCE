@@ -29,6 +29,7 @@ session_destroy();
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/main page.css" rel="stylesheet" />
+
     </head>
     <body>
 
@@ -99,8 +100,14 @@ session_destroy();
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
 		<h2 class="txtrekomtoko">Rekomendasi Toko</h2>
-		
+		<div class = "search-engine">
+			<form action="main page.php">
+			<input type="text" placeholder="Search.." name="search">
+			<button type="submit"><i class="fa fa-search"></i></button>
+			</form>
+			</div>
 		<div class="container">
+		
          <div class="row">
 		  <?php //buat tarik nama dan image store dari database
 		   $sql = "SELECT * FROM merchant;";
