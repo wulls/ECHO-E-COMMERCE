@@ -58,7 +58,7 @@ include_once ('navbarlogin.php');
             <div class="text-center text-white">
              <!--h1 class="mb-5">Banner</h1--> 
 			 <!--**************************CAROUSEL***********************-->
-			 
+			 <?php include 'carousel.php';?>
 
             </div>
            </div>
@@ -66,7 +66,7 @@ include_once ('navbarlogin.php');
          </div>
         </header>
 		
-		<!--******************REKOMENDASI TOKO<!--******************-->
+		<!--******************REKOMENDASI TOKO******************-->
         <section class="features-icons bg-light text-center">
 		 <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
 		
