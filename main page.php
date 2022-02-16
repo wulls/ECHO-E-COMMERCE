@@ -29,12 +29,8 @@ include_once ('navbarlogin.php');
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/main page.css" rel="stylesheet" />
-<<<<<<< Updated upstream
-
-=======
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
->>>>>>> Stashed changes
     </head>
     <body>
 
@@ -70,41 +66,9 @@ include_once ('navbarlogin.php');
          </div>
         </header>
 		
-<<<<<<< Updated upstream
-		<!-- search engine -->
-		<div class = "search-engine">
-			<form action="main page.php">
-			<input type="text" placeholder="Search.." name="search">
-			<button type="submit"><i class="fa fa-search"></i></button>
-			</form>
-			</div>
-		
-		<div class="container">
-		
-         <div class="row">
-		  <?php //buat tarik nama dan image store dari database
-		   $sql = "SELECT * FROM merchant;";
-		   $result = mysqli_query($con,$sql);
-		 
-		 while($row=mysqli_fetch_array($result)){
-					echo "<div class='col-lg-4'>";
-						echo "<div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>";
-							echo "<div class='features-icons-icon d-flex'>";
-								echo "<img src=".$row['image']." alt='logo store' class='text-primary logotoko'>";
-							echo "</div>";
-						echo "<h4>".$row['merchantName']."</h4>";
-					// echo "<p class='lead mb-0'>Jalan Jalur Sutera Barat Kav. 16</p>";
-				echo "</div>";
-			echo "</div>";
-		 }
-		?>
-		</div>
-            </div>
-=======
 		<!--******************REKOMENDASI TOKO<!--******************-->
         <section class="features-icons bg-light text-center">
 		 <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
->>>>>>> Stashed changes
 		
 		 <div class="container">
           <div class="row">
