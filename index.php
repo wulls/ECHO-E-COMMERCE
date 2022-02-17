@@ -24,10 +24,11 @@ require_once ('indexcomponent.php');
   <div class="container">
     <div class="row text-center py-5">
       <?php
-      component("product 1","599","image/Merchant/FoodhallAS/Sayur/Tomat.jpeg");
-      component();
-      component();
-      component();
+       $sql = "SELECT * FROM product";
+       $result = mysqli_query($con,$sql);
+       while($row=mysqli_fetch_array($result)){
+      component($row['productName'], $row['productPrice'], $row['image']);
+    }
        ?>
     </div>
   </div>
