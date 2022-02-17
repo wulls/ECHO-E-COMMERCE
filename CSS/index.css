@@ -1,0 +1,10 @@
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+.fa-star,
+.fa-star-half{
+  color: yellowgreen;
+  padding: 3% 0;
+}
