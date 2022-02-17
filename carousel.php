@@ -37,19 +37,19 @@
     </div>
     <div class="carousel__track">
       <li class="carousel__slide">
-        <h1>F</h1>
+        <!--h1>F</h1-->
       </li>
       <li class="carousel__slide">
-        <h1>G</h1>
+        <!--h1>G</h1-->
       </li>
       <li class="carousel__slide">
-        <h1>H</h1>
+        <!--h1>H</h1-->
       </li>
       <li class="carousel__slide">
-        <h1>I</h1>
+        <!--h1>I</h1-->
       </li>
       <li class="carousel__slide">
-        <h1>J</h1>
+        <!--h1>J</h1-->
       </li>
     </div>
     <div class="carousel__indicators">

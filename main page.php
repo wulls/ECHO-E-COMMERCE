@@ -54,18 +54,19 @@ include_once ('navbarlogin.php');
         <header class="masthead">
          <div class="container position-relative">
           <div class="row justify-content-center">
+		  <div class="center">
            <div class="col-xl-6">
             <div class="text-center text-white">
-             <!--h1 class="mb-5">Banner</h1--> 
+			 
+             <!--h1 class="mb-5"></h1--> 
 			 <!--**************************CAROUSEL***********************-->
 			 <?php include 'carousel.php';?>
-
-            </div>
-           </div>
-          </div>
-         </div>
-        </header>
-		
+			 </div>
+		    </div>
+		   </div>
+		  </div>
+		 </div>
+		</header>
 		<!--******************REKOMENDASI TOKO******************-->
         <section class="features-icons bg-light text-center">
 		 <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
