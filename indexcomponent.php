@@ -1,12 +1,12 @@
 <?php
 
-function component($productname, $productprice, $productimg){
+/*function component($productname, $productprice, $productimg){
   $element="
   <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
     <form action=\"index.php\" method=\"post\">
       <div class=\"card shadow\">
         <div>
-        <img src=\"$productimg\" alt=\"image\" class=\"img-fluid card-img-top\">
+        <img src=\"$productimg\" alt=\"image\" class=\"card-img-top\">
         </div>
         <div class=\"card-body\">
           <h5 class=\"card-title\">$productname</h5>
@@ -20,6 +20,27 @@ function component($productname, $productprice, $productimg){
         </div>
       </div>
     </form>
+  </div>
+  ";
+  echo $element;
+}*/
+
+function component($productname, $productprice, $productimg, $productdesc){
+  $element="
+  <div class=\"col-md-2 col-sm-6 my-3 my-md-2\">
+      <div class=\"card h-100\">
+          <img class=\"card-img-top\" src=\"$productimg\" alt=\"...\" />
+          <div class=\"card-body p-4\">
+              <div class=\"text-center\">
+                  <h6 class=\"fw-bolder\">$productname</h6>
+                  Rp $productprice <br>
+                  <small>$productdesc</small>
+              </div>
+          </div>
+          <div class=\"card-footer p-2 pt-0 border-top-0 bg-transparent\">
+              <div class=\"text-center\"><a class=\"btn mt-auto\" href=\"#\">Add to cart</a></div>
+          </div>
+      </div>
   </div>
   ";
   echo $element;
