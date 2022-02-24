@@ -85,16 +85,15 @@ include_once ('navbarlogin.php');
       $sql = "SELECT * FROM merchant;";
       $result = mysqli_query($con,$sql);
        while($row=mysqli_fetch_array($result)){
-     echo "<div class='col-lg-4'>";
-     echo "<div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>";
-     echo "<div class='features-icons-icon d-flex'>";
-     echo "<img src=".$row['image']." alt='logo store' class='text-primary logotoko'>";
-     echo "</div>";
-     echo "<h4>".$row['merchantName']."</h4>";
-     // echo "<p class='lead mb-0'>Jalan Jalur Sutera Barat Kav. 16</p>";
-     echo "</div>";
-     echo "</div>";
-     }
+         echo "<div class='col-lg-4'>";
+         echo "<div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>";
+         echo "<div class='features-icons-icon d-flex'>";
+         echo "<img src=".$row['image']." alt='logo store' class='text-primary logotoko'>";
+         echo "</div>";
+         echo "<h4>".$row['merchantName']."</h4>";
+         echo "</div>";
+         echo "</div>";
+         }
      ?>
     </div>
          </div>
