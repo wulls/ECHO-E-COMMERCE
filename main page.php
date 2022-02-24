@@ -68,14 +68,12 @@ include_once ('navbarlogin.php');
    </div>
   </header>
   <!--******************REKOMENDASI TOKO******************-->
+
   <section class="features-icons bg-light text-center">
-   <div class="pstn">
-    <div class="row">
-     <div class="col">
-      <input class="form-control form-control-lg" id="address" placeholder="Masukkan alamat pengantaran" />
-     </div>
-   </div>
- </div>
+
+    <div class="pstn">
+       <input class="form-control" id="address" placeholder="Masukkan alamat pengantaran" />
+    </div>
 
    <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
 

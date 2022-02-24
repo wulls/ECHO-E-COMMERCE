@@ -2233,15 +2233,15 @@ progress {
 
 .form-control {
   display: relative;
-  width: 60%;
+  width: 80%;
   padding: 1rem 1rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 2;
   color: #212529;
   background-color: #fff;
-  background-clip: padding-box;
-  border-radius: 30px;
+  /*background-clip: padding-box;*/
+  border-radius: 20px;
   border: none;
   -webkit-appearance: none;
      -moz-appearance: none;
