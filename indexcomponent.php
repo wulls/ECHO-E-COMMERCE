@@ -25,16 +25,21 @@
   echo $element;
 }*/
 
-function component($productname, $productprice, $productimg, $productdesc){
+function component($productname, $productprice, $productimg, $productquantity, $productunit){
   $element="
   <div class=\"col-md-2 col-sm-6 my-3 my-md-2\">
       <div class=\"card h-100\">
           <img class=\"card-img-top\" src=\"$productimg\" alt=\"...\" />
           <div class=\"card-body p-4\">
               <div class=\"text-center\">
+                  <div class=\"product\">
                   <h6 class=\"fw-bolder\">$productname</h6>
+                  <small>$productquantity</small>
+                  <small>$productunit</small>
+                  </div>
+                  <div class=\"price\">
                   Rp $productprice <br>
-                  <small>$productdesc</small>
+                  </div>
               </div>
           </div>
           <div class=\"card-footer p-2 pt-0 border-top-0 bg-transparent\">
