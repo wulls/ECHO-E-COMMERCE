@@ -9,14 +9,18 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="css/main page.css" rel="stylesheet" />
+        <link href="CSS/main page.css" rel="stylesheet"/>
     </head>
 
 <nav class="navbar">
             <div class="container">
-                <a class="navbar-brand" href="#!"></a>
-                <img src="image/logo.png" class="logo">
-				<a class="btn btn-primary" href="login.php">Keranjang</a>
-                <a class="btn btn-primary" href="login.php">Login</a>
+               <div class="left">
+                <div class="form btn"> <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Belanja dari"> <span class="left-pan"><i class="fa fa-microphone"></i></span> </div>
+                <div class="form btn"> <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Antar ke"> <span class="left-pan"><i class="fa fa-microphone"></i></span> </div>
+              </div>
+              <div class="right">
+                <a class="btn btn-primary right" href="login.php">Login</a>
+                <a class="btn btn-primary right" href="#">Keranjang</a>
+              </div>
             </div>
         </nav>
