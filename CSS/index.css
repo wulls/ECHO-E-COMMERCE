@@ -22,12 +22,16 @@ small{
   padding: 2px;
   margin: 3px;
   border: 0;
-  background: none;
+  background: white;
+  width: 4cm;
+  text-align: left;
+  border-radius: 5px;
 }
 
 .Kategori:hover{
-  color: #34BE82;
-  /*background-color: #F0F0F0;*/
+  /*color: #34BE82;*/
+  filter: brightness(92.5%);
+  opacity: 0.9;
 }
 
 .list-group-item{
@@ -37,7 +41,7 @@ small{
 
 .container {
   float: left;
-  margin-left: 20px;
+  margin-left: 2px;
 }
 
 .btn {
@@ -47,9 +51,9 @@ small{
 }
 
 .btn:hover{
-  background-color: #34BE82;
+  /*background-color: #34BE82;*/
+  opacity: 0.92;
   color: white;
-  /*filter: brightness(93%);*/
 }
 
 .card{
