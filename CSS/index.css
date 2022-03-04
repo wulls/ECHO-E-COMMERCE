@@ -47,16 +47,18 @@ small{
 }
 
 .btn {
-  background-color: white;
+  /*background-color: white;
   border-color: #2F86A6;
-  color: #2F86A6;
+  color: #2F86A6;*/
+  background-color: #2F86A6;
+  color: white;
   width: 4cm;
 }
 
 .btn:hover{
-  opacity: 0.92;
-  background-color:#2F86A6;
+  background-color: #2F86A6;
   color: white;
+  opacity: 0.9;
 }
 
 .card{
