@@ -1,4 +1,5 @@
 body{
+  /*font-family: 'Product Sans', sans-serif;*/
   font-family: 'Roboto', sans-serif;
   letter-spacing: 0.25px;
 }
@@ -21,13 +22,18 @@ small{
   color: #2F86A6;
   padding: 2px;
   margin: 3px;
+  padding-left: 10px;
   border: 0;
-  background: none;
+  background: white;
+  width: 4cm;
+  height: 0.9cm;
+  text-align: left;
+  border-radius: 5px;
 }
 
 .Kategori:hover{
-  color: #34BE82;
-  /*background-color: #F0F0F0;*/
+  filter: brightness(92.5%);
+  opacity: 0.9;
 }
 
 .list-group-item{
@@ -37,31 +43,37 @@ small{
 
 .container {
   float: left;
-  margin-left: 20px;
+  margin-left: 2px;
 }
 
 .btn {
+  /*background-color: white;
+  border-color: #2F86A6;
+  color: #2F86A6;*/
   background-color: #2F86A6;
   color: white;
   width: 4cm;
 }
 
 .btn:hover{
-  background-color: #34BE82;
+  background-color: #2F86A6;
   color: white;
-  /*filter: brightness(93%);*/
+  opacity: 0.9;
 }
 
 .card{
   width: 4.5cm;
   margin-right: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-img-top{
   padding: 10px;
-  height: 3.5cm;
-  width: 4.5cm;
+  height: 3.6cm;
+  width: 4.1cm;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card-body{
