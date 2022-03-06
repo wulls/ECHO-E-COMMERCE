@@ -59,7 +59,7 @@
             </div>
 			<div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Last Name" name="lastname" required />
+              <input type="text" placeholder="Last Name" name="lastname" />
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
