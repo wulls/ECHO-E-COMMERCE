@@ -21,7 +21,7 @@ require_once ('indexcomponent.php');
     <link rel="stylesheet" href="CSS/index.css">
 </head>
 <body>
-     <hr />
+	<hr /> 
      <div class="row">
        <div class="col-sm-4 col-md-3">
          <h3>Kategori</h3>
