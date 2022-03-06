@@ -14,14 +14,19 @@ $username2 = $_POST["username2"];
 $email = $_POST["email"];
 $phone = $_POST["phone"];
 $password2 = $_POST["password2"];
-
+				
+//verifikasi username
 $sql2 = "SELECT username FROM customer WHERE username='$username2'";
 $query2 = mysqli_query($con, $sql2);
 $rows2 = mysqli_num_rows($query2);
 
       if($rows2===1){
-    	  echo "fail sign up";
+			echo "<script type='text/javascript'>
+        alert('Oops! Username Sudah Digunakan, Silahkan gunakan Username lain');
+        history.back(self);
+        </script>";
       }
+			
       else if($rows2==0){
     	$sql3 = "INSERT INTO customer (username, password, firstName, lastName, phone, email) VALUES ('$username2','$password2','$firstname','$lastname','$phone','$email');";
 		
@@ -35,7 +40,6 @@ $rows2 = mysqli_num_rows($query2);
 		 echo "something went wrong";
 		 }
 	  }
-	  
 
 
 ?>
