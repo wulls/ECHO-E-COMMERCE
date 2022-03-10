@@ -15,8 +15,8 @@
 <nav class="navbar">
             <div class="container">
                <div class="left">
-                <div class="form btn"> <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Belanja dari"> <span class="left-pan"><i class="fa fa-microphone"></i></span> </div>
-                <div class="form btn"> <i class="fa fa-search"></i> <input type="text" class="form-control form-input" placeholder="Antar ke"> <span class="left-pan"><i class="fa fa-microphone"></i></span> </div>
+                <div class="form btn"><input type="text" class="form-control form-input" placeholder="Belanja dari"> <span class="left-pan"></span> </div>
+                <div class="form btn"><input type="text" class="form-control form-input" placeholder="Antar ke"> <span class="left-pan"></span> </div>
               </div>
               <div class="right">
                 <a class="btn btn-primary right" href="login.php">Login</a>

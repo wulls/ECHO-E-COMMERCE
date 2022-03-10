@@ -10,7 +10,6 @@ include_once ('navbarlogin.php');
 // echo $_SESSION['username'];
 }
 
-// session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -34,45 +33,28 @@ include_once ('navbarlogin.php');
     </head>
     <body>
 
-      <!--php-->
-      <!--?php include "database connection.php";
-      $username = $_POST["username"];
-      $password = $_POST["password"];
-
-      $sql = "SELECT * FROM customer WHERE username='$username' AND password='$password';";
-      $query = mysqli_query($con, $sql);
-      $rows = mysqli_num_rows($query);
-
-      if($rows<1){
-        header("Location:login.php");
-      }
-
-      while($data = mysqli_fetch_array($query)){
-      ?-->
-
         <!-- Masthead-->
-        <header class="masthead">
-         <div class="container position-relative">
-          <div class="row justify-content-center">
-    <div class="center">
-           <div class="col-xl-6">
-            <div class="text-center text-white">
-
+<header class="masthead">
+ <div class="container position-relative">
+  <div class="row justify-content-center">
+   <div class="center">
+    <div class="col-xl-6">
+     <div class="text-center text-white">
              <!--h1 class="mb-5"></h1-->
     <!--**************************CAROUSEL***********************-->
-    <?php include 'carousel.php';?>
-    </div>
-      </div>
+      <?php include 'carousel.php';?>
      </div>
     </div>
    </div>
-  </header>
+  </div>
+ </div>
+</header>
   <!--******************REKOMENDASI TOKO******************-->
 
   <section class="features-icons bg-light text-center">
 
     <div class="pstn">
-       <input class="form-control" id="address" placeholder="Masukkan alamat pengantaran" />
+       <input type="text" class="form-control" id="search_address" placeholder="Masukkan alamat pengantaran" />
     </div>
 
    <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
@@ -86,7 +68,7 @@ include_once ('navbarlogin.php');
          echo "<div class='col-lg-4'>";
          echo "<div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>";
          echo "<div class='features-icons-icon d-flex'>";
-         echo '<a href="index2.php?id='.$row['merchant_id'].'">';
+         echo '<a href="index3.php?id='.$row['merchant_id'].'">';
          echo "<img src=".$row['image']." alt='logo store' class='text-primary logotoko'>";
          echo "</a>";
          echo "</div>";
@@ -137,6 +119,16 @@ include_once ('navbarlogin.php');
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script>
+         function activatePlacesSearch(){
+           var input = document.getElementById('search_address');
+           var autocomplete = new google.maps.places.Autocomplete(input);
+         }
+         google.maps.event.addDomListener(window, 'load', initialize);
+         </script>
+         <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_sQp8WSMj7cYX6tpqBxfsDSsYJwauAJ4&libraries=places&callback=activatePlacesSearch">
+         </script>
       <!--?php } ?-->
     </body>
 </html>

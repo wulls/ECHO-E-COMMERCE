@@ -16,6 +16,6 @@
             <div class="container">
                 <a class="navbar-brand" href="#"></a>
                 <img src="image/logo.png" class="logo">
-                <a class="btn btn-primary" href="#">Profile</a>
+                <a class="btn btn-primary" href="userprofile.php">Profile</a>
             </div>
         </nav>
