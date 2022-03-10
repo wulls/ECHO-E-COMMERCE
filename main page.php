@@ -64,19 +64,24 @@ include_once ('navbarlogin.php');
      <?php
       $sql = "SELECT * FROM merchant;";
       $result = mysqli_query($con,$sql);
-       while($row=mysqli_fetch_array($result)){
-         echo "<div class='col-lg-4'>";
-         echo "<div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>";
-         echo "<div class='features-icons-icon d-flex'>";
-         echo '<a href="index3.php?id='.$row['merchant_id'].'">';
-         echo "<img src=".$row['image']." alt='logo store' class='text-primary logotoko'>";
-         echo "</a>";
-         echo "</div>";
-         echo "<h4>".$row['merchantName']."</h4>";
-         echo "</div>";
-         echo "</div>";
-         }
-     ?>
+       while($row=mysqli_fetch_array($result)){?>
+
+      <div class='col-lg-4'>
+       <div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>
+        <div class='features-icons-icon d-flex'>
+         <form action="main page2.php" method="get">
+         <input type="hidden" name="merchant_id" value=<?php echo $row['merchant_id']?> >
+         <!--echo '<a href="index3.php?id='.$row['merchant_id'].'">';-->
+         <input type="image" src=<?php echo $row['image']?> alt="logo store" class='text-primary logotoko'>
+         <!--"</a>";-->
+         </form>
+        </div>
+       <h4><?php echo $row['merchantName']?></h4>
+      </div>
+     </div>
+    <?php } ?>
+
+
     </div>
          </div>
         </section>

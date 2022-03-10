@@ -111,6 +111,7 @@ body {
 /*****************SEARCH BY LOCATION****************/
 .pstn{
   padding-bottom: 55px;
+  z-index: 10000;
 }
 /*****************END OF SEARCH BY LOCATION****************/
 
@@ -2239,6 +2240,7 @@ progress {
   font-weight: 400;
   line-height: 2;
   color: #212529;
+  z-index: 10000;
   background-color: #fff;
   /*background-clip: padding-box;*/
   border-radius: 20px;

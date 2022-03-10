@@ -1,0 +1,103 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.25px;
+}
+
+h6{
+  color: black;
+}
+
+small{
+  font-size: 11px;
+  color: grey;
+}
+
+.row{
+  float: left;
+  margin-left: 25px;
+}
+
+.Kategori{
+  color: #2F86A6;
+  padding: 2px;
+  margin: 3px;
+  border: 0;
+  background: none;
+}
+
+.Kategori:hover{
+  color: #34BE82;
+  /*background-color: #F0F0F0;*/
+}
+
+.list-group-item{
+  border: none;
+  width: 5cm;
+}
+
+.container {
+  float: left;
+  margin-left: 20px;
+}
+
+.indexbtn {
+  background-color: #2F86A6;
+  color: white;
+  width: 4cm;
+}
+
+.indexbtn:hover{
+  background-color: #34BE82;
+  color: white;
+  /*filter: brightness(93%);*/
+}
+
+.card{
+  width: 4.5cm;
+  margin-right: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top{
+  padding: 10px;
+  height: 3.5cm;
+  width: 4.5cm;
+}
+
+.card-body{
+  height: 3.5cm;
+}
+
+.card-footer{
+  height: 1.5cm;
+}
+
+.product{
+  height: 2cm;
+  font-weight: bolder;
+  text-align: left;
+}
+
+.price{
+  height: 1.5cm;
+  font-weight: bold;
+  text-align: left;
+}
+
+/*#cart_count{
+    text-align: center;
+    padding: 0 0.9rem 0.1rem 0.9rem;
+    border-radius: 3rem;
+}
+
+.shopping-cart{
+    padding: 3% 0;
+}
+
+.cart-items + .cart-items{
+    padding: 2% 0;
+}
+
+.price-details h6{
+    padding: 3% 2%;
+}*/
