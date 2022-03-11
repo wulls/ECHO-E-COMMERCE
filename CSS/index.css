@@ -47,9 +47,6 @@ small{
 }
 
 .btn {
-  /*background-color: white;
-  border-color: #2F86A6;
-  color: #2F86A6;*/
   background-color: #2F86A6;
   color: white;
   width: 4cm;
@@ -58,7 +55,7 @@ small{
 .btn:hover{
   background-color: #2F86A6;
   color: white;
-  opacity: 0.9;
+  filter: brightness(95%);
 }
 
 .card{
@@ -96,7 +93,14 @@ small{
   text-align: left;
 }
 
-/*#cart_count{
+.btn.spinner {
+  background-color: #2F86A6;
+  color: white;
+  width:1cm;
+  heiht:1cm;
+}
+
+#cart_count{
     text-align: center;
     padding: 0 0.9rem 0.1rem 0.9rem;
     border-radius: 3rem;
@@ -110,6 +114,7 @@ small{
     padding: 2% 0;
 }
 
+/*
 .price-details h6{
     padding: 3% 2%;
 }*/

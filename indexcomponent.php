@@ -1,31 +1,6 @@
 <?php
 
-/*function component($productname, $productprice, $productimg){
-  $element="
-  <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
-    <form action=\"index.php\" method=\"post\">
-      <div class=\"card shadow\">
-        <div>
-        <img src=\"$productimg\" alt=\"image\" class=\"card-img-top\">
-        </div>
-        <div class=\"card-body\">
-          <h5 class=\"card-title\">$productname</h5>
-          <p class=\"card-text\">
-            Some text
-          </p>
-          <h5>
-            <span class=\"price\">Rp $productprice</span>
-          </h5>
-          <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">Add to Cart <i class=\"fas fa-shopping-cart\"></i></button>
-        </div>
-      </div>
-    </form>
-  </div>
-  ";
-  echo $element;
-}*/
-
-function component($productname, $productprice, $productimg, $productquantity, $productunit){
+function component($productname, $productprice, $productimg, $productquantity, $productunit, $productid){
   $element="
   <div class=\"col-md-2 col-sm-6 my-3 my-md-2\">
       <div class=\"card h-100\">
@@ -43,10 +18,44 @@ function component($productname, $productprice, $productimg, $productquantity, $
               </div>
           </div>
           <div class=\"card-footer p-2 pt-0 border-top-0 bg-transparent\">
-              <div class=\"text-center\"><a class=\"btn mt-auto\" href=\"#\">Add to cart</a></div>
+              <form method=\"post\" action=\"index.php\">
+              <div class=\"text-center\">
+                <input type=\"submit\" name=\"add\" value=\"Add to cart\" class=\"btn mt-auto\">
+              </div>
+              <input type=\"hidden\" name=\"productid\" value=\"$productid\">
+              </form>
           </div>
       </div>
   </div>
+  ";
+  echo $element;
+}
+
+function cartElement($productimg, $productname, $productprice){
+  $element = "
+  <form action=\"Cart.php\" method=\"get\" class=\"cart-items\">
+    <div class=\"border rounded\">
+      <div class=\"row bg-white\">
+        <div class=\"col-md-3 pl-0\">
+          <img src=\"$productimg\" class=\"img-fluid\">
+        </div>
+        <div class=\"col-md-6\">
+          <h5 class=\"pt-2\">$productname</h5>
+          <small class=\"text-secondary\">Seller</small>
+          <h5 class=\"pt-2\">Rp $productprice</h5>
+          <button type=\"submit\" class=\"\">Buy now</button>
+          <button type=\"submit\" class=\"\" name=\"remove\">Remove</button>
+        </div>
+        <div class=\"col-md-3 py-5\">
+          <div>
+            <button type=\"button\" class=\"btn spinner\"><i class=\"fas fa-minus\"></i></button>
+            <input type=\"text\" value=\"1\" class=\"form-control w-25 d-inline\">
+            <button type=\"button\" class=\"btn spinner\"><i class=\"fas fa-plus\"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
   ";
   echo $element;
 }
