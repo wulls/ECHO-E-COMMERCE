@@ -28,6 +28,7 @@
                 <thead>
                   <tr>
                     <th width="1%">NO</th>
+					<th>CUST ID</th>
                     <th>NAMA</th>
                     <th>EMAIL</th>
                     <th>HP</th>
@@ -44,6 +45,7 @@
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
+					  <td><?php echo $d['customer_id']; ?></td>
                       <td><?php echo $d['username']; ?></td>
                       <td><?php echo $d['email']; ?></td>
                       <td><?php echo $d['phone']; ?></td>
