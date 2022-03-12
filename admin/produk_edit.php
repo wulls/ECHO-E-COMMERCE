@@ -49,7 +49,7 @@
                         $kategori = mysqli_query($con,"SELECT * FROM category");
                         while($k = mysqli_fetch_array($kategori)){
                           ?>
-                          <option <?php if($k['category_id'] == $d['product_id']){echo "selected='selected'";} ?> value="<?php echo $k['category_id']; ?>"><?php echo $k['name']; ?></option>
+                          <option <?php if($k['category_id'] == $d['category_id']){echo "selected='selected'";} ?> value="<?php echo $k['category_id']; ?>"><?php echo $k['name']; ?></option>
                           <?php 
                         }
                         ?>
