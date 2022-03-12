@@ -1,5 +1,5 @@
 <?php 
-include '../koneksi.php';
+include '../database connection.php';
 $id = $_GET['id'];
 $data = mysqli_query($koneksi, "select * from produk where produk_id='$id'");
 $d = mysqli_fetch_assoc($data);
