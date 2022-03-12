@@ -1,18 +1,19 @@
 <?php 
 include '../database connection.php';
-$nama  = $_POST['nama'];
-$kategori = $_POST['kategori'];
-$harga = $_POST['harga'];
-$keterangan = $_POST['keterangan'];
-$berat = $_POST['berat'];
-$jumlah = $_POST['jumlah'];
+$nama  = $_POST['productName'];
+$merchant  = $_POST['merchant_id'];
+$kategori = $_POST['category_id'];
+$harga = $_POST['productPrice'];
+$keterangan = $_POST['productDescription'];
+$berat = $_POST['unit'];
+$jumlah = $_POST['quantity'];
 
 $rand = rand();
 $allowed =  array('gif','png','jpg','jpeg');
 
 $filename1 = $_FILES['foto1']['name'];
 
-mysqli_query($con, "insert into product values (NULL,'$nama','$kategori','$harga','$keterangan','$jumlah','$berat','')");
+mysqli_query($con, "INSERT INTO product values (NULL,'$nama','$merchant','$kategori','$harga','$keterangan','$berat','$jumlah','')");
 
 
 $last_id = mysqli_insert_id($con);
