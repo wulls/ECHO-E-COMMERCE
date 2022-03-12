@@ -50,7 +50,27 @@
                   </div>
                 </div>
               </div>
-
+				
+				<div class="form-group">
+                <label>Merchant</label>
+                <div class="row">
+                  <div class="col-lg-4">
+                    <select name="kategori" required="required" class="form-control">
+                      <option value="">- Pilih Merchant -</option>
+                      <?php 
+                      include '../database connection.php';
+                      $data = mysqli_query($con,"SELECT * FROM merchant");
+                      while($d = mysqli_fetch_array($data)){
+                        ?>
+                        <option value="<?php echo $d['merchant_id']; ?>"><?php echo $d['merchantName']; ?></option>
+                        <?php 
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+              </div>
+				
               <div class="form-group">
                 <label>Harga</label>
                 <div class="row">
