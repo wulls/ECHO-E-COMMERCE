@@ -56,7 +56,7 @@
                           <?php if($row['image'] == ""){ ?>
                             <img src="../gambar/sistem/produk.png" style="width: 80px;height: auto">
                           <?php }else{ ?>
-                            <img src="../image/Merchant/../<?php echo $row['image'] ?>" style="width: 80px;height: auto">
+                            <img src="../image/Merchant/<?php echo $row['image'] ?>" style="width: 80px;height: auto">
                           <?php } ?>
                         </center>
                       </td>
