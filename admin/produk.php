@@ -41,12 +41,12 @@
                   <?php 
                   include '../database connection.php';
                   $no=1;
-                  $result = mysqli_query($con, "SELECT * FROM product WHERE category_id ORDER BY product_id DESC;");
+                  $result = mysqli_query($con, "SELECT * FROM product, merchant WHERE category_id ORDER BY product_id ASC;");
                   while($row = mysqli_fetch_array($result)){
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-					  <td><?php echo $row['merchant_id']; ?></td>
+					  <td><?php echo $row['merchantName']; ?></td>
                       <td><?php echo $row['productName']; ?></td>
                       <td><?php echo $row['category_id']; ?></td>
                       <td><?php echo "Rp. ".number_format($row['productPrice']).""; ?></td>
