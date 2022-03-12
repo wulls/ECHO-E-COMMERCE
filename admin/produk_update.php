@@ -13,7 +13,8 @@ $allowed =  array('gif','png','jpg','jpeg');
 
 $filename1 = $_FILES['foto1']['name'];
 
-mysqli_query($con, "UPDATE product set productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', unit='$berat', quantity='$jumlah' WHERE product_id='$id'");
+mysqli_query($con, "UPDATE product set productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', unit='$berat',
+ quantity='$jumlah' WHERE product_id='$id'");
 
 
 
