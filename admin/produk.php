@@ -49,7 +49,7 @@
 					  <td><?php echo $row['merchant_id']; ?></td>
                       <td><?php echo $row['productName']; ?></td>
                       <td><?php echo $row['category_id']; ?></td>
-                      <td><?php echo "Rp. ".number_format($row['productPrice']).",-"; ?></td>
+                      <td><?php echo "Rp. ".number_format($row['productPrice']).""; ?></td>
                       <td><?php echo number_format($row['quantity']); ?></td>
                       <td>
                         <center>
