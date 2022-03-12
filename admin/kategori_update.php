@@ -1,7 +1,7 @@
 <?php 
-include '../koneksi.php';
+include '../database connection.php';
 $id  = $_POST['id'];
-$nama  = $_POST['nama'];
+$nama  = $_POST['name'];
 
-mysqli_query($koneksi, "update kategori set kategori_nama='$nama' where kategori_id='$id'");
+mysqli_query($koneksi, "update category set name='$nama' where category_id='$id'");
 header("location:kategori.php");
