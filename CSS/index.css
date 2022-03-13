@@ -114,7 +114,16 @@ small{
     padding: 2% 0;
 }
 
-/*
 .price-details h6{
     padding: 3% 2%;
-}*/
+}
+
+.img-cart{
+  width: 3.5cm;
+  height: 3cm;
+}
+
+th{
+  padding: 2px;
+  width: 10cm;
+}

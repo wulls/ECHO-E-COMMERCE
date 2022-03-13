@@ -31,10 +31,10 @@ function component($productname, $productprice, $productimg, $productquantity, $
   echo $element;
 }
 
-function cartElement($productimg, $productname, $productprice){
+/*function cartElement($productimg, $productname, $productprice, $productid){
   $element = "
-  <form action=\"Cart.php\" method=\"get\" class=\"cart-items\">
-    <div class=\"border rounded\">
+  <form action=\"Cart.php?action=remove&product_id=$productid\" method=\"post\" class=\"cart-items\">
+    <div class=\"\">
       <div class=\"row bg-white\">
         <div class=\"col-md-3 pl-0\">
           <img src=\"$productimg\" class=\"img-fluid\">
@@ -55,6 +55,22 @@ function cartElement($productimg, $productname, $productprice){
         </div>
       </div>
     </div>
+  </form>
+  ";
+  echo $element;
+}*/
+
+function cartElement($productimg, $productname, $productprice, $productid){
+  $element = "
+  <form action=\"Cart.php?action=remove&product_id=$productid\" method=\"post\" class=\"cart-items\">
+  <table>
+    <tr>
+      <th><img class= \"img-cart\" src=\"$productimg\"></th>
+      <th><h6 class=\"pt-2\">$productname</h6></th>
+      <th><h6 class=\"pt-2\">Rp $productprice</h6></th>
+      <th>	<input class=\"input jumlah\" type=\"number\" min=\"1\"</th>
+    </tr>
+  </table>
   </form>
   ";
   echo $element;

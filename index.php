@@ -1,8 +1,10 @@
+<?php include 'Header2.php'; ?>
+
 <?php
 
 session_start();
 
-include "database connection.php";
+include 'database connection.php';
 require_once ('indexcomponent.php');
 
 if(isset($_POST['add'])){
@@ -58,12 +60,8 @@ if(isset($_POST['add'])){
     <link rel="stylesheet" href="CSS/index.css">
 </head>
 <body>
-<<<<<<< Updated upstream
-	<hr /> 
-=======
-     <?php require_once("Header.php")?>
+     </?php require_once("Header.php")?>
      <br>
->>>>>>> Stashed changes
      <div class="row">
        <div class="col-sm-4 col-md-3">
          <h3>Kategori</h3>
