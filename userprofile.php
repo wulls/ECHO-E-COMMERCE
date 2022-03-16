@@ -1,8 +1,8 @@
 <?php include "database connection.php";
 
 session_start();
-if (isset($_SESSION['username'])) {
-include_once ('navbarlogin.php');
+if (isset($_SESSION['user_id'])) {
+include_once ('newnavbarlogin.php');
 //echo $_SESSION['username'];
 }
 ?>
@@ -24,12 +24,20 @@ include_once ('navbarlogin.php');
           <br>
 
           <?php include "database connection.php";
-          $username = $_SESSION['username'];
-          $sql = "SELECT * FROM customer WHERE username = '$username'";
+          $user_id = $_SESSION['user_id'];
+          $sql = "SELECT * FROM customer WHERE customer_id = '$user_id'";
+          $sql2 = "SELECT CR.rewardPoint, RL.levelName FROM customerreward CR JOIN rewardlevel RL ON CR.rewardPoint BETWEEN RL.lowerLimit AND RL.upperLimit WHERE CR.customer_id='$user_id'"; //return customer level
+          
+          $result2 = mysqli_query($con, $sql2);
+          $custreward = mysqli_fetch_array($result2);
+
           $result = mysqli_query($con,$sql);
             while($row=mysqli_fetch_array($result)){
+              $levelname = $custreward['levelName'];
+              $levelpoint = $custreward['rewardPoint'];
               $firstName = $row['firstName'];
               $lastName = $row['lastName'];
+              $username = $row['username'];
               $email = $row['email'];
               $phone = $row['phone'];
           ?>
@@ -40,8 +48,8 @@ include_once ('navbarlogin.php');
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="https://cdn-icons.flaticon.com/png/512/1144/premium/1144709.png?token=exp=1646875224~hmac=5a418fff0c97d1440fa605bd6799f44d" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <?php echo '<h4>'.$firstName.' '.$lastName.'</h4>' ?>
-                      <p class="text-secondary mb-1">Flower - 325 pts</p>
+                      <?php echo '<h4>'.$username.'</h4>' ?>
+                      <p class="text-secondary mb-1"><?php echo $levelname?> - <?php echo $levelpoint?></p>
                       <p class="text-muted font-size-sm">Membership</p>
                       <!--button class="btn btn-primary">Follow</button>
                       <button class="btn btn-outline-primary">Message</button-->
