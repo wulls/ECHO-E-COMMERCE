@@ -49,7 +49,6 @@ if(isset($_POST['remove'])){
           <h6>My Cart</h6>
           <hr>
           <?php
-
           $total=0;
           if(isset($_SESSION['cart'])){
             $productid = array_column($_SESSION['cart'], 'productid');
@@ -67,7 +66,6 @@ if(isset($_POST['remove'])){
           }else{
             echo "<h5>Cart is Empty</h5>";
           }
-
           ?>
         </div>
       </div>

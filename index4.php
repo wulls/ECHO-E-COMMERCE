@@ -1,231 +1,165 @@
-<?php include 'Header2.php'; ?>
+</?php include 'Header2.php'; ?>
 
+<?php
 
-<!-- BREADCRUMB -->
-<div id="breadcrumb">
-	<div class="container">
-		<ul class="breadcrumb">
-			<li><a href="index.php">Home</a></li>
-		</ul>
-	</div>
-</div>
-<!-- /BREADCRUMB -->
+session_start();
 
-<!-- section -->
-<div class="section">
-	<!-- container -->
-	<div class="container">
+include 'database connection.php';
+require_once ('indexcomponent.php');
 
-		<style type="text/css">
+if(isset($_POST['add'])){
+  //print_r($_POST['productid']);
+  if(isset($_SESSION['cart'])){
+    $item_array_id = array_column($_SESSION['cart'],'productid');
 
-			@media (max-width: 480px) {
-				.col-xs-6.custom-width{
-					/*background: blue !important;*/
-					max-width:50% !important;
-				}
+    if(in_array($_POST['productid'], $item_array_id)){
+      echo "<script>alert('Product is already added in the cart...!')</script>";
+      echo "<script>window.location = 'index.php'</script>";
+    }else{
 
-				.col-xs-6.custom-width img{
-					height: 150px !important;
-				}
+      $count = count($_SESSION['cart']);
+      $item_array = array(
+        'productid'=> $_POST['productid']
+      );
 
-			}
-		</style>
+      $_SESSION['cart'][$count] = $item_array;
 
+    }
 
-		<!-- row -->
-		<div class="row">
+  }else{
+    $item_array = array(
+      'productid'=> $_POST['productid']
+    );
 
-			<?php
-			// include 'sidebar.php';
-			?>
+    //Create new session variable
+    $_SESSION['cart'][0] = $item_array;
+    print_r($_SESSION['cart']);
+  }
+}
 
-			<!-- MAIN -->
-			<div id="main" class="col-md-12">
+?>
 
-				<?php
-				if(isset($_GET['cari'])){
-					?>
-					Hasil Pencarian : <?php echo htmlspecialchars($_GET['cari']); ?>
-					<?php
-				}
-				?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping Cart</title>
 
-				<!-- store top filter -->
-				<form action="" method="get">
-					<?php
-					if(isset($_GET['cari'])){
-						$c = "&cari=".$_GET['cari'];
-						?>
-						<input type="hidden" name="cari" value="<?php echo $_GET['cari']; ?>">
-						<?php
-					}else{
-						?>
+    <!-- Font Text -->
+    <!-- <link href="http://fonts.cdnfonts.com/css/product-sans" rel="stylesheet"> -->
 
-						<?php
-					}
-					?>
-					<div class="store-filter clearfix">
-						<div class="pull-right">
-							<div class="sort-filter">
-								<span class="text-uppercase">Urutkan :</span>
-								<select class="input" name="urutan" onchange="this.form.submit()">
-									<option <?php if(isset($_GET['urutan']) && $_GET['urutan'] == "terbaru"){echo "selected='selected'";} ?> value="terbaru">Terbaru</option>
-									<option <?php if(isset($_GET['urutan']) && $_GET['urutan'] == "harga"){echo "selected='selected'";} ?> value="harga">Harga</option>
-								</select>
-							</div>
-						</div>
-					</div>
-				</form>
-				<!-- /store top filter -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
 
-				<!-- STORE -->
-				<div id="store">
-					<!-- row -->
-					<div class="row">
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-						<?php
+    <link rel="stylesheet" href="CSS/index.css">
+</head>
+<body>
+     </?php require_once("Header.php")?>
+     <br>
+     <div class="row">
+       <div class="col-sm-4 col-md-3">
+         <h3>Kategori</h3>
+         <div class="list-group">
+           <form method="post" action="index.php">
+           <input type="submit" name="SemuaProduk" value="Semua Produk" class="Kategori"><br>
+           <input type="submit" name="Sayur" value="Sayur" class="Kategori"><br>
+           <input type="submit" name="Buah" value="Buah" class="Kategori"><br>
+           <input type="submit" name="Dapur" value="Dapur" class="Kategori"><br>
+           <input type="submit" name="Saus" value="Saus" class="Kategori"><br>
+           <input type="submit" name="BerasMie" value="Beras & Mie" class="Kategori"><br>
+           <input type="submit" name="SusuTelur" value="Susu & Telur" class="Kategori"><br>
+           <input type="submit" name="Daging" value="Daging" class="Kategori"><br>
+           </form>
+         </div>
+       </div>
+     </div>
+     <div class="container">
+        <div class="row text-center py-5">
+            <?php
+            if(isset($_POST['SemuaProduk'])) {
+                $sql = "SELECT * FROM product WHERE merchant_id = '6'";
+                $result = mysqli_query($con,$sql);
+                while($row=mysqli_fetch_array($result)){
+                  component($row['productName'], number_format($row['productPrice']), $row['image'], $row['quantity'], $row['unit'], $row['product_id']);
+                }
+              }
+              else if(isset($_POST['Sayur'])) {
+                  $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='1'";
+                  $result = mysqli_query($con,$sql);
+                  while($row=mysqli_fetch_array($result)){
+                    component($row['productName'], number_format($row['productPrice']), $row['image'], $row['quantity'], $row['unit'], $row['product_id']);
+                  }
+                }
+                else if (isset($_POST['Buah'])) {
+                    $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='3'";
+                    $result = mysqli_query($con,$sql);
+                    while($row=mysqli_fetch_array($result)){
+                      component($row['productName'], number_format($row['productPrice']), $row['image'], $row['quantity'], $row['unit'], $row['product_id']);
+                    }
+                  }
+                  else if (isset($_POST['Dapur'])) {
+                      $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='4'";
+                      $result = mysqli_query($con,$sql);
+                      while($row=mysqli_fetch_array($result)){
+                        component($row['productName'], number_format($row['productPrice']), $row['image'], $row['quantity'], $row['unit'], $row['product_id']);
+                      }
+                    }
+                    else if (isset($_POST['Saus'])) {
+                        $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='5'";
+                        $result = mysqli_query($con,$sql);
+                        while($row=mysqli_fetch_array($result)){
+                          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['quantity'], $row['unit'], $row['product_id']);
+                        }
+                      }
+                      else if (isset($_POST['BerasMie'])) {
+                          $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='6'";
+                          $result = mysqli_query($con,$sql);
+                          while($row=mysqli_fetch_array($result)){
+                            component($row['productName'], number_format($row['productPrice']), $row['image'], $row['quantity'], $row['unit'], $row['product_id']);
+                          }
+                        }
+                        else if (isset($_POST['SusuTelur'])) {
+                            $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='7'";
+                            $result = mysqli_query($con,$sql);
+                            while($row=mysqli_fetch_array($result)){
+                              component($row['productName'], number_format($row['productPrice']), $row['image'], $row['quantity'], $row['unit'], $row['product_id']);
+                            }
+                          }
+                          else if (isset($_POST['Daging'])) {
+                              $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='8'";
+                              $result = mysqli_query($con,$sql);
+                              while($row=mysqli_fetch_array($result)){
+                                component($row['productName'], number_format($row['productPrice']), $row['image'], $row['quantity'], $row['unit'], $row['product_id']);
+                              }
+                            }
+                            else {
+                                $sql = "SELECT * FROM product WHERE merchant_id = '6'";
+                                $result = mysqli_query($con,$sql);
+                                while($row=mysqli_fetch_array($result)){
+                                  component($row['productName'], number_format($row['productPrice']), $row['image'], $row['quantity'], $row['unit'], $row['product_id']);
+                                }
+                              }
+            ?>
+        </div>
+    </div>
 
+    <!-- jQuery Plugins -->
+    <script src="frontend/js/jquery.min.js"></script>
+    <script src="frontend/js/bootstrap.min.js"></script>
+    <script src="frontend/js/slick.min.js"></script>
+    <script src="frontend/js/nouislider.min.js"></script>
+    <script src="frontend/js/jquery.zoom.min.js"></script>
+    <script src="frontend/js/main.js"></script>
 
-
-						$halaman = 12;
-						$page = isset($_GET["halaman"]) ? (int)$_GET["halaman"] : 1;
-						$mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
-						// $result = mysqli_query($koneksi, "SELECT * FROM produk");
-
-						if(isset($_GET['urutan']) && $_GET['urutan'] == "harga"){
-							if(isset($_GET['cari'])){
-								$cari = $_GET['cari'];
-								$result = mysqli_query($koneksi,"select * from produk,kategori where kategori_id=produk_kategori and produk_nama like '%$cari%' order by produk_harga asc");
-							}else{
-								$result = mysqli_query($koneksi,"select * from produk,kategori where kategori_id=produk_kategori order by produk_harga asc");
-							}
-						}else{
-
-							if(isset($_GET['cari'])){
-								$cari = $_GET['cari'];
-								$result = mysqli_query($koneksi,"select * from produk,kategori where kategori_id=produk_kategori and produk_nama like '%$cari%' order by produk_id desc");
-							}else{
-								$result = mysqli_query($koneksi,"select * from produk,kategori where kategori_id=produk_kategori order by produk_id desc");
-							}
-
-						}
-
-						$total = mysqli_num_rows($result);
-						$pages = ceil($total/$halaman);
-						if(isset($_GET['urutan']) && $_GET['urutan'] == "harga"){
-							if(isset($_GET['cari'])){
-								$cari = $_GET['cari'];
-								$data = mysqli_query($koneksi,"select * from produk,kategori where kategori_id=produk_kategori and produk_nama like '%$cari%' order by produk_harga asc LIMIT $mulai, $halaman");
-							}else{
-								$data = mysqli_query($koneksi,"select * from produk,kategori where kategori_id=produk_kategori order by produk_harga asc LIMIT $mulai, $halaman");
-							}
-						}else{
-
-							if(isset($_GET['cari'])){
-								$cari = $_GET['cari'];
-								$data = mysqli_query($koneksi,"select * from produk,kategori where kategori_id=produk_kategori and produk_nama like '%$cari%' order by produk_id desc LIMIT $mulai, $halaman");
-							}else{
-								$data = mysqli_query($koneksi,"select * from produk,kategori where kategori_id=produk_kategori order by produk_id desc LIMIT $mulai, $halaman");
-							}
-
-						}
-						$no =$mulai+1;
-
-						while($d = mysqli_fetch_array($data)){
-							?>
-
-							<div class="col-md-3 col-sm-6 col-xs-6">
-								<div class="product product-single">
-									<div class="product-thumb">
-										<div class="product-label">
-											<span><?php echo $d['kategori_nama'] ?></span>
-										</div>
-
-										<a href="produk_detail.php?id=<?php echo $d['produk_id'] ?>" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</a>
-
-										<?php if($d['produk_foto1'] == ""){ ?>
-											<img src="gambar/sistem/produk.png" style="height: 250px">
-										<?php }else{ ?>
-											<img src="gambar/produk/<?php echo $d['produk_foto1'] ?>" style="height: 250px">
-										<?php } ?>
-									</div>
-									<div class="product-body">
-										<h3 class="product-price"><?php echo "Rp. ".number_format($d['produk_harga']).",-"; ?> <?php if($d['produk_jumlah'] == 0){?> <del class="product-old-price">Kosong</del> <?php } ?></h3>
-										<div class="product-rating">
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star"></i>
-											<i class="fa fa-star-o empty"></i>
-										</div>
-										<h2 class="product-name"><a href="produk_detail.php?id=<?php echo $d['produk_id'] ?>"><?php echo $d['produk_nama']; ?></a></h2>
-										<div class="product-btns">
-											<a class="main-btn btn-block text-center" href="produk_detail.php?id=<?php echo $d['produk_id'] ?>"><i class="fa fa-search"></i> Lihat</a>
-											<a class="primary-btn add-to-cart btn-block text-center" href="keranjang_masukkan.php?id=<?php echo $d['produk_id']; ?>&redirect=index"><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /Product Single -->
-
-							<?php
-						}
-						?>
-
-					</div>
-					<!-- /row -->
-
-					<?php
-					if($total == 0){
-						?>
-						<center><h4>Belum ada produk.</h4></center>
-						<?php
-					}
-					?>
-				</div>
-				<!-- /STORE -->
-
-
-				<div class="store-filter clearfix">
-					<div class="pull-right">
-						<ul class="store-pages">
-							<li><span class="text-uppercase">Page:</span></li>
-							<?php for ($i=1; $i<=$pages ; $i++){ ?>
-								<?php if($page==$i){ ?>
-									<li class="active"><?php echo $i; ?></li>
-								<?php }else{ ?>
-
-									<?php
-									if(isset($_GET['cari'])){
-										$cari = $_GET['cari'];
-										$c = "&cari=".$cari;
-									}else{
-										$c = "";
-									}
-									if(isset($_GET['urutan']) && $_GET['urutan'] == "harga"){
-										?>
-										<li><a href="?halaman=<?php echo $i; ?>&urutan=harga<?php echo $c ?>"><?php echo $i; ?></a></li>
-										<?php
-									}else{
-										?>
-										<li><a href="?halaman=<?php echo $i; ?><?php echo $c ?>"><?php echo $i; ?></a></li>
-										<?php
-									}
-									?>
-
-								<?php } ?>
-							<?php } ?>
-						</ul>
-					</div>
-				</div>
-
-			</div>
-			<!-- /MAIN -->
-		</div>
-		<!-- /row -->
-	</div>
-	<!-- /container -->
-</div>
-<!-- /section -->
-
-<?php include 'footer.php'; ?>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{%static 'JS/Cart.js' %}"></script>
+</body>
+</html>

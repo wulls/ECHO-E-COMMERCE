@@ -68,7 +68,8 @@ function cartElement($productimg, $productname, $productprice, $productid){
       <th><img class= \"img-cart\" src=\"$productimg\"></th>
       <th><h6 class=\"pt-2\">$productname</h6></th>
       <th><h6 class=\"pt-2\">Rp $productprice</h6></th>
-      <th>	<input class=\"input jumlah\" type=\"number\" min=\"1\"</th>
+      <th><input class=\"input jumlah\" id=\"myNumber\" value=\"1\" type=\"number\" min=\"1\"></th>
+      <th><h6 class=\"pt-2\">Rp $productprice</h6></th>
     </tr>
   </table>
   </form>
