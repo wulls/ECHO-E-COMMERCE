@@ -49,7 +49,7 @@
                         $kategori = mysqli_query($con,"SELECT * FROM category");
                         while($k = mysqli_fetch_array($kategori)){
                           ?>
-                          <option <?php if($k['category_id'] == $d['category_id']){echo "selected='selected'";} ?> value="<?php echo $k['category_id']; ?>"><?php echo $k['name']; ?></option>
+                          <option <?php if($k['category_id'] == $d['category_id']){echo "selected='selected'";} ?> value="<?php echo $k['category_id']; ?>"><?php echo $k['categoryName']; ?></option>
                           <?php 
                         }
                         ?>
@@ -69,7 +69,7 @@
 
                 <div class="form-group">
                   <label>Katerangan</label>
-                  <textarea name="keterangan" class="form-control textarea" required="required" style="resize: none" rows="10"><?php echo $d['productDescription']; ?></textarea>
+                  <textarea name="keterangan" class="form-control textarea" style="resize: none" rows="10"><?php echo $d['productDescription']; ?></textarea>
                 </div>
 
                 <div class="form-group">
