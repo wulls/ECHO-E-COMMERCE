@@ -33,6 +33,7 @@
                     <th>KATEGORI</th>
                     <th>HARGA</th>
                     <th>JUMLAH</th>
+					<th>SATUAN</th>
                     <th width="15%">FOTO</th>
                     <th width="10%">OPSI</th>
                   </tr>
@@ -58,6 +59,7 @@
                       <td><?php echo $row['categoryName']; ?></td>
                       <td><?php echo "Rp. ".number_format($row['productPrice']).""; ?></td>
                       <td><?php echo number_format($row['quantity']); ?></td>
+					  <td><?php echo $row['unit']; ?></td>
                       <td>
                         <center>
                           <?php if($row['image'] == ""){ ?>
