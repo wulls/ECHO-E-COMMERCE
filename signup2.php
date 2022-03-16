@@ -23,7 +23,7 @@ $rows2 = mysqli_num_rows($query2);
       if($rows2===1){
 			echo "<script type='text/javascript'>
         alert('Oops! Username Sudah Digunakan, Silahkan gunakan Username lain');
-        history.back(self);
+        history.back();
         </script>";
       }
 			
