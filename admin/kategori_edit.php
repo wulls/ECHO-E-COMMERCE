@@ -32,7 +32,7 @@
                 <div class="form-group">
                   <label>Nama</label>
                   <input type="hidden" name="id" value="<?php echo $d['category_id'] ?>">
-                  <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama Kategori.." value="<?php echo $d['name'] ?>">
+                  <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama Kategori.." value="<?php echo $d['categoryName'] ?>">
                 </div>
 
                 <div class="form-group">

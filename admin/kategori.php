@@ -44,7 +44,7 @@
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['name']; ?></td>
+                      <td><?php echo $d['categoryName']; ?></td>
                       <td>                      
                         <?php if($d['category_id'] !==0){ ?>  
                           <a class="btn btn-warning btn-sm" href="kategori_edit.php?id=<?php echo $d['category_id'] ?>"><i class="fa fa-cog"></i></a>
