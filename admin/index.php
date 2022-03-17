@@ -104,7 +104,7 @@
                 <td><?php echo $_SESSION['username']; ?></td>
               </tr>
               <tr>
-                <th>Level Hak Akses</th>
+                <th>Akses</th>
                 <td>
                   <span class="label label-success text-uppercase"><?php echo $_SESSION['status']; ?></span>
                 </td>
