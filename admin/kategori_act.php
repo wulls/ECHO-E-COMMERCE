@@ -7,7 +7,7 @@ $query = mysqli_query($con, $sql);
 $rows = mysqli_num_rows($query);
 
 if($rows===1){
-    header("location:kategori_tambah.php");
+    header("location:kategori_tambah.php?alert=gagal");
 }else if($rows==0){
     $sql2 = "INSERT INTO category (categoryName) VALUES ('$nama');";
     $query2 = mysqli_query($con, $sql2);

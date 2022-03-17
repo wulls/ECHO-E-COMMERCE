@@ -22,6 +22,15 @@
             <h3 class="box-title">Tambah kategori Baru</h3>
             <a href="kategori.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp Kembali</a> 
           </div>
+
+          <?php 
+          if(isset($_GET['alert'])){
+            if($_GET['alert'] == "gagal"){
+              echo "<div class='alert alert-danger'>Kategori sudah ada!</div>";
+            }
+          }
+          ?>
+
           <div class="box-body">
             <form action="kategori_act.php" method="post">
               <div class="form-group">
