@@ -1,6 +1,6 @@
 <?php 
 include 'header.php';
-include '../koneksi.php';
+include '../database connection.php';
 ?>
 
 <div class="content-wrapper">
@@ -29,7 +29,7 @@ include '../koneksi.php';
             <form action="admin_update.php" method="post" enctype="multipart/form-data">
               <?php 
               $id = $_GET['id'];              
-              $data = mysqli_query($koneksi, "select * from admin where admin_id='$id'");
+              $data = mysqli_query($con, "select * from admin where admin_id='$id'");
               while($d = mysqli_fetch_array($data)){
                 ?>
 

@@ -48,9 +48,9 @@
                       <td>
                         <center>
                           <?php if($d['admin_foto'] == ""){ ?>
-                            <img src="../gambar/sistem/user.png" style="width: 40px;height: auto">
+                            <img src="user.png" style="width: 40px;height: auto">
                           <?php }else{ ?>
-                            <img src="../gambar/user/<?php echo $d['admin_foto'] ?>" style="width: 40px;height: auto">
+                            <img src="../admin<?php echo $d['admin_foto'] ?>" style="width: 40px;height: auto">
                           <?php } ?>
                         </center>
                       </td>

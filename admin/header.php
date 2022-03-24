@@ -25,7 +25,7 @@
   include '../database connection.php';
   session_start();
   if($_SESSION['status'] != "login"){
-    header("location:../login.php?alert=belum_login");
+    header("location:../loginadmin.php?alert=belum_login");
   }
   ?>
 
@@ -62,7 +62,7 @@
               </a>
             </li>
             <li>
-              <a href="loginadmin.php"><i class="fa fa-sign-out"></i> LOGOUT</a>
+              <a href="../loginadmin.php"><i class="fa fa-sign-out"></i> LOGOUT</a>
             </li>
           </ul>
         </div>

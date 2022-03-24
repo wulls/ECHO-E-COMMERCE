@@ -17,7 +17,7 @@ if($filename == ""){
 	if(!in_array($ext,$allowed) ) {
 		header("location:admin.php?alert=gagal");
 	}else{
-		move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/'.$rand.'_'.$filename);
+		move_uploaded_file($_FILES['foto']['tmp_name'], '../admin'.$rand.'_'.$filename);
 		$file_gambar = $rand.'_'.$filename;
 		mysqli_query($con, "insert into admin values (NULL,'$nama','$username','$password','$file_gambar')");
 		header("location:admin.php");
