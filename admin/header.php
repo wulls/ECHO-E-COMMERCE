@@ -62,7 +62,7 @@
               </a>
             </li>
             <li>
-              <a href="logout.php"><i class="fa fa-sign-out"></i> LOGOUT</a>
+              <a href="loginadmin.php"><i class="fa fa-sign-out"></i> LOGOUT</a>
             </li>
           </ul>
         </div>
