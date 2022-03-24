@@ -1,13 +1,13 @@
 <?php include "database connection.php";
 
 session_start();
-if(!isset($_SESSION['username'])){
- include_once ('navbar.php');
+if(!isset($_SESSION['user_id'])){
+ include_once ('newnavbar.php');
 }
 
-if (isset($_SESSION['username'])) {
-include_once ('navbarlogin.php');
-// echo $_SESSION['username'];
+if (isset($_SESSION['user_id'])) {
+  include_once ('newnavbarlogin.php');
+  //echo $_SESSION['user_id'];
 }
 
 ?>
@@ -17,19 +17,11 @@ include_once ('navbarlogin.php');
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <title>Trolley</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-        <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/main page.css" rel="stylesheet" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
 
@@ -42,7 +34,30 @@ include_once ('navbarlogin.php');
      <div class="text-center text-white">
              <!--h1 class="mb-5"></h1-->
     <!--**************************CAROUSEL***********************-->
-      <?php include 'carousel.php';?>
+      <!--?php include 'carousel.php';?-->
+
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner" style="width:83vw;height:30vw;border-radius: .95rem;">
+          <div class="carousel-item active">
+            <img src="image/carousel/promo1.jpg" class="d-block w-100" alt="promo">
+          </div>
+          <div class="carousel-item">
+            <img src="image/carousel/promo2.jpg" class="d-block w-100" alt="promo">
+          </div>
+          <div class="carousel-item">
+            <img src="image/carousel/promo1.jpg" class="d-block w-100" alt="promo">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" style="width:5rem;">
+          <span class="carousel-control-prev" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next" style="width:2rem">
+          <span class="carousel-control-next" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
      </div>
     </div>
    </div>
@@ -53,13 +68,13 @@ include_once ('navbarlogin.php');
 
   <section class="features-icons bg-light text-center">
 
-    <div class="pstn">
-       <input type="text" class="form-control" id="search_address" placeholder="Masukkan alamat pengantaran" />
-    </div>
+    <div class="container">
+      <div class="pstn">
+         <input type="text" class="form-control" id="search_address" placeholder="Masukkan alamat pengantaran" />
+      </div>
 
    <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
 
-   <div class="container">
           <div class="row">
      <?php
       $sql = "SELECT * FROM merchant;";
