@@ -1,9 +1,9 @@
 <?php 
-include '../koneksi.php';
+include '../database connection.php';
 $id = $_GET['id'];
 
-mysqli_query($koneksi, "delete from invoice where invoice_id='$id'");
+mysqli_query($con, "delete from invoice where invoice_id='$id'");
 
-mysqli_query($koneksi,"delete from transaksi where transaksi_invoice='$id'");
+mysqli_query($con,"delete from transaksi where transaksi_invoice='$id'");
 
 header("location:transaksi.php");

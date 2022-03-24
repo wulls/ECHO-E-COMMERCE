@@ -65,7 +65,7 @@
                     <?php 
                     $no = 1;
                     $total = 0;
-                    $transaksi = mysqli_query($koneksi,"select * from transaksi,produk where transaksi_produk=produk_id and transaksi_invoice='$id_invoice'");
+                    $transaksi = mysqli_query($con,"select * from transaksi,produk where transaksi_produk=produk_id and transaksi_invoice='$id_invoice'");
                     while($d=mysqli_fetch_array($transaksi)){
                       $total += $d['transaksi_harga'];
                       ?>

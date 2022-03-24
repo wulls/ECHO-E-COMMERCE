@@ -20,7 +20,7 @@
 
           <div class="box-header">
             <h3 class="box-title">Customer</h3>
-            <a href="customer_tambah.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-plus"></i> &nbsp Tambah Csustomer Baru</a>              
+            <a href="customer_tambah.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-plus"></i> &nbsp Tambah Customer Baru</a>              
           </div>
           <div class="box-body">
             <div class="table-responsive">
