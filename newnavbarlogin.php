@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>TROLLEY</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
@@ -27,14 +26,21 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Profile
+              Menu
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="userprofile.php">Profile</a></li>
+              <li>
+                <a class="dropdown-item" href="test_userprofile.php">Profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="history.php">History</a>
+              </li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Logout</a>
+              </li>
             </ul>
           </li>
         </ul>

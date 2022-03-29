@@ -6,12 +6,16 @@ $name = $_POST['name'];
 $phone = $_POST['phone'];
 $label = $_POST['label'];
 $city = $_POST['city'];
-$region = $_POST['region'];
+$region = $_POST['district'];
 $detail = $_POST['detail'];
 $postalcode = $_POST['postalcode'];
 
+
 $insertAddress = "INSERT INTO customeraddress (customer_id, addressCategory, addressName, recipientName, recipientPhone, addressDetail, city, region, postalCode)
                   VALUES ('$user_id', 'Not Main', '$label', '$name', '$phone', '$detail', '$city', '$region', '$postalcode')";
+
 $query = mysqli_query($con,$insertAddress);
+
+header("location:test_userprofile.php");
 
 ?>

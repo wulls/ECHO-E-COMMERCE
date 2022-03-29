@@ -23,6 +23,6 @@ $query = mysqli_query($con,$updateEmail);
 $updatePhone = "UPDATE customer SET phone='$phone' WHERE customer_id='$user_id'";
 $query = mysqli_query($con,$updatePhone);
 
-header("location:userprofile.php");
+header("location:test_userprofile.php");
 
 ?>
