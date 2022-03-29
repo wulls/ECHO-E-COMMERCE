@@ -67,63 +67,63 @@ require_once('indexcomponent3.php');
         $sql = "SELECT * FROM product WHERE merchant_id = '6'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-        component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity']);
+        component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if(isset($_POST['Sayur'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='1'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity']);
+          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_POST['Buah'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='3'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity']);
+          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_POST['Dapur'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='4'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity']);
+          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_POST['Saus'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='5'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity']);
+          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_POST['BerasMie'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='6'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity']);
+          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_POST['SusuTelur'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='7'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity']);
+          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_POST['Daging'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='8'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity']);
+          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else {
         $sql = "SELECT * FROM product WHERE merchant_id = '6'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity']);
+          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       ?>
@@ -140,51 +140,56 @@ require_once('indexcomponent3.php');
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
 
   <script type="text/javascript">
-  $(document).ready(function(){
-    $(document).on("click", ".addItemBtn", function(e){
-      e.preventDeafult();
-      var form = $(this).closest(".form-submit");
-      var id = form.find(".pid").val();
-      var name = form.find(".pname").val();
-      var price = form.find(".pprice").val();
-      var image = form.find(".pimage").val();
-      var amount = form.find(".pamount").val();
-      var unit = form.find(".punit").val();
-      var quantity = form.find(".pquantity").val();
+    $(document).ready(function(){
 
-      $.ajax({
-        url: "action.php",
-        method: "post",
-        data: {pid:id,
-        pname:name,
-        pprice:price,
-        pimage:image,
-        pamount:amount,
-        punit:unit,
-        pquantity:quantity},
-        success: function(response){
-          $("#message").html(response);
-          window.scrollTo(0,0);
-          load_cart_item_number();
-        }
-      });
-    });
+      //send product details in server
+      $(".addItemBtn").click(function(e) {
+        e.preventDeafult();
+        var form = $(this).closest(".form-submit");
+        var id = form.find(".pid").val();
+        var name = form.find(".pname").val();
+        var price = form.find(".pprice").val();
+        var image = form.find(".pimage").val();
+        var amount = form.find(".pamount").val();
+        var unit = form.find(".punit").val();
+        var quantity = form.find(".pquantity").val();
 
-    load_cart_item_number();
+        $.ajax({
+          url: 'action2.php',
+          method: 'post',
+            data: {
+              pid: pid,
+              pname: pname,
+              pprice: pprice,
+              pimage: pimage,
+              pamount: pamount,
+              punit: punit,
+              pquantity: pquantity
+            },
+            success: function(response){
+              $("#message").html(response);
+              window.scrollTo(0,0);
+              load_cart_item_number();
+            }
+          });
+        });
 
-    function load_cart_item_number() {
-      $.ajax({
-        url: 'action.php',
-        method: 'get',
-        data: {
-          cartItem: "cart_item"
-        },
-        success: function(response) {
-          $("#cart-item").html(response);
-        }
-      });
-    }
-  });
+    // Load total no.of items added in the cart and display in the navbar
+       load_cart_item_number();
+
+       function load_cart_item_number() {
+         $.ajax({
+           url: 'action2.php',
+           method: 'get',
+           data: {
+             cartItem: "cart_item"
+           },
+           success: function(response) {
+             $("#cart-item").html(response);
+           }
+         });
+       }
+     });
   </script>
 </body>
 </html>
