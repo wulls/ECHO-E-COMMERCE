@@ -1,9 +1,17 @@
 <?php
 
 session_start();
-
 include 'database connection.php';
 require_once('indexcomponent7.php');
+
+if(!isset($_SESSION['user_id'])){
+ include_once ('newnavbar.php');
+}
+
+if (isset($_SESSION['user_id'])) {
+  include_once ('newnavbarproduct.php');
+  //echo $_SESSION['user_id'];
+}
 
 ?>
 
@@ -28,27 +36,12 @@ require_once('indexcomponent7.php');
 </head>
 
 <body>
-  </?php require_once("Header.php")?>
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="index7.php"><i class="fas fa-mobile-alt"></i>&nbsp;&nbsp;Home</a>\
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-     <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="cart3.php"><i class="fas fa-shopping-cart"></i> <span id="cart-item" class="badge badge-danger"></span></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div id="message"></div>
   <br>
   <div class="row">
     <div class="col-sm-4 col-md-3">
       <h3>Kategori</h3>
       <div class="list-group">
-        <form method="post" action="index7.php">
+        <form method="get" action="index7.php">
           <input type="submit" name="SemuaProduk" value="Semua Produk" class="Kategori"><br>
           <input type="submit" name="Sayur" value="Sayur" class="Kategori"><br>
           <input type="submit" name="Buah" value="Buah" class="Kategori"><br>
@@ -64,83 +57,74 @@ require_once('indexcomponent7.php');
   <div class="container">
     <div class="row text-center py-5">
       <?php
-      if(isset($_POST['SemuaProduk'])) {
-        $sql = "SELECT * FROM product WHERE merchant_id = '6'";
+      $merchant_id = $_SESSION['merchant_id'];
+      //echo $merchant_id;
+
+      if(isset($_GET['SemuaProduk'])) {
+        $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
         component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
-      else if(isset($_POST['Sayur'])) {
-        $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='1'";
+      else if(isset($_GET['Sayur'])) {
+        $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='1'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
           component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['producPrice']);
         }
       }
-      else if (isset($_POST['Buah'])) {
-        $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='3'";
+      else if (isset($_GET['Buah'])) {
+        $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='3'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
           component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productprice']);
         }
       }
-      else if (isset($_POST['Dapur'])) {
-        $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='4'";
+      else if (isset($_GET['Dapur'])) {
+        $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='4'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
           component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
-      else if (isset($_POST['Saus'])) {
-        $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='5'";
+      else if (isset($_GET['Saus'])) {
+        $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='5'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
           component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
-      else if (isset($_POST['BerasMie'])) {
-        $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='6'";
+      else if (isset($_GET['BerasMie'])) {
+        $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='6'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
           component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
-      else if (isset($_POST['SusuTelur'])) {
-        $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='7'";
+      else if (isset($_GET['SusuTelur'])) {
+        $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='7'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
           component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
-      else if (isset($_POST['Daging'])) {
-        $sql = "SELECT * FROM product WHERE merchant_id = '6' AND category_id ='8'";
+      else if (isset($_GET['Daging'])) {
+        $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='8'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
           component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else {
-        $sql = "SELECT * FROM product WHERE merchant_id = '6'";
+        $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
           component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       ?>
-
     </div>
   </div>
-
-<!--
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
--->
-
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
-
-
 </body>
 </html>

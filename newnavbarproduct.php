@@ -32,8 +32,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item active">
-                    <a class="nav-link active" aria-current="page" href="#">
-                        Cart
+                    <a class="nav-link active" aria-current="page" href="cart3.php">
+                      <i class="fas fa-shopping-cart"></i>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
