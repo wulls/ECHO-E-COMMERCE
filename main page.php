@@ -70,7 +70,7 @@ if (isset($_SESSION['user_id'])) {
 
     <div class="container">
       <div class="pstn">
-         <input type="text" class="form-control" id="search_address" placeholder="Masukkan alamat pengantaran" />
+         <input type="text" class="form-control" id="search_address" placeholder="Masukkan alamat pengantaran" style="border-radius:4px;"/>
       </div>
 
    <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
@@ -87,11 +87,11 @@ if (isset($_SESSION['user_id'])) {
          <form action="main page2.php" method="get">
          <input type="hidden" name="merchant_id" value=<?php echo $row['merchant_id']?> >
          <!--echo '<a href="index3.php?id='.$row['merchant_id'].'">';-->
-         <input type="image" src=<?php echo $row['image']?> alt="logo store" class='text-primary logotoko'>
+         <input type="image" src=<?php echo $row['image']?> alt="logo store" class="text-primary logotoko">
          <!--"</a>";-->
          </form>
         </div>
-       <h4><?php echo $row['merchantName']?></h4>
+       <h4 style="padding-top:25px;padding-bottom:30px;"><?php echo $row['merchantName']?></h4>
       </div>
      </div>
     <?php } ?>
