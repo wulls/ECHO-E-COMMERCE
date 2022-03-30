@@ -28,21 +28,21 @@
 
               <div class="form-group">
                 <label>Nama Produk</label>
-                <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama ..">
+                <input type="text" class="form-control" name="productName" required="required" placeholder="Masukkan Nama ..">
               </div>
 
               <div class="form-group">
                 <label>Kategori Produk</label>
                 <div class="row">
                   <div class="col-lg-4">
-                    <select name="kategori" required="required" class="form-control">
+                    <select name="category_id" required="required" class="form-control">
                       <option value="">- Pilih Kategori Produk -</option>
                       <?php 
                       include '../database connection.php';
                       $data = mysqli_query($con,"SELECT * FROM category");
                       while($d = mysqli_fetch_array($data)){
                         ?>
-                        <option value="<?php echo $d['category_id']; ?>"><?php echo $d['name']; ?></option>
+                        <option value="<?php echo $d['category_id']; ?>"><?php echo $d['categoryName']; ?></option>
                         <?php 
                       }
                       ?>
@@ -55,7 +55,7 @@
                 <label>Merchant</label>
                 <div class="row">
                   <div class="col-lg-4">
-                    <select name="kategori" required="required" class="form-control">
+                    <select name="merchant_id" required="required" class="form-control">
                       <option value="">- Pilih Merchant -</option>
                       <?php 
                       include '../database connection.php';
@@ -75,7 +75,7 @@
                 <label>Harga</label>
                 <div class="row">
                   <div class="col-lg-4">
-                    <input type="number" class="form-control" name="harga" required="required" placeholder="Masukkan Harga ..">
+                    <input type="number" class="form-control" name="productPrice" required="required" placeholder="Masukkan Harga ..">
                   </div>
                 </div>
               </div>
@@ -86,19 +86,27 @@
               </div>
 
               <div class="form-group">
-                <label>Berat Produk (gram)</label>
+                <label>Quantity</label>
                 <div class="row">
                   <div class="col-lg-4">
-                    <input type="number" class="form-control" name="berat" required="required" placeholder="Masukkan Berat ..">
+                    <input type="number" class="form-control" name="quantity" required="required" placeholder="Masukkan Quantity ..">
                   </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label>Jumlah Stock</label>
+                <label>Unit</label>
                 <div class="row">
                   <div class="col-lg-4">
-                    <input type="number" class="form-control" name="jumlah" required="required" placeholder="Masukkan Jumlah ..">
+                    <select name="unit" required="required" class="form-control">
+                      <option value="">- Pilih Unit -</option>
+                      <option>piece</option>
+                      <option>packet</option>
+                      <option>g</option>
+                      <option>Kg</option>
+                      <option>L</option>
+                      <option>ml</option>
+                    </select>
                   </div>
                 </div>
               </div>

@@ -4,8 +4,8 @@ $nama  = $_POST['productName'];
 $merchant  = $_POST['merchant_id'];
 $kategori = $_POST['category_id'];
 $harga = $_POST['productPrice'];
-$keterangan = $_POST['productDescription'];
-$berat = $_POST['unit'];
+$keterangan = $_POST['keterangan'];
+$unit = $_POST['unit'];
 $jumlah = $_POST['quantity'];
 
 $rand = rand();
@@ -13,7 +13,7 @@ $allowed =  array('gif','png','jpg','jpeg');
 
 $filename1 = $_FILES['foto1']['name'];
 
-mysqli_query($con, "INSERT INTO product values (NULL,'$nama','$merchant','$kategori','$harga','$keterangan','$berat','$jumlah','')");
+mysqli_query($con, "INSERT INTO product values (NULL,'$merchant','$nama','$kategori','$jumlah','$unit','$harga','$keterangan','')");
 
 
 $last_id = mysqli_insert_id($con);
