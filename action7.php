@@ -50,8 +50,8 @@ if (isset($_POST['productQuantity'])) {
 
   $tprice = $productQuantity * $pprice;
 
-  $stmt = $con->prepare('UPDATE cart SET productQuantity=?, totalPrice=? WHERE cart_id=?');
-  $stmt->bind_param('isi',$pquantity,$tprice,$pid);
+  $stmt = $con->prepare('UPDATE cart SET productQuantity=?, totalPrice=? WHERE product_id=?');
+  $stmt->bind_param('iii',$productQuantity,$tprice,$pid);
   $stmt->execute();
 }
 ?>

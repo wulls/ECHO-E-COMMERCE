@@ -1,0 +1,32 @@
+.btn {
+  background-color: #2F86A6;
+  color: white;
+  text-align: center;
+}
+
+.btn:hover{
+  background-color: #2F86A6;
+  color: white;
+  filter: brightness(95%);
+}
+
+.clearall{
+  border-radius: 5px;
+}
+
+.clearall:hover{
+  text-decoration: none;
+}
+
+.clear {
+  color: grey;
+}
+
+.picname {
+  text-align: left;
+}
+
+.itemQty{
+  display: inline-block;
+  vertical-align: middle;
+}

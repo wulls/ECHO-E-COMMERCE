@@ -1,0 +1,20 @@
+.btn {
+  background-color: #2F86A6;
+  color: white;
+  width: 12cm;
+}
+
+.btn:hover{
+  background-color: #2F86A6;
+  color: white;
+  filter: brightness(95%);
+}
+
+.badge-danger{
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.badge-danger:hover{
+  text-decoration: none;
+}

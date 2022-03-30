@@ -34,6 +34,17 @@
                 <li class="nav-item active">
                     <a class="nav-link active" aria-current="page" href="cart7.php">
                       <i class="fas fa-shopping-cart"></i>
+                      <?php
+                        require 'database connection.php';
+                        $stmt = $con->prepare('SELECT * FROM cart');
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $grand_total = 0;
+                        while ($row = $result->fetch_assoc()):
+                      ?>
+                      <?php $cart_number += $row['productQuantity'];?>
+                      <?php endwhile; ?>
+                      <span id="cart-item" class="badge badge-danger"><?= number_format($cart_number); ?></span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">

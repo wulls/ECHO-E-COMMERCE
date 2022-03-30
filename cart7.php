@@ -19,6 +19,7 @@
   <title>Cart</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
+  <link rel="stylesheet" href="CSS/cart7.css">
 </head>
 
 <body>
@@ -35,13 +36,18 @@
          <table class="table text-center">
            <thead>
              <tr>
-               <th>Image</th>
-               <th>Product</th>
+                <td colspan="7">
+                  <h2 class="text-center m-0 title">Cart</h2>
+                </td>
+              </tr>
+             <tr>
+               <th class="picname">Product</th>
+               <th>Merchant</th>
                <th>Price</th>
                <th>Quantity</th>
                <th>Total Price</th>
                <th>
-                 <a href="action2.php?clear=all" class="badge-danger badge p-1" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear Cart</a>
+                 <a href="action2.php?clear=all" class="badge-danger p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear All</a>
                </th>
              </tr>
            </thead>
@@ -55,31 +61,43 @@
                 while ($row = $result->fetch_assoc()):
               ?>
               <tr>
-                <td><img src="<?= $row['productImage'] ?>" width="50"></td>
-                <td><?= $row['productName'] ?></td>
                 <td>
-                  <i class=""></i>&nbsp;&nbsp;<?= number_format($row['productPrice'],2); ?>
+                  <input type="hidden" class="pid" value="<?= $row['product_id'] ?>">
+                  <div class = "picname">
+                    <img src="<?= $row['productImage'] ?>" width="50" height="50">
+                    <div class="ml-3 d-inline-block align-middle">
+                    <h6 class="mb-0"><?= $row['productName'] ?></h6><span class="text-muted font-weight-normal font-italic d-block"><small><?= $row['productAmount'], " ", $row['productUnit'] ?></small></span>
+                    </div>
+                 </div>
+                </td>
+                </?php
+                  require 'database connection.php';
+                  $merchant = "SELECT merchant.merchantName
+                          FROM cart
+                          JOIN merchant ON merchant.merchant_id = cart.merchant_id";
+                  $result = mysqli_query($con, $merchant);
+                ?>
+                <td>
+                  <?= $row['merchant_id'] ?>
+                </td>
+                <td>
+                  <i class=""></i>Rp <?= number_format($row['productPrice']); ?>
                 </td>
                 <input type="hidden" class="pprice" value="<?= $row['productPrice'] ?>">
                 <td>
-                  <input type="number" class="form-control itemQty" value="<?= $row['productQuantity'] ?>" style="width:75px;">
+                  <input type="number" min="1" class="form-control itemQty" value="<?= $row['productQuantity'] ?>" style="width:75px;">
                 </td>
-                <td><i class=""></i>&nbsp;&nbsp;<?= number_format($row['totalPrice'],2); ?></td>
+                <td><i class=""></i>Rp <?= number_format($row['totalPrice']); ?></td>
                 <td>
-                  <a href="action2.php?remove=<?= $row['cart_id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="fas fa-trash-alt"></i></a>
+                  <a href="action2.php?remove=<?= $row['cart_id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="fas fa-trash clear"></i></a>
                 </td>
               </tr>
               <?php $grand_total += $row['totalPrice']; ?>
               <?php endwhile; ?>
-              <tr>
-               <td colspan="2">
-                 <a href="index7.php" class="btn btn-success"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Continue
-                   Shopping</a>
-               </td>
-               <td colspan="2"><b>Grand Total</b></td>
-               <td><b>&nbsp;&nbsp;<?= number_format($grand_total,2); ?></b></td>
+               <td colspan="4"><b>Grand Total</b></td>
+               <td><b>&nbsp;&nbsp;Rp <?= number_format($grand_total); ?></b></td>
                <td>
-                 <a href="checkout.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class="far fa-credit-card"></i>&nbsp;&nbsp;Checkout</a>
+                 <a href="checkout7.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class=""></i>Checkout</a>
                </td>
              </tr>
            </tbody>
@@ -88,5 +106,36 @@
       </div>
     </div>
   </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      // Change the item quantity
+      $(".itemQty").on('change', function() {
+        var $el = $(this).closest('tr');
+
+        var pid = $el.find(".pid").val();
+        var pprice = $el.find(".pprice").val();
+        var productQuantity = $el.find(".itemQty").val();
+        location.reload(true);
+        $.ajax({
+          url: 'action7.php',
+          method: 'post',
+          cache: false,
+          data: {
+            productQuantity: productQuantity,
+            pid: pid,
+            pprice: pprice
+          },
+          success: function(response) {
+            console.log(response);
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
