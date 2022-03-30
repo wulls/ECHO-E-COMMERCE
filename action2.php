@@ -24,7 +24,7 @@
 
     if (!$product_id) {
 	    $query = $con->prepare('INSERT INTO cart (product_id,productName,productPrice,productImage,productAmount,productUnit,productQuantity,totalPrice) VALUES (?,?,?,?,?,?,?,?)');
-	    $query->bind_param('ssssssss',$pid,$pname,$pprice,$pimage,$pamount,$punit,$pquantity,$totalPrice);
+	    $query->bind_param('isisisii',$pid,$pname,$pprice,$pimage,$pamount,$punit,$pquantity,$totalPrice);
 	    $query->execute();
 
 			echo '<div class="alert alert-success alert-dismissible mt-2">
@@ -59,7 +59,7 @@
 
 	  $_SESSION['showAlert'] = 'block';
 	  $_SESSION['message'] = 'Item removed from the cart!';
-	  header('location:cart3.php');
+	  header('location:cart7.php');
 	}
 
 	// Remove all items at once from cart
@@ -68,21 +68,19 @@
 	  $stmt->execute();
 	  $_SESSION['showAlert'] = 'block';
 	  $_SESSION['message'] = 'All Item removed from the cart!';
-	  header('location:cart3.php');
+	  header('location:cart7.php');
 	}
 
 	// Set total price of the product in the cart table
 	if (isset($_POST['productQuantity'])) {
-	  $pquantity = $_POST['productQuantity'];
+	  $productQuantity = $_POST['productQuantity'];
 	  $pid = $_POST['pid'];
 	  $pprice = $_POST['pprice'];
 
-	  $tprice = $pquantity * $pprice;
+	  $tprice = $productQuantity * $pprice;
 
 	  $stmt = $con->prepare('UPDATE cart SET productQuantity=?, totalPrice=? WHERE cart_id=?');
 	  $stmt->bind_param('isi',$pquantity,$tprice,$pid);
 	  $stmt->execute();
 	}
-
-
 ?>

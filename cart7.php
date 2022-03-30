@@ -32,13 +32,8 @@
           } unset($_SESSION['showAlert']); ?></strong>
         </div>
         <div class="table-responsive mt-2">
-         <table class="table table-bordered table-striped text-center">
+         <table class="table text-center">
            <thead>
-             <tr>
-               <td colspan="7">
-                 <h4 class="text-center text-info m-0">Products in your cart!</h4>
-               </td>
-             </tr>
              <tr>
                <th>Image</th>
                <th>Product</th>
@@ -46,7 +41,7 @@
                <th>Quantity</th>
                <th>Total Price</th>
                <th>
-                 <a href="action.php?clear=all" class="badge-danger badge p-1" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear Cart</a>
+                 <a href="action2.php?clear=all" class="badge-danger badge p-1" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear Cart</a>
                </th>
              </tr>
            </thead>
@@ -63,13 +58,13 @@
                 <td><img src="<?= $row['productImage'] ?>" width="50"></td>
                 <td><?= $row['productName'] ?></td>
                 <td>
-                  <i class="fas fa-rupee-sign"></i>&nbsp;&nbsp;<?= number_format($row['productPrice'],2); ?>
+                  <i class=""></i>&nbsp;&nbsp;<?= number_format($row['productPrice'],2); ?>
                 </td>
                 <input type="hidden" class="pprice" value="<?= $row['productPrice'] ?>">
                 <td>
                   <input type="number" class="form-control itemQty" value="<?= $row['productQuantity'] ?>" style="width:75px;">
                 </td>
-                <td><i class="fas fa-rupee-sign"></i>&nbsp;&nbsp;<?= number_format($row['totalPrice'],2); ?></td>
+                <td><i class=""></i>&nbsp;&nbsp;<?= number_format($row['totalPrice'],2); ?></td>
                 <td>
                   <a href="action2.php?remove=<?= $row['cart_id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="fas fa-trash-alt"></i></a>
                 </td>
@@ -77,8 +72,8 @@
               <?php $grand_total += $row['totalPrice']; ?>
               <?php endwhile; ?>
               <tr>
-               <td colspan="3">
-                 <a href="index5.php" class="btn btn-success"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Continue
+               <td colspan="2">
+                 <a href="index7.php" class="btn btn-success"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Continue
                    Shopping</a>
                </td>
                <td colspan="2"><b>Grand Total</b></td>

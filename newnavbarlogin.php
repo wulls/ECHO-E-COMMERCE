@@ -20,8 +20,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item active">
-            <a class="nav-link active" aria-current="page" href="cart3.php">
+            <a class="nav-link active" aria-current="page" href="cart7.php">
               <i class="fas fa-shopping-cart"></i>
+              <span id="cart-item" class="badge badge-danger"></span>
             </a>
           </li>
           <li class="nav-item dropdown">
