@@ -19,7 +19,7 @@
                 <div class="form btn"><input type="text" class="form-control form-input" placeholder="Antar ke"> <span class="left-pan"></span> </div>
               </div>
               <div class="right">
-                <a class="btn btn-primary right" href="login.php">Login</a>
+                <a class="btn btn-primary right" href="userprofile.php">Profile</a>
                 <a class="btn btn-primary right" href="#">Keranjang</a>
               </div>
             </div>
