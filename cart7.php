@@ -94,8 +94,9 @@
               </tr>
               <?php $grand_total += $row['totalPrice']; ?>
               <?php endwhile; ?>
+              <tr>
                <td colspan="4"><b>Grand Total</b></td>
-               <td><b>&nbsp;&nbsp;Rp <?= number_format($grand_total); ?></b></td>
+               <td><b>Rp <?= number_format($grand_total); ?></b></td>
                <td>
                  <a href="checkout7.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class=""></i>Checkout</a>
                </td>

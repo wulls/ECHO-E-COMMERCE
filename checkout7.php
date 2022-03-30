@@ -35,7 +35,7 @@
             <h6 class="mb-0">Recipient Name</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" name="firstName" class="form-control input-field" value="">
+            <input type="text" name="Name" class="form-control input-field" value="">
           </div>
         </div>
         <div class="row mb-3">
@@ -43,7 +43,7 @@
             <h6 class="mb-0">Recipient Phone</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" name="lastName" class="form-control input-field" value="">
+            <input type="tel" name="Phone" class="form-control input-field" value="">
           </div>
         </div>
         <div class="row mb-3">
@@ -51,33 +51,17 @@
             <h6 class="mb-0">Payment Method</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <select class="form-control input-field" name="gender">
-              <option value="Female" >Debit</option>
-              <option value="Male" >Credit</option>
+            <select class="form-control input-field" name="paymentMethod">
+              <option value="Debit" >Debit</option>
+              <option value="Credit" >Credit</option>
             </select>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Email</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input type="text" name="email" class="form-control input-field" value="">
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Phone Number</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            <input type="text" name="phone" class="form-control input-field" value="">
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-sm-3"></div>
           <div class="col-sm-9 text-secondary">
-            <input type="submit" class="btn btn-primary px-4" value="Save Changes" style="background-color:#2F86A6">
+            <input type="submit" class="btn btn-primary px-4" value="Order" style="background-color:#2F86A6">
           </div>
         </div>
         </form>
