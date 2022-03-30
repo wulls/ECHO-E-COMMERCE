@@ -5,7 +5,7 @@
   <section class="content-header">
     <h1>
       Produk
-      <small>Tambah Produk Baru</small>
+      <small>Edit Produk</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -19,7 +19,7 @@
         <div class="box box-info">
 
           <div class="box-header">
-            <h3 class="box-title">Tambah Produk</h3>
+            <h3 class="box-title">Edit Produk</h3>
             <a href="produk.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp Kembali</a> 
           </div>
           <div class="box-body">
@@ -34,7 +34,7 @@
 
                 <div class="form-group">
                   <label>Nama Produk</label>
-                  <input type="hidden" name="id" value="<?php echo $row['product_id']; ?>">
+                  <input type="hidden" name="id" value="<?php echo $d['product_id']; ?>">
                   <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama .." value="<?php echo $d['productName']; ?>">
                 </div>
 
@@ -62,7 +62,7 @@
                   <label>Harga</label>
                   <div class="row">
                     <div class="col-lg-4">
-                      <input type="number" class="form-control" name="harga" required="required" placeholder="Masukkan Harga .." value="<?php echo $d['productPrice']; ?>">
+                      <input type="number" class="form-control" name="harga" placeholder="Masukkan Harga .." value="<?php echo $d['productPrice']; ?>">
                     </div>
                   </div>
                 </div>
@@ -73,19 +73,27 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Berat Produk (gram)</label>
+                  <label>Quantity</label>
                   <div class="row">
                     <div class="col-lg-4">
-                      <input type="keterangan" class="form-control" name="berat" required="required" placeholder="Masukkan Berat .." value="<?php echo $d['unit']; ?>">
+                      <input type="number" class="form-control" name="quantity" placeholder="Masukkan Quantity .." value=<?php echo $d['quantity']; ?>>
                     </div>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label>Jumlah Stock</label>
+                  <label>Unit</label>
                   <div class="row">
                     <div class="col-lg-4">
-                      <input type="number" class="form-control" name="jumlah" required="required" placeholder="Masukkan Jumlah .." value="<?php echo $d['quantity']; ?>">
+                      <select name="unit" class="form-control">
+                        <option value="">- Pilih Unit -</option>
+                        <option <?php if($d['unit'] == "piece"){echo "selected='selected'";} ?> value="piece">piece</option>
+                        <option <?php if($d['unit'] == "pakcet"){echo "selected='selected'";} ?> value="packet">packet</option>
+                        <option <?php if($d['unit'] == "g"){echo "selected='selected'";} ?> value="g">g</option>
+                        <option <?php if($d['unit'] == "Kg"){echo "selected='selected'";} ?> value="Kg">Kg</option>
+                        <option <?php if($d['unit'] == "Ml"){echo "selected='selected'";} ?> value="ml">ml</option>
+                        <option <?php if($d['unit'] == "L"){echo "selected='selected'";} ?> value="L">L</option>
+                      </select>
                     </div>
                   </div>
                 </div>

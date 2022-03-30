@@ -5,16 +5,25 @@ $nama  = $_POST['nama'];
 $kategori = $_POST['kategori'];
 $harga = $_POST['harga'];
 $keterangan = $_POST['keterangan'];
-$berat = $_POST['berat'];
-$jumlah = $_POST['jumlah'];
+$quantity = $_POST['quantity'];
+$unit = $_POST['unit'];
+
+
+echo $id;
+echo $nama;
+echo $kategori;
+echo $harga;
+echo $keterangan;
+echo $quantity;
+echo $unit;
 
 $rand = rand();
 $allowed =  array('gif','png','jpg','jpeg');
 
 $filename1 = $_FILES['foto1']['name'];
 
-mysqli_query($con, "UPDATE product SET productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', unit='$berat',
- quantity='$jumlah' WHERE product_id='$id'");
+mysqli_query($con, "UPDATE product SET productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', unit='$unit',
+ quantity='$quantity' WHERE product_id='$id'");
 
 
 
