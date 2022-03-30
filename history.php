@@ -49,23 +49,23 @@ include_once ('newnavbarlogin.php');
                                     <p>
                                         <img src="image/small icons/invoice.png" style="height:20px;width:20px;">
                                         <b style="padding-left:10px;padding-right:10px;"><?php echo $history['day'].' '.$history['month'].' '.$history['yearr']; ?></b>
-                                        ID: 11111
+                                        ID: <?php echo $history['order_id']; ?>
                                     </p>
                                     <p>
                                         <img src="image/small icons/store.png" style="height:20px;width:20px;">
-                                        <b style="padding-left:10px;padding-right:10px;">Foodmart</b>
+                                        <b style="padding-left:10px;padding-right:10px;"><?php echo $history['merchantName']; ?></b>
                                     </p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="d-flex align-items-start">
                                     <div class="frame">
-                                        <img src="image/merchant/FoodhallAS/BerasMie/Macroni.jpeg" class="mb-0 product-display">
+                                        <img src="<?php echo $history['image'] ?>"" class="mb-0 product-display">
                                     </div>
                                     <p class="float-left" style="padding-left:25px;">
-                                        <b>La Fonte Macaroni </b> 1 × 
+                                        <b><?php echo $history['productName'] ?></b> <?php echo $history['quantity'] ?>
                                         <br>
-                                        Rp 10.000
+                                        Rp <?php echo $history['productPrice'] ?>
                                         <br><br>
                                         + 10 Other Products
                                     </p>
@@ -74,7 +74,7 @@ include_once ('newnavbarlogin.php');
                                             Total Price
                                         </p>
                                         <p style="padding-right:2rem;">
-                                            <b>Rp 357.460</b>
+                                            <b>Rp 1.000.000</b>
                                         </p>
                                     </div>
                                 </div>
@@ -94,9 +94,9 @@ include_once ('newnavbarlogin.php');
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div><br>
                     <?php } } ?>
-                </div><br>
+                </div>
             </div>
             
         </div>
