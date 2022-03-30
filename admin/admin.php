@@ -30,7 +30,6 @@
                     <th width="1%">NO</th>
                     <th>NAMA</th>
                     <th>USERNAME</th>
-                    <th width="15%">FOTO</th>
                     <th width="10%">OPSI</th>
                   </tr>
                 </thead>
@@ -45,15 +44,7 @@
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['admin_nama']; ?></td>
                       <td><?php echo $d['admin_username']; ?></td>
-                      <td>
-                        <center>
-                          <?php if($d['admin_foto'] == ""){ ?>
-                            <img src="user.png" style="width: 40px;height: auto">
-                          <?php }else{ ?>
-                            <img src="../admin<?php echo $d['admin_foto'] ?>" style="width: 40px;height: auto">
-                          <?php } ?>
-                        </center>
-                      </td>
+                     
                       <td>                        
                         <a class="btn btn-warning btn-sm" href="admin_edit.php?id=<?php echo $d['admin_id'] ?>"><i class="fa fa-cog"></i></a>
                         <?php if($d['admin_id'] != 1){ ?>

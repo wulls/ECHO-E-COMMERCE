@@ -51,12 +51,6 @@ include '../database connection.php';
                 </div>
 
                 <div class="form-group">
-                  <label>Foto</label>
-                  <input type="file" name="foto">
-                  <small class="text-muted">Kosong Jika tidak ingin di ganti</small>
-                </div>
-
-                <div class="form-group">
                   <input type="submit" class="btn btn-sm btn-primary" value="Simpan">
                 </div>
                 <?php
