@@ -73,6 +73,7 @@
   </nav>
 </div>
 
+  <!--
   <script>
   window.onscroll = function() {myFunction()};
 
@@ -87,5 +88,6 @@
     }
   }
   </script>
+-->
 </body>
 </html>
