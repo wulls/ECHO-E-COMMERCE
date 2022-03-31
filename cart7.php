@@ -47,7 +47,7 @@
                <th>Quantity</th>
                <th>Total Price</th>
                <th>
-                 <a href="action2.php?clear=all" class="badge-danger p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear All</a>
+                 <a href="action7.php?clear=all" class="badge-danger p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear All</a>
                </th>
              </tr>
            </thead>
@@ -89,7 +89,7 @@
                 </td>
                 <td><i class=""></i>Rp <?= number_format($row['totalPrice']); ?></td>
                 <td>
-                  <a href="action2.php?remove=<?= $row['cart_id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="fas fa-trash clear"></i></a>
+                  <a href="action7.php?remove=<?= $row['cart_id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="fas fa-trash clear"></i></a>
                 </td>
               </tr>
               <?php $grand_total += $row['totalPrice']; ?>

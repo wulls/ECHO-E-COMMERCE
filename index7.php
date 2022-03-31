@@ -36,6 +36,12 @@ if (isset($_SESSION['user_id'])) {
 </head>
 
 <body>
+  <div style="display:<?php if (isset($_SESSION['Alert'])) {echo $_SESSION['Alert'];} else {echo 'none';} unset($_SESSION['Alert']); ?>" class="alert alert-success alert-dismissible mt-3">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong><?php if (isset($_SESSION['msg'])) {
+      echo $_SESSION['msg'];
+    } unset($_SESSION['Alert']); ?></strong>
+  </div>
   <br>
   <div class="row">
     <div class="col-sm-4 col-md-3">

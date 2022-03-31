@@ -14,10 +14,24 @@ $pquantity = $_POST['pquantity'];
 
 $totalPrice = $pprice * $pquantity;
 
-$insertCart = "INSERT INTO cart (customer_id, merchant_id, product_id, productName, productPrice, productImage, productAmount, productUnit, productQuantity, totalPrice)
-               VALUES ('$user_id', '$merchant_id', '$pid', '$pname', '$pprice', '$pimage', '$pamount', '$punit', '$pquantity', '$totalPrice')";
-$query = mysqli_query($con, $insertCart);
+$stmt = $con->prepare('SELECT product_id FROM cart WHERE product_id=?');
+$stmt->bind_param('i', $pid);
+$stmt->execute();
+$res = $stmt->get_result();
+$r = $res->fetch_assoc();
+$product_id = $r['product_id'] ?? '';
 
+if (!$product_id) {
+  $insertCart = "INSERT INTO cart (customer_id, merchant_id, product_id, productName, productPrice, productImage, productAmount, productUnit, productQuantity, totalPrice)
+                 VALUES ('$user_id', '$merchant_id', '$pid', '$pname', '$pprice', '$pimage', '$pamount', '$punit', '$pquantity', '$totalPrice')";
+  $query = mysqli_query($con, $insertCart);
+
+  $_SESSION['Alert'] = 'block';
+  $_SESSION['msg'] = 'Item added to your cart!';
+  } else {
+  $_SESSION['Alert'] = 'block';
+  $_SESSION['msg'] = 'Item already added to your cart!';
+}
 header("location:index7.php");
 
 //remove single items from cart
