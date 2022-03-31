@@ -56,7 +56,7 @@
                   ?>
                   <img src="user.png" class="user-image">
                 <?php }else{ ?>
-                  <img src="../gambar/user/<?php echo $profil['admin_foto'] ?>" class="user-image">
+                  <img src="../image/<?php echo $profil['admin_foto'] ?>" class="user-image">
                 <?php } ?>
                 <span class="hidden-xs"><?php echo $_SESSION['nama']; ?> - Admin</span>
               </a>
@@ -104,10 +104,16 @@
               <i class="fa fa-folder"></i> <span>DATA KATEGORI</span>
             </a>
           </li>
+		  
+		   <li>
+            <a href="merchant.php">
+              <i class="fa fa-home"></i> <span>DATA MERCHANT</span>
+            </a>
+          </li>
 
           <li>
             <a href="produk.php">
-              <i class="fa fa-gift"></i> <span>DATA PRODUK</span>
+              <i class="fa fa-shopping-cart"></i> <span>DATA PRODUK</span>
             </a>
           </li>
 
