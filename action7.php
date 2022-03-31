@@ -32,7 +32,7 @@ if (!$product_id) {
   $_SESSION['Alert'] = 'block';
   $_SESSION['msg'] = 'Item already added to your cart!';
 }
-header("location:index7.php");
+header('location:index7.php');
 
 //remove single items from cart
 if (isset($_GET['remove'])) {
