@@ -15,6 +15,7 @@ if($cek > 0){
 	$_SESSION['id'] = $data['admin_id'];
 	$_SESSION['nama'] = $data['admin_nama'];
 	$_SESSION['username'] = $data['admin_username'];
+	$_SESSION['hak_akses'] = $data['admin_akses'];
 	$_SESSION['status'] = "login";
 
 	header("location:admin/");
