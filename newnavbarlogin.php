@@ -5,10 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="CSS/navbar.css">
+  <style>
+    .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    }
+  </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg" style="background-color:#34BE82">
+  <nav class="navbar navbar-expand-lg" style="background-color:#34BE82" id="header">
     <div class="container">
       <a class="navbar-brand" href="main page.php">
         <img src="image/logo2.svg" height="70">
@@ -58,5 +66,20 @@
       </div>
     </div>
   </nav>
+
+  <script>
+  window.onscroll = function() {myFunction()};
+
+  var header = document.getElementById("header");
+  var sticky = header.offsetTop;
+
+  function myFunction() {
+    if (window.pageYOffset > sticky) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  }
+  </script>
 </body>
 </html>
