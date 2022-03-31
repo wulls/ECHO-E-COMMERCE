@@ -5,18 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="CSS/navbar.css">
   <style>
     .sticky {
     position: fixed;
     top: 0;
     width: 100%;
     }
+    #header{
+      overflow: hidden;
+      z-index: 2;
+    }
   </style>
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg" style="background-color:#34BE82" id="header">
+<div id="header">
+  <nav class="navbar navbar-expand-lg" style="background-color:#34BE82;">
     <div class="container">
       <a class="navbar-brand" href="main page.php">
         <img src="image/logo2.svg" height="70">
@@ -32,6 +36,7 @@
               <i class="fas fa-shopping-cart"></i>
               <?php
                 require 'database connection.php';
+                $cart_number = 0;
                 $stmt = $con->prepare('SELECT * FROM cart');
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -66,6 +71,7 @@
       </div>
     </div>
   </nav>
+</div>
 
   <script>
   window.onscroll = function() {myFunction()};
