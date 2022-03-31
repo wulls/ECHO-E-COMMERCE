@@ -12,8 +12,7 @@
     width: 100%;
     }
     #header{
-      overflow: hidden;
-      z-index: 2;
+      z-index: 1;
     }
   </style>
 </head>

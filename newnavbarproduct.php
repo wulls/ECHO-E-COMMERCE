@@ -13,8 +13,7 @@
     width: 100%;
     }
     #header{
-      overflow: hidden;
-      z-index: 2;
+      z-index: 1;
     }
   </style>
 </head>
@@ -67,6 +66,9 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li>
                                 <a class="dropdown-item" href="test_userprofile.php">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="history.php">History</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
