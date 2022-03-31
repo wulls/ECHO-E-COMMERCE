@@ -70,13 +70,6 @@
                     </div>
                  </div>
                 </td>
-                </?php
-                  require 'database connection.php';
-                  $merchant = "SELECT merchant.merchantName
-                          FROM cart
-                          JOIN merchant ON merchant.merchant_id = cart.merchant_id";
-                  $result = mysqli_query($con, $merchant);
-                ?>
                 <td>
                   <?= $row['merchant_id'] ?>
                 </td>
@@ -89,7 +82,7 @@
                 </td>
                 <td><i class=""></i>Rp <?= number_format($row['totalPrice']); ?></td>
                 <td>
-                  <a href="action7.php?remove=<?= $row['cart_id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="fas fa-trash clear"></i></a>
+                  <a href="action7.php?remove=<?= $row['cart_id'] ?>" class="text-danger lead" onclick=""><i class="fas fa-trash clear"></i></a>
                 </td>
               </tr>
               <?php $grand_total += $row['totalPrice']; ?>
