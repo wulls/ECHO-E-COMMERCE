@@ -43,7 +43,7 @@
                   include '../database connection.php';
                   $no=1;
                   $result = mysqli_query(
-                                        $con, "SELECT merchant.merchantName, product.productName, product.product_id, category.categoryName, product.productPrice, product.quantity, product.unit, product.image
+                                        $con, "SELECT merchant.merchantName, product.productName, product.product_id, category.categoryName, product.productPrice, product.productQuantity, product.productUnit, product.image
                                         FROM product
                                         JOIN merchant ON
                                         product.merchant_id=merchant.merchant_id
@@ -58,8 +58,8 @@
                       <td><?php echo $row['productName']; ?></td>
                       <td><?php echo $row['categoryName']; ?></td>
                       <td><?php echo "Rp. ".number_format($row['productPrice']).""; ?></td>
-                      <td><?php echo number_format($row['quantity']); ?></td>
-					  <td><?php echo $row['unit']; ?></td>
+                      <td><?php echo number_format($row['productQuantity']); ?></td>
+					  <td><?php echo $row['productUnit']; ?></td>
                       <td>
                         <center>
                           <?php if($row['image'] == ""){ ?>
@@ -71,7 +71,7 @@
                       </td>
                       <td>                        
                         <a class="btn btn-warning btn-sm" href="produk_edit.php?id=<?php echo $row['product_id'] ?>"><i class="fa fa-cog"></i></a>
-                        <a class="btn btn-danger btn-sm" href="produk_hapus.php?id=<?php echo $row['product_id'] ?>"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-danger btn-sm" href="produk_hapus_konfir.php?id=<?php echo $row['product_id'] ?>"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php 

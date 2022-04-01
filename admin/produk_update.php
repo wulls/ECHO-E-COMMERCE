@@ -8,27 +8,23 @@ $keterangan = $_POST['keterangan'];
 $quantity = $_POST['quantity'];
 $unit = $_POST['unit'];
 
-
-echo $id;
-echo $nama;
-echo $kategori;
-echo $harga;
-echo $keterangan;
-echo $quantity;
-echo $unit;
-
 $rand = rand();
 $allowed =  array('gif','png','jpg','jpeg');
 
 $filename1 = $_FILES['foto1']['name'];
 
-mysqli_query($con, "UPDATE product SET productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', unit='$unit',
- quantity='$quantity' WHERE product_id='$id'");
+$selectProduct = "SELECT productName FROM product WHERE productName='$nama' AND merchant_id='$merchant'";
+$resultProduct = mysqli_query($con, $selectProduct);
+$countProduct = mysqli_num_rows($resultProduct);
 
+if($countProduct==1){
+	header("location:produk_edit.php?alert=gagal");
+}else if($countProduct==0){
+	mysqli_query($con, "UPDATE product SET productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', productUnit='$unit',
+ 	productQuantity='$quantity' WHERE product_id='$id'");
 
-
-if($filename1 != ""){
-	$ext = pathinfo($filename1, PATHINFO_EXTENSION);
+	if($filename1 != ""){
+		$ext = pathinfo($filename1, PATHINFO_EXTENSION);
 
 	if(in_array($ext,$allowed) ) {
 		move_uploaded_file($_FILES['foto1']['tmp_name'], '../image/Merchant/'.$rand.'_'.$filename1);
@@ -45,3 +41,4 @@ if($filename1 != ""){
 }
 
 header("location:produk.php");
+}

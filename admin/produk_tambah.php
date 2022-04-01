@@ -22,6 +22,15 @@
             <h3 class="box-title">Tambah Produk</h3>
             <a href="produk.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-reply"></i> &nbsp Kembali</a> 
           </div>
+          
+          <?php 
+          if(isset($_GET['alert'])){
+            if($_GET['alert'] == "gagal"){
+              echo "<div class='alert alert-danger'>Produk sudah ada!</div>";
+            }
+          }
+          ?>
+
           <div class="box-body">
 
             <form action="produk_act.php" method="post" enctype="multipart/form-data">
@@ -82,7 +91,7 @@
 
               <div class="form-group">
                 <label>Katerangan</label>
-                <textarea name="keterangan" class="form-control textarea" required="required" style="resize: none" rows="10"></textarea>
+                <textarea name="keterangan" class="form-control textarea" style="resize: none" rows="10"></textarea>
               </div>
 
               <div class="form-group">

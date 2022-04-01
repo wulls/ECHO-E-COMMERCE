@@ -24,6 +24,14 @@
           </div>
           <div class="box-body">
 
+          <?php 
+          if(isset($_GET['alert'])){
+            if($_GET['alert'] == "gagal"){
+              echo "<div class='alert alert-danger'>Produk sudah ada!</div>";
+            }
+          }
+          ?>
+
             <?php 
             $id = $_GET['id'];
             $data = mysqli_query($con,"SELECT * from product where product_id='$id'");
@@ -76,7 +84,7 @@
                   <label>Quantity</label>
                   <div class="row">
                     <div class="col-lg-4">
-                      <input type="number" class="form-control" name="quantity" placeholder="Masukkan Quantity .." value=<?php echo $d['quantity']; ?>>
+                      <input type="number" class="form-control" name="quantity" placeholder="Masukkan Quantity .." value=<?php echo $d['productQuantity']; ?>>
                     </div>
                   </div>
                 </div>
@@ -87,12 +95,12 @@
                     <div class="col-lg-4">
                       <select name="unit" class="form-control">
                         <option value="">- Pilih Unit -</option>
-                        <option <?php if($d['unit'] == "piece"){echo "selected='selected'";} ?> value="piece">piece</option>
-                        <option <?php if($d['unit'] == "pakcet"){echo "selected='selected'";} ?> value="packet">packet</option>
-                        <option <?php if($d['unit'] == "g"){echo "selected='selected'";} ?> value="g">g</option>
-                        <option <?php if($d['unit'] == "Kg"){echo "selected='selected'";} ?> value="Kg">Kg</option>
-                        <option <?php if($d['unit'] == "Ml"){echo "selected='selected'";} ?> value="ml">ml</option>
-                        <option <?php if($d['unit'] == "L"){echo "selected='selected'";} ?> value="L">L</option>
+                        <option <?php if($d['productUnit'] == "piece"){echo "selected='selected'";} ?> value="piece">piece</option>
+                        <option <?php if($d['productUnit'] == "pakcet"){echo "selected='selected'";} ?> value="packet">packet</option>
+                        <option <?php if($d['productUnit'] == "g"){echo "selected='selected'";} ?> value="g">g</option>
+                        <option <?php if($d['productUnit'] == "Kg"){echo "selected='selected'";} ?> value="Kg">Kg</option>
+                        <option <?php if($d['productUnit'] == "Ml"){echo "selected='selected'";} ?> value="ml">ml</option>
+                        <option <?php if($d['productUnit'] == "L"){echo "selected='selected'";} ?> value="L">L</option>
                       </select>
                     </div>
                   </div>
