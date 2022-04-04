@@ -50,6 +50,20 @@ include '../database connection.php';
                   <small class="text-muted">Kosongkan Jika tidak ingin di ganti</small>
                 </div>
 
+				<div class="form-group">
+                  <label>Hak Akses</label>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <select name="hak_akses" class="form-control">
+                        <option value="">- Pilih akses -</option>
+                        <option <?php if($d['admin_akses'] == "ALL Access"){echo "selected='selected'";} ?> value="ALL Access">ALL Access</option>
+                        <option <?php if($d['admin_akses'] == "CRUD data pribadi"){echo "selected='selected'";} ?> value="CRUD data pribadi">CRUD data pribadi</option>
+                        <option <?php if($d['admin_akses'] == "Melihat Halaman Admin"){echo "selected='selected'";} ?> value="Melihat Halaman Admin">Melihat Halaman Admin</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+				
                 <div class="form-group">
                   <input type="submit" class="btn btn-sm btn-primary" value="Simpan">
                 </div>

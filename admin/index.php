@@ -73,7 +73,7 @@
             $admin = mysqli_query($con,"SELECT * FROM admin");
             ?>
             <h3><?php echo mysqli_num_rows($admin); ?></h3>
-            <p>Jumlah Pengguna</p>
+            <p>Jumlah Pengguna Admin</p>
           </div>
           <div class="icon">
             <i class="ion ion-person-add"></i>
@@ -104,9 +104,15 @@
                 <td><?php echo $_SESSION['username']; ?></td>
               </tr>
               <tr>
-                <th>Akses</th>
+                <th>Status Verifikasi</th>
                 <td>
-                  <span class="label label-success text-uppercase"><?php echo $_SESSION['status']; ?></span>
+                  <span class="label label-success text-uppercase">Berhasil <?php echo $_SESSION['status']; ?></span>
+                </td>
+              </tr>
+			  <tr>
+                <th>Hak Akses</th>
+                <td>
+                  <span class="label label-success text-uppercase"> <?php echo $_SESSION['hak_akses']; ?></span>
                 </td>
               </tr>
             </table>

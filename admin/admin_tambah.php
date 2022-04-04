@@ -36,6 +36,19 @@
                 <label>Password</label>
                 <input type="password" class="form-control" name="password" required="required" min="5" placeholder="Masukkan Password ..">
               </div>
+			  <div class="form-group">
+                  <label>Hak Akses</label>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <select name="hak_akses" class="form-control">
+                      <option value="">- Pilih Akses -</option>
+                      <option value="ALL Access">All Access</option>
+                      <option value="CRUD data pribadi">CRUD data pribadi</option>
+                      <option value="Melihat Halaman Admin">Melihat Halaman Admin</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
               <div class="form-group">
                 <input type="submit" class="btn btn-sm btn-primary" value="Simpan">
               </div>

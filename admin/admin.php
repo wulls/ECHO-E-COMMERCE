@@ -30,6 +30,7 @@
                     <th width="1%">NO</th>
                     <th>NAMA</th>
                     <th>USERNAME</th>
+					<th>Hak Akses</th>
                     <th width="10%">OPSI</th>
                   </tr>
                 </thead>
@@ -44,6 +45,7 @@
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['admin_nama']; ?></td>
                       <td><?php echo $d['admin_username']; ?></td>
+					  <td><?php echo $d['admin_akses']; ?></td>
                      
                       <td>                        
                         <a class="btn btn-warning btn-sm" href="admin_edit.php?id=<?php echo $d['admin_id'] ?>"><i class="fa fa-cog"></i></a>
