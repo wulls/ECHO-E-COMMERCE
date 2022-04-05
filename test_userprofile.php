@@ -147,9 +147,7 @@ include_once ('newnavbarlogin.php');
                             <br>
                             <?php
                                 $selectAddress = "SELECT CA.addressName, CA.recipientName, CA.addressDetail, CA.address_id FROM customeraddress CA WHERE customer_id='$user_id';";
-
                                 $resultAddress = mysqli_query($con, $selectAddress);
-
                                 $countAddress = mysqli_num_rows($resultAddress);
 
                                 if($countAddress == 5){
@@ -188,16 +186,16 @@ include_once ('newnavbarlogin.php');
                                     <div class="row">
                                         <div class="align-items-end text-center" style="padding-right:35px;">
                                             <div class="float-right">
-                                                <!--a href="userprofile_delete_address.php?id=<//?php echo $address['address_id'] ?>"-->
-                                                    <button data-toggle="modal" data-target="#exampleModal" style="padding:0;border:0;background-color:transparent;"><img src="image/small icons/trash.png" alt="Delete" width="29px" height="29px"></button>
-                                                <!--/a-->
+                                                <a href="#myModal" class="trash" data-id="<?php echo $address['address_id']; ?>" data-toggle="modal">
+                                                    <img src="image/small icons/trash.png" alt="Delete" width="29px" height="29px">
+                                                </a>
                                             </div>
                                             <div class="float-right" style="padding-right:8px;">
                                                 <img src="image/small icons/write.png" alt="Edit" width="25px" height="25px">
                                             </div>                                
                                         </div>
                                         <!--****DELETE CONFIRMATION START****-->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -211,7 +209,7 @@ include_once ('newnavbarlogin.php');
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                        <a href="userprofile_delete_address.php?id=<?php echo $id ?>" class="btn btn-primary">Delete</a>
+                                                        <a class="del-yes btn btn-primary" href="userprofile_delete_address.php" id="modalDelete">Delete</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -309,12 +307,18 @@ include_once ('newnavbarlogin.php');
 </div>
 
 <script>
+    //ACCOUNT/ADDRESS/ACCOUNT
     function replace(hide1, hide2, show){
         document.getElementById(hide1).style.display="none";
         document.getElementById(hide2).style.display="none";
         document.getElementById(show).style.display="block";
     }
 
+    //DELETE CONFIRMATION
+    $('.trash').click(function(){
+        var id = $(this).data('id');
+        $('#modalDelete').attr('href','userprofile_delete_address.php?id='+id);
+    });
 </script>
 
 <style type="text/css">
