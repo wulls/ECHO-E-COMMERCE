@@ -25,19 +25,34 @@ include_once ('newnavbarlogin.php');
             <div class="justify-content-center"><br>
                 <div class="history">
                     <h3>Order History</h3><br>
+                    <div id="noOrder" class="card" style="display:none;border-width:5px;border-color:lightgrey;background-color:transparent;border-style: dashed;box-shadow:0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);">
+                        <div class="card-body d-flex justify-content-center" style="padding-top:30px;">
+                            <img src="image/empty.png" style="height:200px;width:200px;">
+                        </div>
+                        <div class="card-body d-flex justify-content-center">
+                            <p style="font-size:20px;">Looks like you haven't made your order yet</p>
+                        </div>
+                    </div>
                     <?php
                     $user_id = $_SESSION['user_id'];
-                    $selectHistory = "SELECT OD.order_id, OD.orderDetail_id, DAY(ORD.orderDate) AS day, MONTHNAME(ORD.orderDate) AS month, YEAR(ORD.orderDate) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice		
+
+                    $selectHistory = "SELECT OD.order_id, OD.orderDetail_id, DAY(ORD.orderDate) AS day, MONTHNAME(ORD.orderDate) AS month, YEAR(ORD.orderDate) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, COUNT(OD.order_id)-1 AS itemAmount, PR.productUnit, ORD.recipientName, ORD.recipientPhone, ORD.shippingAddress, ORD.region, ORD.city, ORD.postalCode, PM.paymentMethodDescription
                                     FROM orderdetail OD 
-                                    JOIN orders ORD ON OD.order_id=ORD.order_id
+                                    LEFT JOIN orders ORD ON OD.order_id=ORD.order_id
                                     JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                     JOIN product PR ON OD.product_id=PR.product_id
+                                    JOIN paymentmethod PM ON ORD.paymentMethod_id=PM.paymentMethod_id
                                     WHERE ORD.customer_id='$user_id'
                                     GROUP BY OD.order_id";
-                    
                     $resultHistory = mysqli_query($con, $selectHistory);
-
                     $countHistory = mysqli_num_rows($resultHistory);
+
+                    if($countHistory == 0){
+                        echo "<script type=\"text/javascript\">
+                                document.getElementById('noOrder').style.display='block';
+                              </script>
+                             ";
+                    }
 
                     if($countHistory > 0){
                         while($history = mysqli_fetch_array($resultHistory)){                     
@@ -60,21 +75,21 @@ include_once ('newnavbarlogin.php');
                             <div class="row">
                                 <div class="d-flex align-items-start">
                                     <div class="frame">
-                                        <img src="<?php echo $history['image'] ?>"" class="mb-0 product-display">
+                                        <img src="<?php echo $history['image']; ?>" class="mb-0 product-display">
                                     </div>
                                     <p class="float-left" style="padding-left:25px;">
-                                        <b><?php echo $history['productName'] ?></b> <?php echo $history['quantity'] ?>
+                                        <b><?php echo $history['productName'] ?></b> <?php echo $history['quantity']." ".$history['productUnit']; ?>
                                         <br>
-                                        Rp <?php echo $history['productPrice'] ?>
+                                        <?php echo "Rp. ".number_format($history['productPrice']).""; ?>
                                         <br><br>
-                                        + 10 Other Products
+                                        + <?php echo $history['itemAmount']; ?> Other Products
                                     </p>
                                     <div class="ml-auto p-2">
                                         <p class="text-secondary" style="padding-right:2rem;">
                                             Total Price
                                         </p>
                                         <p style="padding-right:2rem;">
-                                            <b>Rp 1.000.000</b>
+                                            <b><?php echo "Rp. ".number_format($history['totalCost']) .""; ?></b>
                                         </p>
                                     </div>
                                 </div>
@@ -82,25 +97,136 @@ include_once ('newnavbarlogin.php');
                             <div class="row">
                                 <div class="align-items-end text-center" style="padding-right:2rem;">
                                     <div class="float-right">
-                                        <button data-toggle="modal" data-target="#exampleModal" class="but-ton">
+                                        <button data-toggle="modal" class="but-ton">
                                             Order Again
                                         </button>
                                     </div>
                                     <div class="float-right" style="padding-right:8px;">
-                                        <button data-toggle="modal" data-target="#exampleModal" class="but-ton">
+                                        <button type="button" data-target="#myModal<?php echo $history['order_id'];?>" data-toggle="modal" class="but-ton detail">
                                             Transaction Detail
                                         </button>
-                                    </div>                                
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div><br>
+                    <!--************TRANSACTION DETAIL START************-->
+                    <div class="modal fade" id="myModal<?php echo $history['order_id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:40rem;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Transaction Detail</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <?php
+                                    $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PR.productUnit
+                                                    FROM orderdetail OD 
+                                                    LEFT JOIN orders ORD ON OD.order_id=ORD.order_id
+                                                    JOIN merchant ME ON OD.merchant_id=ME.merchant_id
+                                                    JOIN product PR ON OD.product_id=PR.product_id
+                                                  WHERE ORD.order_id='$history[order_id]'";
+                                    $resultOd = mysqli_query($con, $selectOrder);
+                                    while($order = mysqli_fetch_array($resultOd)){
+                                ?>
+                                <div class="modal-body" style="padding-left:30px;padding-right:35px;">
+                                    <div class="card w-85" style="box-shadow:0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);border:0;padding:10px;">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="d-flex align-items-start">
+                                                    <div class="frame-det">
+                                                        <img src="<?php echo $order['image']; ?>" class="mb-0 product-display">
+                                                    </div>
+                                                    <p class="float-left" style="padding-left:25px;">
+                                                        <b><?php echo $order['productName']; ?></b> <?php echo $order['quantity']." ".$order['productUnit']; ?>
+                                                        <br>
+                                                        <?php echo "Rp. ".number_format($order['productPrice']).""; ?>
+                                                    </p>
+                                                    <div class="ml-auto p-2">
+                                                        <p class="text-secondary" style="padding-right:0.5rem;">
+                                                            Total Price
+                                                        </p>
+                                                        <p style="padding-right:2rem;">
+                                                            <b><?php echo "Rp. ".number_format($order['totalPrice']) .""; ?></b>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                                <hr style="border: 5px solid lightgrey;background-color:lightgrey;">
+                                <div class="modal-body" style="padding-left:30px;padding-right:35px;height:12rem;">
+                                    <h5>Deliver to</h5>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            Courier :
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            Address :
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p>
+                                                <b><?php echo $history['recipientName']; ?></b><br>
+                                                <?php echo $history['recipientPhone']; ?><br>
+                                                <?php echo $history['shippingAddress']." ".$history['region']; ?><br>
+                                                <?php echo $history['city']." ".$history['postalCode']; ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border: 5px solid lightgrey;background-color:lightgrey;">
+                                <div class="modal-body" style="padding-left:30px;padding-right:35px;">
+                                    <h5>Payment detail</h5>
+                                    <div class="row">
+                                        <div class="col-sm-3 ">
+                                            Payment Method                                        
+                                        </div>
+                                        <div class="col-sm-9 d-flex justify-content-end">
+                                            <?php echo $history['paymentMethodDescription']; ?>
+                                        </div>
+                                    </div>
+                                    <hr style="height:1px;background-color:lightGrey;">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            Total Price                                          
+                                        </div>
+                                        <div class="col-sm-9 d-flex justify-content-end">
+                                            <?php echo "Rp. ".number_format($history['totalCost']).""; ?>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h7>Delivery Fee</h7>                                            
+                                        </div>
+                                        <div class="col-sm-9 d-flex justify-content-end">
+                                            FREE
+                                        </div>
+                                    </div> 
+                                    <hr style="height:.5px;background-color:lightGrey;">                                   
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <b>Total Purchases</b>                                           
+                                        </div>
+                                        <div class="col-sm-9 d-flex justify-content-end">
+                                            <b><?php echo "Rp. ".number_format($history['totalCost']).""; ?></b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--***********TRANSACTION DETAIL END***********-->
                     <?php } } ?>
                 </div>
-            </div>
-            
+            </div> 
         </div>
-
     </div>
 </div>
 
@@ -166,6 +292,15 @@ body{
 .frame {
     height:90px;
     width:90px;
+    border: 0;
+    border-radius: 8px;
+    background: #fff;
+    padding: 2px 2px;
+    box-shadow:0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+}
+.frame-det{
+    height: 70px;
+    width: 70px;
     border: 0;
     border-radius: 8px;
     background: #fff;
