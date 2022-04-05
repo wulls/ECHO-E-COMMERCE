@@ -32,7 +32,7 @@ if (isset($_SESSION['user_id'])) {
         <!-- Masthead-->
 <header class="masthead">
  <div class="container position-relative">
-  <div class="row justify-content-center">
+  <div class="d-flex justify-content-center">
    <div class="center">
     <div class="col-xl-6">
      <div class="text-center text-white">
