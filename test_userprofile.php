@@ -31,6 +31,13 @@ include_once ('newnavbarlogin.php');
     $resultCustomer = mysqli_query($con, $selectCustomer);
     $resultReward = mysqli_query($con, $selectReward);
 
+    $countReward = mysqli_num_rows($resultReward);
+    if($countReward == 0){
+        $insertPoint = "INSERT INTO customerreward (customer_id, rewardPoint) VALUES ('$user_id','0')";
+        $insert = mysqli_query($con,$insertPoint);
+        header("Location: test_userprofile.php");
+    }
+
     $customer = mysqli_fetch_array($resultCustomer);
     $reward = mysqli_fetch_array($resultReward);
 ?>
@@ -107,7 +114,7 @@ include_once ('newnavbarlogin.php');
                                     <div class="col-sm-9 text-secondary">
                                         <select name="gender" class="form-control input-field">
                                             <option value="Female" <?php if($customer['gender']=='Female') echo 'selected="selected"'; ?>>Female</option>
-                                            <option value="Male" <?php if($customer['gender']=='male') echo 'selected="selected"'; ?>>Male</option>
+                                            <option value="Male" <?php if($customer['gender']=='Male') echo 'selected="selected"'; ?>>Male</option>
                                         </select>
                                     </div>
                                 </div>
