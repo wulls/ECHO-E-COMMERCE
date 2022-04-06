@@ -16,6 +16,12 @@
       z-index: 1;
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     }
+    .cart{
+      color:white;
+    }
+    #navbarDropdown{
+      color:white;
+    }
   </style>
 </head>
 <body>
@@ -45,7 +51,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item active">
                         <a class="nav-link active" aria-current="page" href="cart7.php">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="fas fa-shopping-cart cart"></i>
                         <?php
                             require 'database connection.php';
                             $cart_number = 0;
