@@ -16,6 +16,10 @@ include_once ('newnavbarlogin.php');
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
+
 </head>
 <body>
 
@@ -71,7 +75,7 @@ include_once ('newnavbarlogin.php');
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-8">
                 <div class="card mb-3">
                     <div class="card-body"><br>
@@ -199,7 +203,7 @@ include_once ('newnavbarlogin.php');
                                             </div>
                                             <div class="float-right" style="padding-right:8px;">
                                                 <img src="image/small icons/write.png" alt="Edit" width="25px" height="25px">
-                                            </div>                                
+                                            </div>
                                         </div>
                                         <!--****DELETE CONFIRMATION START****-->
                                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -307,7 +311,7 @@ include_once ('newnavbarlogin.php');
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
     </div>
@@ -405,7 +409,7 @@ body{
 .input-field{
 	background-color: #f0f0f0;
 	border-radius: 45px;
-	border: 0 solid transparent;	
+	border: 0 solid transparent;
 }
 .row{
     padding-bottom: 15px;

@@ -54,8 +54,9 @@
                         <i class="fas fa-shopping-cart cart"></i>
                         <?php
                             require 'database connection.php';
+                            $user_id = $_SESSION['user_id'];
                             $cart_number = 0;
-                            $stmt = $con->prepare('SELECT * FROM cart');
+                            $stmt = $con->prepare("SELECT * FROM cart WHERE customer_id='$user_id'");
                             $stmt->execute();
                             $result = $stmt->get_result();
                             $grand_total = 0;

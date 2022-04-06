@@ -54,7 +54,8 @@
            <tbody>
               <?php
                 require 'database connection.php';
-                $stmt = $con->prepare('SELECT * FROM cart');
+                $user_id = $_SESSION['user_id'];
+                $stmt = $con->prepare("SELECT * FROM cart WHERE customer_id='$user_id'");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 $grand_total = 0;

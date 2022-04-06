@@ -37,8 +37,9 @@ header('location:index7.php');
 //remove single items from cart
 if (isset($_GET['remove'])) {
   $cart_id = $_GET['remove'];
+  $user_id = $_SESSION['user_id'];
 
-  $stmt = $con->prepare('DELETE FROM cart WHERE cart_id=?');
+  $stmt = $con->prepare("DELETE FROM cart WHERE cart_id=? AND customer_id='$user_id'");
   $stmt->bind_param('i',$cart_id);
   $stmt->execute();
 
@@ -49,8 +50,11 @@ if (isset($_GET['remove'])) {
 
 //remove all items at once from cart
 if (isset($_GET['clear'])) {
-  $stmt = $con->prepare('DELETE FROM cart');
+  $user_id = $_SESSION['user_id'];
+
+  $stmt = $con->prepare("DELETE FROM cart WHERE customer_id='$user_id'");
   $stmt->execute();
+
   $_SESSION['showAlert'] = 'block';
   $_SESSION['message'] = 'All Item removed from the cart!';
   header('location:cart7.php');

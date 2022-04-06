@@ -37,7 +37,7 @@ function componentKosong()
   $element = "
   <div class=\"col-md-2 col-sm-6 my-3 my-md-2\">
     <div class=\"card border-0\">
-          
+
     </div>
   </div>
   ";
