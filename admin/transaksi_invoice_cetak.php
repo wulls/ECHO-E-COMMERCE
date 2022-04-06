@@ -37,7 +37,7 @@
 			<div>
 
 				<center>
-					<h3>Toko Online Pakaian Tenun</h3>
+					<h3>TROLLEY SUPERMARKET</h3>
 				</center>
 
 				<h4>INVOICE-00<?php echo $i['invoice_id'] ?></h4>

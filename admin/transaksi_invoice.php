@@ -26,7 +26,7 @@
            <?php 
            // include '../skoneksi';
            $id_invoice = $_GET['id'];
-           $invoice = mysqli_query($koneksi,"select * from invoice where invoice_id='$id_invoice' order by invoice_id desc");
+           $invoice = mysqli_query($con,"select * from invoice where invoice_id='$id_invoice' order by invoice_id desc");
            while($i = mysqli_fetch_array($invoice)){
             ?>
 
@@ -65,7 +65,7 @@
                     <?php 
                     $no = 1;
                     $total = 0;
-                    $transaksi = mysqli_query($con,"select * from transaksi,produk where transaksi_produk=produk_id and transaksi_invoice='$id_invoice'");
+                    $transaksi = mysqli_query($con,"select * from transaksi,product where transaksi_produk=product_id and transaksi_invoice='$id_invoice'");
                     while($d=mysqli_fetch_array($transaksi)){
                       $total += $d['transaksi_harga'];
                       ?>

@@ -99,7 +99,7 @@
                                     echo "Bukti pembayaran belum diupload oleh pembeli/customer.";
                                   }else{
                                     ?>
-                                    <img src="../gambar/bukti_pembayaran/<?php echo $i['invoice_bukti']; ?>" alt="" style="width: 100%">
+                                    <img src="../image/bukti_pembayaran/<?php echo $i['invoice_bukti']; ?>" alt="" style="width: 100%">
                                     <?php
                                   }
                                   ?>
