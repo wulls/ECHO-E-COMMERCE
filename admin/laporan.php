@@ -80,8 +80,8 @@
                 </div>
               </div>
 
-              <a href="laporan_pdf.php?tanggal_dari=<?php echo $tgl_dari ?>&tanggal_sampai=<?php echo $tgl_sampai ?>" target="_blank" class="btn btn-sm btn-success"><i class="fa fa-file-pdf-o"></i> &nbsp CETAK PDF</a>
-              <a href="laporan_print.php?tanggal_dari=<?php echo $tgl_dari ?>&tanggal_sampai=<?php echo $tgl_sampai ?>" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> &nbsp PRINT</a>
+              
+              <a href="laporan_print.php?tanggal_dari=<?php echo $tgl_dari ?>&tanggal_sampai=<?php echo $tgl_sampai ?>" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> &nbsp Cetak atau Print Laporan</a>
               
               <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="table-datatable">
@@ -90,7 +90,7 @@
                       <th width="1%">NO</th>
                       <th>INVOICE</th>
                       <th>TANGGAL MASUK</th>
-                      <th>NAMA SUPLIER</th>
+                      <th>NAMA CUSTOMER</th>
                       <th>JUMLAH</th>
                       <th>STATUS</th>
                     </tr>
@@ -98,14 +98,14 @@
                   <tbody>
                     <?php 
                     $no=1;
-                    $data = mysqli_query($koneksi,"SELECT * FROM invoice,customer WHERE invoice_customer=customer_id and date(invoice_tanggal) >= '$tgl_dari' AND date(invoice_tanggal) <= '$tgl_sampai'");
+                    $data = mysqli_query($con,"SELECT * FROM invoice,customer WHERE invoice_customer=customer_id and date(invoice_tanggal) >= '$tgl_dari' AND date(invoice_tanggal) <= '$tgl_sampai'");
                     while($i = mysqli_fetch_array($data)){
                       ?>
                       <tr>
                         <td><?php echo $no++ ?></td>
                         <td>INVOICE-00<?php echo $i['invoice_id'] ?></td>
                         <td><?php echo date('d-m-Y', strtotime($i['invoice_tanggal'])); ?></td>
-                        <td><?php echo $i['customer_nama'] ?></td>
+                        <td><?php echo $i['username'] ?></td>
                         <td><?php echo "Rp. ".number_format($i['invoice_total_bayar'])." ,-" ?></td>
                         <td>
                           <?php 
