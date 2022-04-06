@@ -40,10 +40,42 @@
         </div>
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0">Recipient Phone</h6>
+            <h6 class="mb-0">Recipient Phone Number</h6>
           </div>
           <div class="col-sm-9 text-secondary">
             <input type="tel" name="Phone" class="form-control input-field" value="">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Kabupaten/Kota</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Provinsi</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Detail Alamat</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Kode Pos</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
           </div>
         </div>
         <div class="row mb-3">
@@ -61,7 +93,7 @@
         <div class="row">
           <div class="col-sm-3"></div>
           <div class="col-sm-9 text-secondary">
-            <input type="submit" class="btn btn-primary px-4" value="Order" style="background-color:#2F86A6">
+            <input type="submit" class="btn btn-primary px-4" value="Checkout" style="background-color:#2F86A6">
           </div>
         </div>
         </form>
