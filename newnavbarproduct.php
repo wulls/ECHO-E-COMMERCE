@@ -22,6 +22,10 @@
     #navbarDropdown{
       color:white;
     }
+    #cart-item{
+      background-color: white;
+      color: #2F86A6;
+    }
   </style>
 </head>
 <body>
