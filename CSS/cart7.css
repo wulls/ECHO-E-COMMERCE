@@ -11,11 +11,15 @@
 }
 
 .clearall{
+  background-color: #34BE82;
+  color: white;
   border-radius: 5px;
 }
 
 .clearall:hover{
+  color: white;
   text-decoration: none;
+  filter: brightness(95%);
 }
 
 .clear {

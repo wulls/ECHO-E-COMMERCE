@@ -43,7 +43,7 @@
                <th class="border-0 bg-light">QUANTITY</th>
                <th class="border-0 bg-light">TOTAL PRICE</th>
                <th class="border-0 bg-light">
-                 <a href="action7.php?clear=all" class="badge-danger p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>Clear All</a>
+                 <a href="action7.php?clear=all" class="p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>Clear All</a>
                </th>
              </tr>
            </thead>
@@ -79,7 +79,7 @@
                 </td>
                 <td class="border-0"><i class=""></i>Rp <?= number_format($row['totalPrice']); ?></td>
                 <td class="border-0">
-                  <a href="action7.php?remove=<?= $row['cart_id'] ?>" class="text-danger lead" onclick=""><i class="fas fa-trash clear"></i></a>
+                  <a href="action7.php?remove=<?= $row['cart_id'] ?>" class="text-dan lead " onclick=""><i class="fas fa-trash clear"></i></a>
                 </td>
               </tr>
               <?php $grand_total += $row['totalPrice']; ?>
