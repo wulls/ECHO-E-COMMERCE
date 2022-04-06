@@ -71,13 +71,13 @@
                   <?= $row['merchant_id'] ?>
                 </td>
                 <td class="border-0">
-                  <i class=""></i>Rp <?= number_format($row['productPrice']); ?>
+                  Rp <?= number_format($row['productPrice']); ?>
                 </td>
                 <input type="hidden" class="pprice" value="<?= $row['productPrice'] ?>">
                 <td class="border-0">
                   <input type="number" min="1" class="form-control itemQty" value="<?= $row['productQuantity'] ?>" style="width:75px;">
                 </td>
-                <td class="border-0"><i class=""></i>Rp <?= number_format($row['totalPrice']); ?></td>
+                <td class="border-0">Rp <?= number_format($row['totalPrice']); ?></td>
                 <td class="border-0">
                   <a href="action7.php?remove=<?= $row['cart_id'] ?>" class="text-dan lead " onclick=""><i class="fas fa-trash clear"></i></a>
                 </td>

@@ -1,0 +1,9 @@
+.method{
+}
+
+.billing { grid-area: billing; }
+.method { grid-area: method; }
+.review { grid-area: review; }
+
+.grid-container {
+}

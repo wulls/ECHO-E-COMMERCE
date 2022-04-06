@@ -20,16 +20,18 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
   <link rel="stylesheet" href="CSS/cart7.css">
+  <link rel="stylesheet" href="CSS/checkout.css">
 </head>
 
 <body>
+<div class="grid-container">
+<form action="" method="post">
+
   <br>
-  <div class="col-lg-8">
+  <div class="col-lg-8 billing">
     <div class="card">
       <div class="card-body">
-        <div id="">
-        <form action="" method="post">
-        <h4>PROFILE</h4><br>
+        <h4>Billing Details</h4><br>
         <div class="row mb-3">
           <div class="col-sm-3">
             <h6 class="mb-0">Recipient Name</h6>
@@ -48,7 +50,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0">Kabupaten/Kota</h6>
+            <h6 class="mb-0">Provinsi</h6>
           </div>
           <div class="col-sm-9 text-secondary">
             <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
@@ -56,7 +58,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0">Provinsi</h6>
+            <h6 class="mb-0">Kabupaten/Kota</h6>
           </div>
           <div class="col-sm-9 text-secondary">
             <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
@@ -78,35 +80,63 @@
             <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
           </div>
         </div>
-        <div class="row mb-3">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Payment Method</h6>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="col-lg-8 method">
+    <div class="card">
+      <div class="card-body">
+        <div class="shipping-methods">
+          <div class="section-title">
+            <h4 class="title">Shipping Methods</h4>
           </div>
-          <div class="col-sm-9 text-secondary">
-            <select class="form-control input-field" name="paymentMethod">
-              <option value="Debit" >Debit</option>
-              <option value="Credit" >Credit</option>
-            </select>
+          <div class="input-checkbox">
+            <input type="radio" name="shipping" id="shipping-1" checked>
+            <label for="shipping-1"><strong>GoSend</strong></label>
+            <div class="caption">
+              <p>Barang belanja dikirim langsung oleh pengantar GoSend.
+                <p>
+            </div>
           </div>
         </div>
         <br>
-        <div class="row">
-          <div class="col-sm-3"></div>
-          <div class="col-sm-9 text-secondary">
-            <input type="submit" class="btn btn-primary px-4" value="Save" style="background-color:#2F86A6">
+        <div class="payments-methods">
+          <div class="section-title">
+            <h4 class="title">Payments Methods</h4>
           </div>
-        </div>
-        </form>
+        <div class="input-checkbox">
+          <input type="radio" name="payments" id="payments-1" checked>
+          <label for="payments-1"><strong>Bank Transfer</strong></label>
+          <div class="caption">
+            <p>Silahkan lakukan pembayaran ke nomor rekening berikut:</p>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="30%">Nomor Rekening</th>
+                    <td>041-222-3333</td>
+                </tr>
+                <tr>
+                    <th>Atas Nama</th>
+                    <td>PT. ECHO TECHNOLOGY</td>
+                </tr>
+                <tr>
+                    <th>Bank</th>
+                    <td>BCA</td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <br>
-  <div class="col-lg-8">
+  <div class="col-lg-8 review">
     <div class="card">
       <div class="card-body">
-        <h4>ORDER</h4>
+        <h4>Order Review</h4>
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-15">
@@ -151,13 +181,13 @@
                         <?= $row['merchant_id'] ?>
                       </td>
                       <td class="border-0">
-                        <i class=""></i>Rp <?= number_format($row['productPrice']); ?>
+                        Rp <?= number_format($row['productPrice']); ?>
                       </td>
                       <input type="hidden" class="pprice" value="<?= $row['productPrice'] ?>">
                       <td class="border-0">
                         <?= $row['productQuantity'] ?>
                       </td>
-                      <td class="border-0"><i class=""></i>Rp <?= number_format($row['totalPrice']); ?></td>
+                      <td class="border-0">Rp <?= number_format($row['totalPrice']); ?></td>
                     </tr>
                     <?php $grand_total += $row['totalPrice']; ?>
                     <?php endwhile; ?>
@@ -168,6 +198,29 @@
                      <td><b>SUBTOTAL</b></td>
                      <td><b>Rp <?= number_format($grand_total); ?></b></td>
                    </tr>
+                   <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>SHIPPING FEE</b></td>
+                    <td><b>Rp 5,000</b></td>
+                   </tr>
+                   <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>TOTAL</b></td>
+                    <td><b></b></td>
+                   </tr>
+                   <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <input type="submit" class="btn btn-primary px-4" value="Place Order" style="background-color:#2F86A6">
+                    </td>
+                  </tr>
                  </tbody>
                </table>
              </div>
@@ -178,5 +231,7 @@
     </div>
   </div>
 
+</form>
+</div>
 </body>
 </html>
