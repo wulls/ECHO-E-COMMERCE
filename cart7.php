@@ -25,29 +25,25 @@
 <body>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-10">
+      <div class="col-lg-15">
         <div style="display:<?php if (isset($_SESSION['showAlert'])) {echo $_SESSION['showAlert'];} else {echo 'none';} unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <strong><?php if (isset($_SESSION['message'])) {
             echo $_SESSION['message'];
           } unset($_SESSION['showAlert']); ?></strong>
         </div>
+        <br>
         <div class="table-responsive mt-2">
          <table class="table text-center">
            <thead>
              <tr>
-                <td colspan="7">
-                  <h2 class="text-center m-0 title">Cart</h2>
-                </td>
-              </tr>
-             <tr>
-               <th class="picname">Product</th>
-               <th>Merchant</th>
-               <th>Price</th>
-               <th>Quantity</th>
-               <th>Total Price</th>
-               <th>
-                 <a href="action7.php?clear=all" class="badge-danger p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear All</a>
+               <th class="border-0 bg-light picname">PRODUCT</th>
+               <th class="border-0 bg-light">MERCHANT</th>
+               <th class="border-0 bg-light">PRICE</th>
+               <th class="border-0 bg-light">QUANTITY</th>
+               <th class="border-0 bg-light">TOTAL PRICE</th>
+               <th class="border-0 bg-light">
+                 <a href="action7.php?clear=all" class="badge-danger p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>Clear All</a>
                </th>
              </tr>
            </thead>
@@ -62,7 +58,7 @@
                 while ($row = $result->fetch_assoc()):
               ?>
               <tr>
-                <td>
+                <td class="border-0">
                   <input type="hidden" class="pid" value="<?= $row['product_id'] ?>">
                   <div class = "picname">
                     <img src="<?= $row['productImage'] ?>" width="50" height="50">
@@ -71,25 +67,28 @@
                     </div>
                  </div>
                 </td>
-                <td>
+                <td class="border-0">
                   <?= $row['merchant_id'] ?>
                 </td>
-                <td>
+                <td class="border-0">
                   <i class=""></i>Rp <?= number_format($row['productPrice']); ?>
                 </td>
                 <input type="hidden" class="pprice" value="<?= $row['productPrice'] ?>">
-                <td>
+                <td class="border-0">
                   <input type="number" min="1" class="form-control itemQty" value="<?= $row['productQuantity'] ?>" style="width:75px;">
                 </td>
-                <td><i class=""></i>Rp <?= number_format($row['totalPrice']); ?></td>
-                <td>
+                <td class="border-0"><i class=""></i>Rp <?= number_format($row['totalPrice']); ?></td>
+                <td class="border-0">
                   <a href="action7.php?remove=<?= $row['cart_id'] ?>" class="text-danger lead" onclick=""><i class="fas fa-trash clear"></i></a>
                 </td>
               </tr>
               <?php $grand_total += $row['totalPrice']; ?>
               <?php endwhile; ?>
               <tr>
-               <td colspan="4"><b>Grand Total</b></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td><b>SUBTOTAL</b></td>
                <td><b>Rp <?= number_format($grand_total); ?></b></td>
                <td>
                  <a href="checkout7.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class=""></i>Checkout</a>
