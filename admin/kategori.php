@@ -38,7 +38,7 @@
                 <tbody>
                   <?php 
                   include '../database connection.php';
-                  $no=0;
+                  $no=1;
                   $data = mysqli_query($con,"SELECT * FROM category");
                   while($d = mysqli_fetch_array($data)){
                     ?>
@@ -46,7 +46,7 @@
                       <td><?php echo $no++; ?></td>
                       <td><?php echo $d['categoryName']; ?></td>
                       <td>                      
-                        <?php if($d['category_id'] !==0){ ?>  
+                        <?php if($d['category_id'] !=1){ ?>  
                           <a class="btn btn-warning btn-sm" href="kategori_edit.php?id=<?php echo $d['category_id'] ?>"><i class="fa fa-cog"></i></a>
                           <a class="btn btn-danger btn-sm" href="kategori_hapus_konfir.php?id=<?php echo $d['category_id'] ?>"><i class="fa fa-trash"></i></a>
                         <?php } ?>

@@ -22,7 +22,7 @@
             <h3 class="box-title">Yakin Ingin Menghapus kategori ?</h3>
           </div>
           <div class="box-body">
-            <p>Dengan menghapus, semua data produk yang menggunakan kategori ini akan dialihkan ke "Tidak Berkategori".</p>
+            <p>Dengan menghapus, semua data produk yang menggunakan kategori ini akan dialihkan ke "tidak berkategori".</p>
             <br/>
             <a href="kategori.php" class="btn btn-danger btn-sm"><i class="fa fa-reply"></i> &nbsp Kembali</a> 
             <?php 

@@ -111,9 +111,9 @@
                   <input type="file" name="foto1">
 
                   <?php if($d['image'] == ""){ ?>
-                    <img src="../gambar/sistem/produk.png" style="width: 120px;height: auto">
+                    <img src="../image/produk.png" style="width: 120px;height: auto">
                   <?php }else{ ?>
-                    <img src="../gambar/produk/<?php echo $d['image'] ?>" style="width: 120px;height: auto">
+                    <img src="../image/Merchant/<?php echo $d['image'] ?>" style="width: 120px;height: auto">
                   <?php } ?>
 
                   <br/>
