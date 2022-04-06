@@ -82,7 +82,7 @@ include_once ('newnavbarlogin.php');
                         <div class="d-flex flex-column align-items-center text-center">
                             <div class="row">
                                 <div class="col">
-                                    <p class="mb-0"><button onclick="replace('dataAlamat','dataAkun','dataDiri')" class="navProfile">Account</button></p>
+                                    <p class="mb-0"><button onclick="replace('dataAlamat','dataAkun','dataDiri')" class="navProfile">Profile</button></p>
                                 </div>
                                 <div class="col">
                                     <p class="mb-0"><button onclick="replace('dataDiri','dataAkun','dataAlamat')" class="navProfile navMid">Address</button></p>
@@ -202,10 +202,12 @@ include_once ('newnavbarlogin.php');
                                                 </a>
                                             </div>
                                             <div class="float-right" style="padding-right:8px;">
-                                                <img src="image/small icons/write.png" alt="Edit" width="25px" height="25px">
+                                                <button type="button" class="editAddress" data-target="#editAddress<?php echo $address['address_id'];?>" data-toggle="modal" style="background-color:transparent;border:0;">
+                                                    <img src="image/small icons/write.png" alt="Edit" width="25px" height="25px">
+                                                </button>
                                             </div>
                                         </div>
-                                        <!--****DELETE CONFIRMATION START****-->
+                                        <!--****DELETE ADDRESS CONFIRMATION START****-->
                                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -225,15 +227,76 @@ include_once ('newnavbarlogin.php');
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--*****DELETE CONFIRMATION END*****-->
+                                        <!--*****DELETE ADDRESS CONFIRMATION END*****-->
                                     </div>
                                 </div>
                             </div><br>
-                            <?php } }?>
+                        <!--*****DATA ALAMAT EDIT START*****-->
+                        <div class="modal fade" id="editAddress<?php echo $address['address_id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                            <form action="userprofile_edit_address.php" method="post">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content" style="border-radius: .9rem;">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Address</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?php
+                                            $selectDetailAddress = "SELECT * FROM customeraddress WHERE address_id='$address[address_id]'";
+                                            $resultDetail = mysqli_query($con, $selectDetailAddress);
+                                            $detail = mysqli_fetch_array($resultDetail);
+                                            ?>
+                                            <input name="id" type="hidden" value="<?php echo $address['address_id']; ?>" required>
+                                            <div class="form-floating mb-3">
+                                                <input name="name" type="text" value="<?php echo $detail['recipientName']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">Recipient Name</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input name="phone" type="text" value="<?php echo $detail['recipientPhone']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">Recipient Phone Number</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <select name="label" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                    <option value="Home" <?php if($detail['addressName']=='Home') echo 'selected="selected"'; ?>>Home</option>
+                                                    <option value="Apartment" <?php if($detail['addressName']=='Apartment') echo 'selected="selected"'; ?>>Apartment</option>
+                                                    <option value="Office" <?php if($detail['addressName']=='Office') echo 'selected="selected"'; ?>>Office</option>
+                                                </select>
+                                                <label for="floatingSelectGrid">Address Label</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input name="city" type="text" value="<?php echo $detail['city']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">City</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input name="district" type="text" value="<?php echo $detail['region']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">District</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input name="detail" type="text" value="<?php echo $detail['addressDetail']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">Address Details</label>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input name="postalcode" type="text" value="<?php echo $detail['postalCode']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">Postal Code</label>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 45px;">Close</button>
+                                                <input type="submit" class="btn btn-primary" style="background-color:#2F86A6;border-radius: 45px;" value="Save Address">
+                                            </div>
+                                            <?php ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--*****DATA ALAMAT EDIT END*****-->
+                        <?php } } ?>
                         </div>
                         <!--************************DATA ALAMAT END************************-->
 
-                        <!--*********************DATA ALAMAT EDIT START********************-->
+                        <!--*********************DATA ALAMAT ADD START********************-->
                         <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable" role="document">
                                 <div class="modal-content" style="border-radius: .9rem;">
@@ -286,9 +349,9 @@ include_once ('newnavbarlogin.php');
                                 </div>
                             </div>
                         </div>
-                        <!--**********************DATA ALAMAT EDIT END*********************-->
+                        <!--**********************DATA ALAMAT ADD END*********************-->
 
-                        <!--************************DATA AKUN START************************-->
+                        <!--************************DATA AKUN START***********************-->
                         <div id="dataAkun" class="data-akun">
                             <div class="row">
                                 <div class="col-sm-3">
