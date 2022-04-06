@@ -14,7 +14,7 @@ $pquantity = $_POST['pquantity'];
 
 $totalPrice = $pprice * $pquantity;
 
-$stmt = $con->prepare('SELECT product_id FROM cart WHERE product_id=?');
+$stmt = $con->prepare("SELECT product_id FROM cart WHERE product_id=? AND customer_id='$user_id'");
 $stmt->bind_param('i', $pid);
 $stmt->execute();
 $res = $stmt->get_result();
