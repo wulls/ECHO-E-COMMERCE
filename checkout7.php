@@ -126,10 +126,12 @@
                     <td>BCA</td>
                 </tr>
               </table>
-			  <form action="customer_pembayaran_act.php" method="post" enctype="multipart/form-data">
+
+               <br>
+			         <form action="customer_pembayaran_act.php" method="post" enctype="multipart/form-data">
 								<div class="form-group">
 									<input type="hidden" name="id" value="<?php echo $id_invoice; ?>">
-									<label>Upload Bukti Pembayaran</label><br>
+                  <h4 class="title">Upload Bukti Pembayaran</h4>
 									<input type="file" name="bukti" required="required"><br>
 									<small class="text-muted">File yang diperbolehkan hanya file gambar berfomat .png, .jpg, & .jpeg.</small>
 								</div>
@@ -160,7 +162,7 @@
                <table class="table text-center">
                  <thead>
                    <tr>
-                     <th class="border-0 bg-light picname">Product</th>
+                     <th class="border-0 bg-light pull-left">Product</th>
                      <th class="border-0 bg-light">Merchant</th>
                      <th class="border-0 bg-light">Price</th>
                      <th class="border-0 bg-light">Quantity</th>
@@ -180,7 +182,7 @@
                     <tr>
                       <td class="border-0">
                         <input type="hidden" class="pid" value="<?= $row['product_id'] ?>">
-                        <div class = "picname">
+                        <div class = "pull-left">
                           <img src="<?= $row['productImage'] ?>" width="50" height="50">
                           <div class="ml-3 d-inline-block align-middle">
                           <h6 class="mb-0"><?= $row['productName'] ?></h6><span class="text-muted font-weight-normal font-italic d-block"><small><?= $row['productAmount'], " ", $row['productUnit'] ?></small></span>
@@ -205,29 +207,30 @@
                      <td></td>
                      <td></td>
                      <td></td>
-                     <td class="text-muted">Total Price</td>
-                     <td class="text-muted">Rp <?= number_format($grand_total); ?></td>
+                     <td class="text-muted pull-left">Total Price</td>
+                     <td class="text-muted pull-right">Rp <?= number_format($grand_total); ?></td>
                    </tr>
                    <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-muted">Delivery Fee</td>
-                    <td class="text-muted">Rp 0</td>
+                    <td class="text-muted pull-left">Delivery Fee</td>
+                    <td class="text-muted pull-right">Rp 10,000</td>
+                   </tr>
+                   <tr>
+                    <?php $purchase_total = $grand_total + 10000; ?>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="pull-left"><b>Total Purchase</b></td>
+                    <td class="pull-right"><b>Rp <?= number_format($purchase_total); ?></b></td>
                    </tr>
                    <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><b>Total Purchase</b></td>
-                    <td><b></b></td>
-                   </tr>
-                   <tr>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
+                    <td class="pull-right">
                       <input type="submit" class="btn btn-primary px-4" value="Checkout">
                     </td>
                   </tr>

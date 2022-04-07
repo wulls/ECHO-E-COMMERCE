@@ -37,7 +37,7 @@
          <table class="table text-center">
            <thead>
              <tr>
-               <th class="border-0 bg-light picname">Product</th>
+               <th class="border-0 bg-light pull-left">Product</th>
                <th class="border-0 bg-light">Merchant</th>
                <th class="border-0 bg-light">Price</th>
                <th class="border-0 bg-light">Quantity</th>
@@ -60,7 +60,7 @@
               <tr>
                 <td class="border-0">
                   <input type="hidden" class="pid" value="<?= $row['product_id'] ?>">
-                  <div class = "picname">
+                  <div class = "pull-left">
                     <img src="<?= $row['productImage'] ?>" width="50" height="50">
                     <div class="ml-3 d-inline-block align-middle">
                     <h6 class="mb-0"><?= $row['productName'] ?></h6><span class="text-muted font-weight-normal font-italic d-block"><small><?= $row['productAmount'], " ", $row['productUnit'] ?></small></span>
