@@ -91,7 +91,7 @@
                <td><b>SUBTOTAL</b></td>
                <td><b>Rp <?= number_format($grand_total); ?></b></td>
                <td>
-                 <a href="checkout7.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class=""></i>Checkout</a>
+                 <a href="checkout7.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class=""></i>Place Order</a>
                </td>
              </tr>
            </tbody>

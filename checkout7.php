@@ -218,7 +218,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                      <input type="submit" class="btn btn-primary px-4" value="Place Order" style="background-color:#2F86A6">
+                      <input type="submit" class="btn btn-primary px-4" value="Checkout" style="background-color:#2F86A6">
                     </td>
                   </tr>
                  </tbody>
