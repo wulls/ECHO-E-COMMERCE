@@ -35,6 +35,21 @@
                   <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama Kategori.." value="<?php echo $d['merchantName'] ?>">
                 </div>
 
+				<div class="form-group">
+                  <label>Foto 1 (Features is Coming Soon)</label>
+                  <input type="file" name="foto1">
+
+                  <?php if($d['image'] == ""){ ?>
+                    <img src="../image/produk.png" style="width: 120px;height: auto">
+                  <?php }else{ ?>
+                    <img src="../image/logo toko/<?php echo $d['image'] ?>" style="width: 120px;height: auto">
+                  <?php } ?>
+
+                  <br/>
+                  <small class="text-muted">Kosongkan Jika Tidak Ingin Mengubah Foto</small>
+
+                </div>
+				
                 <div class="form-group">
                   <input type="submit" class="btn btn-sm btn-primary" value="Simpan">
                 </div>

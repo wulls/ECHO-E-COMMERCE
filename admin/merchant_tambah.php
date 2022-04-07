@@ -37,7 +37,13 @@
                 <label>Nama</label>
                 <input type="text" class="form-control" name="nama" required="required" placeholder="Masukkan Nama Merchant..">
               </div>
-
+				
+				
+			<div class="form-group">
+                <label>Foto 1 (Features is Coming Soon)</label>
+                <input type="file" name="foto1">
+              </div>
+			  
               <div class="form-group">
                 <input type="submit" class="btn btn-sm btn-primary" value="Simpan">
               </div>

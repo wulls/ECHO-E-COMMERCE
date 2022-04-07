@@ -65,7 +65,7 @@
 						<?php 
 						$no = 1;
 						$total = 0;
-						$transaksi = mysqli_query($con,"select * from transaksi,produk where transaksi_produk=produk_id and transaksi_invoice='$id_invoice'");
+						$transaksi = mysqli_query($con,"select * from transaksi,product where transaksi_produk=product_id and transaksi_invoice='$id_invoice'");
 						while($d=mysqli_fetch_array($transaksi)){
 							$total += $d['transaksi_harga'];
 							?>
@@ -73,14 +73,14 @@
 								<td class="text-center"><?php echo $no++; ?></td>
 								<td>
 									<center>
-										<?php if($d['produk_foto1'] == ""){ ?>
+										<?php if($d['image'] == ""){ ?>
 											<img src="../gambar/sistem/produk.png" style="width: 50px;height: auto">
 										<?php }else{ ?>
-											<img src="../gambar/produk/<?php echo $d['produk_foto1'] ?>" style="width: 50px;height: auto">
+											<img src="../image/Merchant/<?php echo $d['image'] ?>" style="width: 50px;height: auto">
 										<?php } ?>
 									</center>
 								</td>
-								<td><?php echo $d['produk_nama']; ?></td>
+								<td><?php echo $d['productName']; ?></td>
 								<td class="text-center"><?php echo "Rp. ".number_format($d['transaksi_harga']).",-"; ?></td>
 								<td class="text-center"><?php echo number_format($d['transaksi_jumlah']); ?></td>
 								<td class="text-center"><?php echo "Rp. ".number_format($d['transaksi_jumlah'] * $d['transaksi_harga'])." ,-"; ?></td>

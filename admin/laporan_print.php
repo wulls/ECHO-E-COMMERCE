@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Laporan Penjualan</title>
-</head>
+  <p align="right">TROLLEY </p>
+ </head>
 <body>
 
   <style type="text/css">
@@ -28,7 +28,12 @@
     
   <center>
     <h2>Laporan Penjualan TROLLEY SUPERMARKET E-COMMERCE</h2>
+	<h3>PT. ECHO TECHNOLOGY - TROLLEY</h3>
+	<td>Jl. M.H. Thamrin Boulevard</td>
+	<td>Tangerang, Banten 15810</td>
+
   </center>
+<br>
 
   <?php 
   include '../database connection.php';

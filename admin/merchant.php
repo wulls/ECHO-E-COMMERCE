@@ -33,6 +33,7 @@
                     <th width="1%">NO</th>
 					<th>MERCHANT ID</th>
                     <th>NAMA</th>
+					<th>GAMBAR</th>
                     <th width="15%">OPSI</th>
                   </tr>
                 </thead>
@@ -47,6 +48,15 @@
                       <td><?php echo $no++; ?></td>
 					  <td><?php echo $d['merchant_id']; ?></td>
                       <td><?php echo $d['merchantName']; ?></td>
+					  <td>
+                        <center>
+                          <?php if($d['image'] == ""){ ?>
+                            <img src="../gambar/sistem/produk.png" style="width: 80px;height: auto">
+                          <?php }else{ ?>
+                            <img src="../<?php echo $d['image'] ?>" style="width: 80px;height: auto">
+                          <?php } ?>
+                        </center>
+                      </td>
                       <td>
                           <a class="btn btn-warning btn-sm" href="merchant_edit.php?id=<?php echo $d['merchant_id'] ?>"><i class="fa fa-cog"></i></a>
                           <a class="btn btn-danger btn-sm" href="merchant_hapus_konfir.php?id=<?php echo $d['merchant_id'] ?>"><i class="fa fa-trash"></i></a>
