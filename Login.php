@@ -80,7 +80,7 @@
             <input type="submit" class="btn" value="Sign up" />
 			
 			
-            <a href = "#" class="social-text">Lupa Password ?</a>
+           
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook-f"></i>
