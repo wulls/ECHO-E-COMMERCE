@@ -37,11 +37,11 @@
          <table class="table text-center">
            <thead>
              <tr>
-               <th class="border-0 bg-light picname">PRODUCT</th>
-               <th class="border-0 bg-light">MERCHANT</th>
-               <th class="border-0 bg-light">PRICE</th>
-               <th class="border-0 bg-light">QUANTITY</th>
-               <th class="border-0 bg-light">TOTAL PRICE</th>
+               <th class="border-0 bg-light picname">Product</th>
+               <th class="border-0 bg-light">Merchant</th>
+               <th class="border-0 bg-light">Price</th>
+               <th class="border-0 bg-light">Quantity</th>
+               <th class="border-0 bg-light">Total Price</th>
                <th class="border-0 bg-light">
                  <a href="action7.php?clear=all" class="p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>Clear All</a>
                </th>
@@ -88,7 +88,7 @@
                <td></td>
                <td></td>
                <td></td>
-               <td><b>SUBTOTAL</b></td>
+               <td><b>Total Price</b></td>
                <td><b>Rp <?= number_format($grand_total); ?></b></td>
                <td>
                  <a href="checkout7.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class=""></i>Place Order</a>

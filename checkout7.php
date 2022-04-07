@@ -133,7 +133,7 @@
 									<input type="file" name="bukti" required="required"><br>
 									<small class="text-muted">File yang diperbolehkan hanya file gambar.</small>
 								</div>
-								<input type="submit" class="btn btn-primary px-4" value="Upload Bukti Pembayaran" style="background-color:#2F86A6">
+								<input type="submit" class="btn btn-primary px-4" value="Upload Bukti Pembayaran">
 							</form>
             </div>
           </div>
@@ -160,11 +160,11 @@
                <table class="table text-center">
                  <thead>
                    <tr>
-                     <th class="border-0 bg-light picname">PRODUCT</th>
-                     <th class="border-0 bg-light">MERCHANT</th>
-                     <th class="border-0 bg-light">PRICE</th>
-                     <th class="border-0 bg-light">QUANTITY</th>
-                     <th class="border-0 bg-light">TOTAL PRICE</th>
+                     <th class="border-0 bg-light picname">Product</th>
+                     <th class="border-0 bg-light">Merchant</th>
+                     <th class="border-0 bg-light">Price</th>
+                     <th class="border-0 bg-light">Quantity</th>
+                     <th class="border-0 bg-light">Total Price</th>
                    </tr>
                  </thead>
                  <tbody>
@@ -205,21 +205,21 @@
                      <td></td>
                      <td></td>
                      <td></td>
-                     <td><b>Subtotal</b></td>
-                     <td><b>Rp <?= number_format($grand_total); ?></b></td>
+                     <td class="text-muted">Total Price</td>
+                     <td class="text-muted">Rp <?= number_format($grand_total); ?></td>
                    </tr>
                    <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><b>Delivery Fee</b></td>
-                    <td><b>Rp 5,000</b></td>
+                    <td class="text-muted">Delivery Fee</td>
+                    <td class="text-muted">Rp 5,000</td>
                    </tr>
                    <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><b>TOTAL</b></td>
+                    <td><b>Total Purchase</b></td>
                     <td><b></b></td>
                    </tr>
                    <tr>
@@ -228,7 +228,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                      <input type="submit" class="btn btn-primary px-4" value="Checkout" style="background-color:#2F86A6">
+                      <input type="submit" class="btn btn-primary px-4" value="Checkout">
                     </td>
                   </tr>
                  </tbody>
