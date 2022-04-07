@@ -173,7 +173,7 @@
                     <?php
                       require 'database connection.php';
                       $user_id = $_SESSION['user_id'];
-                      $stmt = $con->prepare("SELECT * FROM cart WHERE customer_id='$user_id'");
+                      $stmt = $con->prepare("SELECT *, merchant.merchantName FROM cart JOIN merchant ON cart.merchant_id = merchant.merchant_id WHERE customer_id='$user_id'");
                       $stmt->execute();
                       $result = $stmt->get_result();
                       $grand_total = 0;
@@ -190,7 +190,7 @@
                        </div>
                       </td>
                       <td class="border-0">
-                        <?= $row['merchant_id'] ?>
+                        <?= $row['merchantName'] ?>
                       </td>
                       <td class="border-0">
                         Rp <?= number_format($row['productPrice']); ?>
