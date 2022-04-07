@@ -131,7 +131,7 @@
 									<input type="hidden" name="id" value="<?php echo $id_invoice; ?>">
 									<label>Upload Bukti Pembayaran</label><br>
 									<input type="file" name="bukti" required="required"><br>
-									<small class="text-muted">File yang diperbolehkan hanya file gambar.</small>
+									<small class="text-muted">File yang diperbolehkan hanya file gambar berfomat .png, .jpg, & .jpeg.</small>
 								</div>
 								<input type="submit" class="btn btn-primary px-4" value="Upload Bukti Pembayaran">
 							</form>
@@ -213,7 +213,7 @@
                     <td></td>
                     <td></td>
                     <td class="text-muted">Delivery Fee</td>
-                    <td class="text-muted">Rp 5,000</td>
+                    <td class="text-muted">Rp 0</td>
                    </tr>
                    <tr>
                     <td></td>
