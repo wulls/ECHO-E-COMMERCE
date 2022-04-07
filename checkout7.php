@@ -21,7 +21,7 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
   <link rel="stylesheet" href="CSS/cart7.css">
   <link rel="stylesheet" href="CSS/checkout.css">
-  
+
 </head>
 
 <body>
@@ -205,14 +205,14 @@
                      <td></td>
                      <td></td>
                      <td></td>
-                     <td><b>SUBTOTAL</b></td>
+                     <td><b>Subtotal</b></td>
                      <td><b>Rp <?= number_format($grand_total); ?></b></td>
                    </tr>
                    <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><b>SHIPPING FEE</b></td>
+                    <td><b>Delivery Fee</b></td>
                     <td><b>Rp 5,000</b></td>
                    </tr>
                    <tr>
