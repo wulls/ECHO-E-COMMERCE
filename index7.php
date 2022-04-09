@@ -67,7 +67,7 @@ if (isset($_SESSION['user_id'])) {
         <form method="post" action="index7.php">
           <div class="input-group">
             <input type="text" class="form-control" name="searchName" placeholder="Cari Produk" style="width: 925px;">
-            <button class="btn btn-outline-success" name="search" type="submit" value="search"><i class="fa fa-search"></i></button>
+            <button class="btn btn-outline-success" style="z-index:1;" name="search" type="submit" value="search"><i class="fa fa-search"></i></button>
           </div>
         </form>
       </div>

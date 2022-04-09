@@ -16,7 +16,7 @@
     width: 100%;
     }
     #header{
-      z-index: 1;
+      z-index: 2;
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     }
     .cart{
