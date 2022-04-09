@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
   <style>
     .sticky {
     position: fixed;
@@ -30,6 +33,41 @@
 </head>
 <body>
 
+<?php
+  //SELECT MERCHANT
+  $merchant_id = $_SESSION['merchant_id'];
+  $selectmerchant = "SELECT merchantName FROM merchant WHERE merchant_id = '$merchant_id'";
+  $resultmerchant = mysqli_query($con,$selectmerchant);
+  $merchant = mysqli_fetch_array($resultmerchant);
+  $merchantName = $merchant['merchantName'];
+
+  //SELECT ADDRESS
+  $user_id = $_SESSION['user_id'];
+  $selectAddress = "SELECT addressDetail FROM customeraddress WHERE customer_id='$user_id' GROUP BY addressName";
+  $resultAddress = mysqli_query($con,$selectAddress);
+  $address = mysqli_fetch_array($resultAddress);
+  $count = mysqli_num_rows($resultAddress);
+
+  if($count > 0){
+    $addressDetail = $address['addressDetail'];
+  }
+  if($count == 0){
+    $addressDetail = 'Masukkan Alamat';
+  }
+
+  //SHORTEN MERCHANT NAME
+  if(strlen($merchantName) > 21){
+    $maxLength = 20;
+    $merchantName = substr($merchantName, 0, $maxLength);
+  }
+
+  //SHORTEN ADDRESS DETAIL
+  if(strlen($addressDetail) > 21){
+    $maxLength = 20;
+    $addressDetail = substr($addressDetail, 0, $maxLength);
+  }
+?>
+
 <div id="header">
     <nav class="navbar navbar-expand-lg" style="background-color:#34BE82;">
         <div class="container">
@@ -38,17 +76,32 @@
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
+                <img src="image/small icons/menu.png" height="30">
             </button>
-            <div style="padding-left: 100px;padding-top:10px">
+            <div style="padding-left: 50px;padding-top:10px">
                 <div class="form-floating mb-3">
-                    <input name="phone" type="text" class="form-control input-field" id="floatingInputValue" placeholder="Buy From" style="border:0 solid transparent;border-radius:15px;width:210px;box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);">
-                    <label for="floatingInputValue">Buy from</label>
+                    <button type="button" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#merchantlist" class="form-control input-field text-left" id="floatingInputValue" placeholder="Jaka" style="border:0 solid transparent;border-radius:15px;width:210px;box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);">
+                      <?php echo $merchantName ?>...
+                    </button>
+                    <label for="floatingInputValue">Beli dari</label>
                 </div>
             </div>
             <div style="padding-left: 50px;padding-top:10px">
                 <div class="form-floating mb-3">
-                    <input name="phone" type="text" class="form-control input-field" id="floatingInputValue" placeholder="Deliver to" style="border:0 solid transparent;border-radius:15px;width:210px;box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);">
-                    <label for="floatingInputValue">Deliver to</label>
+                    <button type="button" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#addresslist" class="form-control input-field text-left" id="floatingInputValue" placeholder="Jaka" style="border:0 solid transparent;border-radius:15px;width:210px;box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);">
+                      <?php
+                        if(isset($_GET['addressID'])){
+                          $addressid = $_GET['addressID'];
+                          $selectAddress = "SELECT addressDetail FROM customeraddress WHERE address_id='$addressid'";
+                          $resultAddress = mysqli_query($con,$selectAddress);
+                          $address = mysqli_fetch_array($resultAddress);
+                          echo $address['addressDetail'];
+                        }if(!isset($_GET['addressID'])){
+                          echo $addressDetail;
+                        }
+                      ?>
+                    </button>
+                    <label for="floatingInputValue">Antar ke</label>
                 </div>
             </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

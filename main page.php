@@ -71,39 +71,32 @@ if (isset($_SESSION['user_id'])) {
   <!--******************REKOMENDASI TOKO******************-->
 
   <section class="features-icons bg-light text-center">
-
     <div class="container">
-      <div class="pstn">
-         <input type="text" class="form-control" id="search_address" placeholder="Masukkan alamat pengantaran" style="border-radius:4px;"/>
+      <div class="d-flex justify-content-center pstn">
+        <input type="text" class="form-control" id="" placeholder="Search Store" style="border-radius:4px;" onkeyup="load_data(this.value);" />
       </div>
+      <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
+      <div class="row" id="output">
+        <?php
+        $sql = "SELECT * FROM merchant;";
+        $result = mysqli_query($con,$sql);
+        while($row=mysqli_fetch_array($result)){?>
 
-   <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
-
-          <div class="row">
-     <?php
-      $sql = "SELECT * FROM merchant;";
-      $result = mysqli_query($con,$sql);
-       while($row=mysqli_fetch_array($result)){?>
-
-      <div class='col-lg-4'>
-       <div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>
-        <div class='features-icons-icon d-flex'>
-         <form action="main page2.php" method="get">
-         <input type="hidden" name="merchant_id" value=<?php echo $row['merchant_id']?> >
-         <!--echo '<a href="index3.php?id='.$row['merchant_id'].'">';-->
-         <input type="image" src=<?php echo $row['image']?> alt="logo store" class="text-primary logotoko">
-         <!--"</a>";-->
-         </form>
-        </div>
-       <h4 style="padding-top:25px;padding-bottom:30px;"><?php echo $row['merchantName']?></h4>
+          <div class='col-lg-4'>
+            <div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>
+              <div class='features-icons-icon d-flex'>
+                <form action="main page2.php" method="get">
+                  <input type="hidden" name="merchant_id" value=<?php echo $row['merchant_id']?> >
+                  <input type="image" src=<?php echo $row['image']?> alt="logo store" class="text-primary logotoko">
+                </form>
+              </div>
+              <h4 style="padding-top:25px;padding-bottom:30px;"><?php echo $row['merchantName']?></h4>
+            </div>
+          </div>
+        <?php } ?>
       </div>
-     </div>
-    <?php } ?>
-
-
     </div>
-         </div>
-        </section>
+  </section>
 
         <!-- Footer -->
         <footer class="footer bg-light">
@@ -143,13 +136,31 @@ if (isset($_SESSION['user_id'])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <script>
+        <script type="text/javascript">
+        //GOOGLE GEOLOCATION
          function activatePlacesSearch(){
            var input = document.getElementById('search_address');
            var autocomplete = new google.maps.places.Autocomplete(input);
          }
          google.maps.event.addDomListener(window, 'load', initialize);
+
+         //SEARCH STORE
+         $(document).ready(function(){
+           $("#search").keypress(function(){
+             $.ajax({
+               type:'POST',
+               url: 'searchstore.php',
+               data:{
+                 merchantName:$("#search").val(),
+               },
+               success:function(data){
+                 $("#output").html(data);
+               }
+             });
+           });
+         });
          </script>
+
          <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_sQp8WSMj7cYX6tpqBxfsDSsYJwauAJ4&libraries=places&callback=activatePlacesSearch">
          </script>
