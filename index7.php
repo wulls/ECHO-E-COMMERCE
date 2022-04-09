@@ -60,6 +60,7 @@ if (isset($_SESSION['user_id'])) {
       </div>
     </div>
   </div>
+
   <div class="container">
     <div class="row text-center py-5">
 
@@ -71,8 +72,7 @@ if (isset($_SESSION['user_id'])) {
         </form>
       </div>
     </div>
-  <div class="container">
-    <div class="row text-center py-5">
+
   <div class="container">
     <div class="row text-center py-5">
 
@@ -135,18 +135,7 @@ if (isset($_SESSION['user_id'])) {
         while($row=mysqli_fetch_array($result)){
           component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
-      } else if (isset($_POST['search'])) {
-			$sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND productName like '%" . $_POST['searchName'] . "%'";
-			$result = mysqli_query($con, $sql);
-			while ($row = mysqli_fetch_array($result)) {
-			component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'],$row['product_id'], $row['productQuantity'], $row['productPrice']);
-		}
-		   if (mysqli_num_rows($result) < 7) {
-			   for ($i = mysqli_num_rows($result); $i < 7; $i++) {
-					componentKosong();
-		}
-		}
-	  }
+      }
       else {
         $sql = "SELECT *, productUnit.productUnit FROM product JOIN productUnit ON product.productUnit_id = productUnit.productUnit_id WHERE merchant_id = '$merchant_id'";
         $result = mysqli_query($con,$sql);

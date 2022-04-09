@@ -26,9 +26,9 @@ function component($productname, $productprice, $productimg, $productamount, $pr
               <input type=\"hidden\" name=\"pamount\" class=\"pamount\" value=\"$productamount\">
               <input type=\"hidden\" name=\"punit\" class=\"punit\" value=\"$productunit\">
               <input type=\"hidden\" name=\"pquantity\" class=\"pquantity\" value=\"$productquantity\">
-			  <div class=\"text-center\">
-			   <input type=\"submit\" id=\"add\" value=\"+ Keranjang\" class=\"btn mt-auto addItemBtn\">
-			    </div>
+      			  <div class=\"text-center\">
+      			     <input type=\"submit\" id=\"add\" value=\"+ Keranjang\" class=\"btn mt-auto addItemBtn\">
+      			  </div>
               </form>
           </div>
       </div>
@@ -37,7 +37,7 @@ function component($productname, $productprice, $productimg, $productamount, $pr
   echo $element;
 }
 
-function componentKosong()
+/*function componentKosong()
 {
   $element = "
   <div class=\"col-md-2 col-sm-6 my-3 my-md-2\">
@@ -47,4 +47,4 @@ function componentKosong()
   </div>
   ";
   echo $element;
-}
+}*/
