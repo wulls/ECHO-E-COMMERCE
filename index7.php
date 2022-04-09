@@ -71,63 +71,63 @@ if (isset($_SESSION['user_id'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-        component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
+        component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if(isset($_GET['Sayur'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='1'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['producPrice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['producPrice']);
         }
       }
       else if (isset($_GET['Buah'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='3'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productprice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productprice']);
         }
       }
       else if (isset($_GET['Dapur'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='4'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_GET['Saus'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='5'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_GET['BerasMie'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='6'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_GET['SusuTelur'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='7'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_GET['Daging'])) {
         $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id' AND category_id ='8'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else {
         $sql = "SELECT * FROM product WHERE merchant_id = '$merchant_id'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['image'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       ?>
@@ -145,7 +145,7 @@ if (isset($_SESSION['user_id'])) {
         <div class="modal-body">
           <div class="container-fluid">
             <div class="row">
-              <?php 
+              <?php
                 $sql = "SELECT * FROM merchant;";
                 $result = mysqli_query($con,$sql);
                 while($row=mysqli_fetch_array($result)){

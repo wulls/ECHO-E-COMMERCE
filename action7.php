@@ -22,8 +22,8 @@ $r = $res->fetch_assoc();
 $product_id = $r['product_id'] ?? '';
 
 if (!$product_id) {
-  $insertCart = "INSERT INTO cart (customer_id, merchant_id, product_id, productName, productPrice, productImage, productAmount, productUnit, productQuantity, totalPrice)
-                 VALUES ('$user_id', '$merchant_id', '$pid', '$pname', '$pprice', '$pimage', '$pamount', '$punit', '$pquantity', '$totalPrice')";
+  $insertCart = "INSERT INTO cart (customer_id, merchant_id, product_id, productName, productPrice, productImage, productAmount, productQuantity, totalPrice)
+                 VALUES ('$user_id', '$merchant_id', '$pid', '$pname', '$pprice', '$pimage', '$pamount', '$pquantity', '$totalPrice')";
   $query = mysqli_query($con, $insertCart);
 
   $_SESSION['Alert'] = 'block';
@@ -68,7 +68,7 @@ if (isset($_POST['productQuantity'])) {
 
   $tprice = $productQuantity * $pprice;
 
-  $stmt = $con->prepare('UPDATE cart SET productQuantity=?, totalPrice=? WHERE product_id=?');
+  $stmt = $con->prepare("UPDATE cart SET productQuantity=?, totalPrice=? WHERE product_id=? AND customer_id='$user_id'");
   $stmt->bind_param('iii',$productQuantity,$tprice,$pid);
   $stmt->execute();
 }
