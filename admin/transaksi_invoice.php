@@ -65,9 +65,14 @@
                     <?php 
                     $no = 1;
                     $total = 0;
-                    $transaksi = mysqli_query($con,"select * from transaksi,product where transaksi_produk=product_id and transaksi_invoice='$id_invoice'");
+                    $transaksi = mysqli_query($con,"SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice
+                                                    FROM orderdetail OD 
+                                                    LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
+                                                    JOIN merchant ME ON OD.merchant_id=ME.merchant_id
+                                                    JOIN product PR ON OD.product_id=PR.product_id
+                                                    WHERE OD.order_id='$i[invoice_id]'");
                     while($d=mysqli_fetch_array($transaksi)){
-                      $total += $d['transaksi_harga'];
+                      $total += $d['totalPrice'];
                       ?>
                       <tr>
                         <td class="text-center"><?php echo $no++; ?></td>
@@ -81,9 +86,9 @@
                           </center>
                         </td>
                         <td><?php echo $d['productName']; ?></td>
-                        <td class="text-center"><?php echo "Rp. ".number_format($d['transaksi_harga']).",-"; ?></td>
-                        <td class="text-center"><?php echo number_format($d['transaksi_jumlah']); ?></td>
-                        <td class="text-center"><?php echo "Rp. ".number_format($d['transaksi_jumlah'] * $d['transaksi_harga'])." ,-"; ?></td>
+                        <td class="text-center"><?php echo "Rp. ".number_format($d['productPrice']).",-"; ?></td>
+                        <td class="text-center"><?php echo number_format($d['quantity']); ?></td>
+                        <td class="text-center"><?php echo "Rp. ".number_format($d['productPrice'] * $d['quantity'])." ,-"; ?></td>
                       </tr>
                       <?php 
                     }
@@ -108,7 +113,7 @@
                     <tr>
                       <td colspan="4" style="border: none"></td>
                       <th>Total Bayar</th>
-                      <td class="text-center"><?php echo "Rp. ".number_format($i['invoice_total_bayar'])." ,-"; ?></td>
+                      <td class="text-center"><?php echo "Rp. ".number_format ($total + $i['invoice_ongkir'])." ,-"; ?></td>
                     </tr>
                   </tfoot>
                 </table>

@@ -34,7 +34,7 @@
               </div>
               <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password" required="required" min="5" placeholder="Masukkan Password ..">
+                <input type="password" class="form-control" name="password" required="required" placeholder="Masukkan Password ..">
               </div>
 			  <div class="form-group">
                   <label>Hak Akses</label>

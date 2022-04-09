@@ -62,56 +62,61 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php 
-						$no = 1;
-						$total = 0;
-						$transaksi = mysqli_query($con,"select * from transaksi,product where transaksi_produk=product_id and transaksi_invoice='$id_invoice'");
-						while($d=mysqli_fetch_array($transaksi)){
-							$total += $d['transaksi_harga'];
-							?>
-							<tr>
-								<td class="text-center"><?php echo $no++; ?></td>
-								<td>
-									<center>
-										<?php if($d['image'] == ""){ ?>
-											<img src="../gambar/sistem/produk.png" style="width: 50px;height: auto">
-										<?php }else{ ?>
-											<img src="../image/Merchant/<?php echo $d['image'] ?>" style="width: 50px;height: auto">
-										<?php } ?>
-									</center>
-								</td>
-								<td><?php echo $d['productName']; ?></td>
-								<td class="text-center"><?php echo "Rp. ".number_format($d['transaksi_harga']).",-"; ?></td>
-								<td class="text-center"><?php echo number_format($d['transaksi_jumlah']); ?></td>
-								<td class="text-center"><?php echo "Rp. ".number_format($d['transaksi_jumlah'] * $d['transaksi_harga'])." ,-"; ?></td>
-							</tr>
-							<?php 
-						}
-						?>
-					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="4" style="border: none"></td>
-							<th>Berat</th>
-							<td class="text-center"><?php echo number_format($i['invoice_berat']); ?> gram</td>
-						</tr>
-						<tr>
-							<td colspan="4" style="border: none"></td>
-							<th>Total Belanja</th>
-							<td class="text-center"><?php echo "Rp. ".number_format($total)." ,-"; ?></td>
-						</tr>
-						<tr>
-							<td colspan="4" style="border: none"></td>
-							<th>Ongkir (<?php echo $i['invoice_kurir'] ?>)</th>
-							<td class="text-center"><?php echo "Rp. ".number_format($i['invoice_ongkir'])." ,-"; ?></td>
-						</tr>
-						<tr>
-							<td colspan="4" style="border: none"></td>
-							<th>Total Bayar</th>
-							<td class="text-center"><?php echo "Rp. ".number_format($i['invoice_total_bayar'])." ,-"; ?></td>
-						</tr>
-					</tfoot>
-				</table>
+						 <?php 
+                    $no = 1;
+                    $total = 0;
+                    $transaksi = mysqli_query($con,"SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice
+                                                    FROM orderdetail OD 
+                                                    LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
+                                                    JOIN merchant ME ON OD.merchant_id=ME.merchant_id
+                                                    JOIN product PR ON OD.product_id=PR.product_id
+                                                    WHERE OD.order_id='$i[invoice_id]'");
+                    while($d=mysqli_fetch_array($transaksi)){
+                      $total += $d['totalPrice'];
+                      ?>
+                      <tr>
+                        <td class="text-center"><?php echo $no++; ?></td>
+                        <td>
+                          <center>
+                            <?php if($d['image'] == ""){ ?>
+                              <img src="../gambar/sistem/produk.png" style="width: 50px;height: auto">
+                            <?php }else{ ?>
+                              <img src="../image/Merchant/<?php echo $d['image'] ?>" style="width: 50px;height: auto">
+                            <?php } ?>
+                          </center>
+                        </td>
+                        <td><?php echo $d['productName']; ?></td>
+                        <td class="text-center"><?php echo "Rp. ".number_format($d['productPrice']).",-"; ?></td>
+                        <td class="text-center"><?php echo number_format($d['quantity']); ?></td>
+                        <td class="text-center"><?php echo "Rp. ".number_format($d['productPrice'] * $d['quantity'])." ,-"; ?></td>
+                      </tr>
+                      <?php 
+                    }
+                    ?>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="4" style="border: none"></td>
+                      <th>Berat</th>
+                      <td class="text-center"><?php echo number_format($i['invoice_berat']); ?> gram</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="border: none"></td>
+                      <th>Total Belanja</th>
+                      <td class="text-center"><?php echo "Rp. ".number_format($total)." ,-"; ?></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="border: none"></td>
+                      <th>Ongkir (<?php echo $i['invoice_kurir'] ?>)</th>
+                      <td class="text-center"><?php echo "Rp. ".number_format($i['invoice_ongkir'])." ,-"; ?></td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="border: none"></td>
+                      <th>Total Bayar</th>
+                      <td class="text-center"><?php echo "Rp. ".number_format ($total + $i['invoice_ongkir'])." ,-"; ?></td>
+                    </tr>
+                  </tfoot>
+                </table>
 
 
 				<h5>STATUS :</h5> 

@@ -19,8 +19,7 @@
         <div class="box box-info">
 
           <div class="box-header">
-            <h3 class="box-title">Customer</h3>
-            <a href="customer_tambah.php" class="btn btn-info btn-sm pull-right"><i class="fa fa-plus"></i> &nbsp Tambah Customer Baru</a>              
+            <h3 class="box-title">Customer</h3>              
           </div>
           <div class="box-body">
             <div class="table-responsive">
@@ -33,7 +32,6 @@
                     <th>EMAIL</th>
                     <th>HP</th>
                     <!-- <th>ALAMAT</th> -->
-                    <th width="10%">OPSI</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,10 +47,7 @@
                       <td><?php echo $d['username']; ?></td>
                       <td><?php echo $d['email']; ?></td>
                       <td><?php echo $d['phone']; ?></td>
-                      <td>                        
-                        <a class="btn btn-warning btn-sm" href="customer_edit.php?id=<?php echo $d['customer_id'] ?>"><i class="fa fa-cog"></i></a>
-                        <a class="btn btn-danger btn-sm" href="customer_hapus_konfir.php?id=<?php echo $d['customer_id'] ?>"><i class="fa fa-trash"></i></a>
-                      </td>
+                      
                     </tr>
                     <?php 
                   }
