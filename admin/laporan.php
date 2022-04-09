@@ -41,7 +41,7 @@
 				   
                 <div class="col-md-2">
                   <div class="form-group">
-                    <br/>
+                    <label>Pengaturan</label>
                     <input type="submit" value="TAMPILKAN LAPORAN" class="btn btn-sm btn-primary">
                   </div>
                 </div>

@@ -32,6 +32,7 @@
                     <th>CUSTOMER</th>
                     <th>TOTAL BAYAR</th>
                     <th class="text-center">STATUS</th>
+					<th>DESKRIPSI</th>
                     <th class="text-center">UPDATE STATUS</th>
                     <th class="text-center" width="25%">OPSI</th>
                   </tr>
@@ -39,7 +40,7 @@
                 <tbody>
                   <?php 
                   $no = 1;
-                  $invoice = mysqli_query($con,"select * from invoice,customer where customer_id=invoice_customer order by invoice_id desc");
+                  $invoice = mysqli_query($con,"select * from invoice,customer where customer_id=invoice_customer order by invoice_id ASC");
                   while($i = mysqli_fetch_array($invoice)){
                     ?>
                     <tr>
@@ -65,6 +66,7 @@
                         }
                         ?>
                       </td>
+					  <td><?php echo $i['invoice_deskripsi'] ?></td>
                       <td class="text-center">
                         <form action="transaksi_status.php" method="post">
                           <input type="hidden" value="<?php echo $i['invoice_id'] ?>" name="invoice">
@@ -114,8 +116,9 @@
                           </div>
                         </div>
 
-
+						 
                         <a class='btn btn-sm btn-success' href="transaksi_invoice.php?id=<?php echo $i['invoice_id']; ?>"><i class="fa fa-print"></i> Invoice</a>
+						<a class="btn btn-warning btn-sm" href="transaksi_edit.php?id=<?php echo $i['invoice_id'] ?>"><i class="fa fa-cog"></i></a>
                         <a class='btn btn-sm btn-danger' href="transaksi_hapus.php?id=<?php echo $i['invoice_id']; ?>"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>

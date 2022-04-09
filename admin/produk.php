@@ -43,7 +43,7 @@
                   include '../database connection.php';
                   $no=1;
                   $result = mysqli_query(
-                                        $con, "SELECT merchant.merchantName, product.productName, product.product_id, category.categoryName, product.productPrice, product.productQuantity, product.productUnit, product.image
+                                        $con, "SELECT merchant.merchantName, product.productName, product.product_id, category.categoryName, product.productPrice, product.productQuantity, product.productUnit_id, product.image
                                         FROM product
                                         JOIN merchant ON
                                         product.merchant_id=merchant.merchant_id
@@ -59,7 +59,7 @@
                       <td><?php echo $row['categoryName']; ?></td>
                       <td><?php echo "Rp. ".number_format($row['productPrice']).""; ?></td>
                       <td><?php echo number_format($row['productQuantity']); ?></td>
-					  <td><?php echo $row['productUnit']; ?></td>
+					  <td><?php echo $row['productUnit_id']; ?></td>
                       <td>
                         <center>
                           <?php if($row['image'] == ""){ ?>
