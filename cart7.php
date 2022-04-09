@@ -37,13 +37,13 @@
          <table class="table text-center">
            <thead>
              <tr>
-               <th class="border-0 bg-light pull-left">Product</th>
-               <th class="border-0 bg-light">Merchant</th>
-               <th class="border-0 bg-light">Price</th>
-               <th class="border-0 bg-light">Quantity</th>
-               <th class="border-0 bg-light">Total Price</th>
+               <th class="border-0 bg-light pull-left">Produk</th>
+               <th class="border-0 bg-light">Toko</th>
+               <th class="border-0 bg-light">Harga</th>
+               <th class="border-0 bg-light">Jumlah</th>
+               <th class="border-0 bg-light">Total Harga</th>
                <th class="border-0 bg-light">
-                 <a href="action7.php?clear=all" class="p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>Clear All</a>
+                 <a href="action7.php?clear=all" class="p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i> Hapus Semua</a>
                </th>
              </tr>
            </thead>
@@ -51,7 +51,9 @@
               <?php
                 require 'database connection.php';
                 $user_id = $_SESSION['user_id'];
-                $stmt = $con->prepare("SELECT *, merchant.merchantName FROM cart JOIN merchant ON cart.merchant_id = merchant.merchant_id WHERE customer_id='$user_id'");
+                $stmt = $con->prepare("SELECT *, merchant.merchantName FROM cart
+                  JOIN merchant ON cart.merchant_id = merchant.merchant_id
+                  WHERE customer_id='$user_id'");
                 $stmt->execute();
                 $result = $stmt->get_result();
                 $grand_total = 0;
@@ -88,10 +90,10 @@
                <td></td>
                <td></td>
                <td></td>
-               <td><b>Total Price</b></td>
+               <td><b>Total Harga</b></td>
                <td><b>Rp <?= number_format($grand_total); ?></b></td>
                <td>
-                 <a href="checkout7.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class=""></i>Place Order</a>
+                 <a href="checkout7.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class=""></i>Buat Pesanan</a>
                </td>
              </tr>
            </tbody>

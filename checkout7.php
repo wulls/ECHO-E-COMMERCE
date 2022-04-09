@@ -32,10 +32,10 @@
   <div class="col-lg-8 billing">
     <div class="card">
       <div class="card-body">
-        <h4>Billing Details</h4><br>
+        <h4>Detail Tagihan</h4><br>
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0">Recipient Name</h6>
+            <h6 class="mb-0">Nama Penerima</h6>
           </div>
           <div class="col-sm-9 text-secondary">
             <input type="text" name="Name" class="form-control input-field" value="">
@@ -43,7 +43,7 @@
         </div>
         <div class="row mb-3">
           <div class="col-sm-3">
-            <h6 class="mb-0">Recipient Phone Number</h6>
+            <h6 class="mb-0">No. Handphone Penerima</h6>
           </div>
           <div class="col-sm-9 text-secondary">
             <input type="tel" name="Phone" class="form-control input-field" value="">
@@ -91,7 +91,7 @@
       <div class="card-body">
         <div class="shipping-methods">
           <div class="section-title">
-            <h4 class="title">Shipping Methods</h4>
+            <h4 class="title">Metode Pengiriman</h4>
           </div>
           <div class="input-checkbox">
             <input type="radio" name="shipping" id="shipping-1" checked>
@@ -105,7 +105,7 @@
         <br>
         <div class="payments-methods">
           <div class="section-title">
-            <h4 class="title">Payments Methods</h4>
+            <h4 class="title">Metode Pembayaran</h4>
           </div>
         <div class="input-checkbox">
           <input type="radio" name="payments" id="payments-1" checked>
@@ -148,7 +148,7 @@
   <div class="col-lg-8 review">
     <div class="card">
       <div class="card-body">
-        <h4>Order Review</h4>
+        <h4>Review Pesanan</h4>
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-15">
@@ -162,11 +162,11 @@
                <table class="table text-center">
                  <thead>
                    <tr>
-                     <th class="border-0 bg-light pull-left">Product</th>
-                     <th class="border-0 bg-light">Merchant</th>
-                     <th class="border-0 bg-light">Price</th>
-                     <th class="border-0 bg-light">Quantity</th>
-                     <th class="border-0 bg-light">Total Price</th>
+                     <th class="border-0 bg-light pull-left">Produk</th>
+                     <th class="border-0 bg-light">Toko</th>
+                     <th class="border-0 bg-light">Harga</th>
+                     <th class="border-0 bg-light">Jumlah</th>
+                     <th class="border-0 bg-light">Total Harga</th>
                    </tr>
                  </thead>
                  <tbody>
@@ -207,22 +207,22 @@
                      <td></td>
                      <td></td>
                      <td></td>
-                     <td class="text-muted pull-left">Total Price</td>
-                     <td class="text-muted pull-right">Rp <?= number_format($grand_total); ?></td>
+                     <td class="text-muted pull-left"><small>Total Harga</td>
+                     <td class="text-muted pull-right"><small>Rp <?= number_format($grand_total); ?></td>
                    </tr>
                    <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="text-muted pull-left">Delivery Fee</td>
-                    <td class="text-muted pull-right">Rp 10,000</td>
+                    <td class="text-muted pull-left"><small>Biaya Pengiriman</td>
+                    <td class="text-muted pull-right"><small>Rp 10,000</td>
                    </tr>
                    <tr>
                     <?php $purchase_total = $grand_total + 10000; ?>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td class="pull-left"><b>Total Purchase</b></td>
+                    <td class="pull-left"><b>Total Belanja</b></td>
                     <td class="pull-right"><b>Rp <?= number_format($purchase_total); ?></b></td>
                    </tr>
                    <tr>
@@ -231,7 +231,7 @@
                     <td></td>
                     <td></td>
                     <td class="pull-right">
-                      <input type="submit" class="btn btn-primary px-4" value="Checkout">
+                      <input type="submit" class="btn btn-primary px-4" value="Beli">
                     </td>
                   </tr>
                  </tbody>

@@ -27,7 +27,7 @@ function component($productname, $productprice, $productimg, $productamount, $pr
               <input type=\"hidden\" name=\"punit\" class=\"punit\" value=\"$productunit\">
               <input type=\"hidden\" name=\"pquantity\" class=\"pquantity\" value=\"$productquantity\">
 			  <div class=\"text-center\">
-			   <input type=\"submit\" id=\"add\" value=\"Add to cart\" class=\"btn mt-auto addItemBtn\">
+			   <input type=\"submit\" id=\"add\" value=\"+ Keranjang\" class=\"btn mt-auto addItemBtn\">
 			    </div>
               </form>
           </div>
@@ -42,7 +42,7 @@ function componentKosong()
   $element = "
   <div class=\"col-md-2 col-sm-6 my-3 my-md-2\">
     <div class=\"card border-0\">
-          
+
     </div>
   </div>
   ";
