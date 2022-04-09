@@ -36,14 +36,13 @@ include_once ('newnavbarlogin.php');
                     <?php
                     $user_id = $_SESSION['user_id'];
 
-                    $selectHistory = "SELECT OD.order_id, OD.orderDetail_id, DAY(ORD.orderDate) AS day, MONTHNAME(ORD.orderDate) AS month, YEAR(ORD.orderDate) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, COUNT(OD.order_id)-1 AS itemAmount, PR.productUnit, ORD.recipientName, ORD.recipientPhone, ORD.shippingAddress, ORD.region, ORD.city, ORD.postalCode, PM.paymentMethodDescription
-                                    FROM orderdetail OD 
-                                    LEFT JOIN orders ORD ON OD.order_id=ORD.order_id
-                                    JOIN merchant ME ON OD.merchant_id=ME.merchant_id
-                                    JOIN product PR ON OD.product_id=PR.product_id
-                                    JOIN paymentmethod PM ON ORD.paymentMethod_id=PM.paymentMethod_id
-                                    WHERE ORD.customer_id='$user_id'
-                                    GROUP BY OD.order_id";
+                    $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, PR.productUnit, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti
+                                      FROM orderdetail OD 
+                                      LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
+                                      JOIN merchant ME ON OD.merchant_id=ME.merchant_id
+                                      JOIN product PR ON OD.product_id=PR.product_id
+                                      WHERE INV.invoice_customer='$user_id'
+                                      GROUP BY OD.order_id";
                     $resultHistory = mysqli_query($con, $selectHistory);
                     $countHistory = mysqli_num_rows($resultHistory);
 
@@ -64,7 +63,7 @@ include_once ('newnavbarlogin.php');
                                     <p>
                                         <img src="image/small icons/invoice.png" style="height:20px;width:20px;">
                                         <b style="padding-left:10px;padding-right:10px;"><?php echo $history['day'].' '.$history['month'].' '.$history['yearr']; ?></b>
-                                        ID: <?php echo $history['order_id']; ?>
+                                        ID: <?php echo $history['invoice_id']; ?>
                                     </p>
                                     <p>
                                         <img src="image/small icons/store.png" style="height:20px;width:20px;">
@@ -97,12 +96,13 @@ include_once ('newnavbarlogin.php');
                             <div class="row">
                                 <div class="align-items-end text-center" style="padding-right:2rem;">
                                     <div class="float-right">
-                                        <button data-toggle="modal" class="but-ton">
-                                            Order Again
-                                        </button>
+                                        <form action="order again.php" method="post">
+                                            <input type="hidden" name="invoiceID" value=<?php echo $history['invoice_id']; ?>>
+                                            <input type="submit" value="Order Again" data-toggle="modal" class="but-ton">
+                                        </form>
                                     </div>
                                     <div class="float-right" style="padding-right:8px;">
-                                        <button type="button" data-target="#myModal<?php echo $history['order_id'];?>" data-toggle="modal" class="but-ton detail">
+                                        <button type="button" data-target="#myModal<?php echo $history['invoice_id'];?>" data-toggle="modal" class="but-ton detail">
                                             Transaction Detail
                                         </button>
                                     </div>
@@ -111,7 +111,7 @@ include_once ('newnavbarlogin.php');
                         </div>
                     </div><br>
                     <!--************TRANSACTION DETAIL START************-->
-                    <div class="modal fade" id="myModal<?php echo $history['order_id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="myModal<?php echo $history['invoice_id'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:40rem;">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -125,10 +125,17 @@ include_once ('newnavbarlogin.php');
                                 <?php
                                     $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PR.productUnit
                                                     FROM orderdetail OD 
-                                                    LEFT JOIN orders ORD ON OD.order_id=ORD.order_id
+                                                    LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                     JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                                     JOIN product PR ON OD.product_id=PR.product_id
-                                                  WHERE ORD.order_id='$history[order_id]'";
+                                                    WHERE OD.order_id='$history[invoice_id]'";
+                                    // SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PR.productUnit
+                                    //                 FROM orderdetail OD 
+                                    //                 LEFT JOIN orders ORD ON OD.order_id=ORD.order_id
+                                    //                 JOIN merchant ME ON OD.merchant_id=ME.merchant_id
+                                    //                 JOIN product PR ON OD.product_id=PR.product_id
+                                                    
+                                    //                 WHERE ORD.order_id='$history[order_id]'";
                                     $resultOd = mysqli_query($con, $selectOrder);
                                     while($order = mysqli_fetch_array($resultOd)){
                                 ?>
@@ -166,6 +173,9 @@ include_once ('newnavbarlogin.php');
                                         <div class="col-sm-3">
                                             Courier :
                                         </div>
+                                        <div class="col-sm-9">
+                                            <?php echo $history['invoice_kurir']; ?>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-3">
@@ -173,10 +183,10 @@ include_once ('newnavbarlogin.php');
                                         </div>
                                         <div class="col-sm-9">
                                             <p>
-                                                <b><?php echo $history['recipientName']; ?></b><br>
-                                                <?php echo $history['recipientPhone']; ?><br>
-                                                <?php echo $history['shippingAddress']." ".$history['region']; ?><br>
-                                                <?php echo $history['city']." ".$history['postalCode']; ?>
+                                                <b><?php echo $history['invoice_nama']; ?></b><br>
+                                                <?php echo $history['invoice_hp']; ?><br>
+                                                <?php echo $history['invoice_alamat']." ".$history['invoice_provinsi']; ?><br>
+                                                <?php echo $history['invoice_kabupaten']; ?>
                                             </p>
                                         </div>
                                     </div>
@@ -189,7 +199,7 @@ include_once ('newnavbarlogin.php');
                                             Payment Method                                        
                                         </div>
                                         <div class="col-sm-9 d-flex justify-content-end">
-                                            <?php echo $history['paymentMethodDescription']; ?>
+                                            Bank Transfer
                                         </div>
                                     </div>
                                     <hr style="height:1px;background-color:lightGrey;">
@@ -206,7 +216,7 @@ include_once ('newnavbarlogin.php');
                                             <h7>Delivery Fee</h7>                                            
                                         </div>
                                         <div class="col-sm-9 d-flex justify-content-end">
-                                            FREE
+                                            <?php echo $history['invoice_ongkir'] ?>
                                         </div>
                                     </div> 
                                     <hr style="height:.5px;background-color:lightGrey;">                                   
@@ -215,7 +225,7 @@ include_once ('newnavbarlogin.php');
                                             <b>Total Purchases</b>                                           
                                         </div>
                                         <div class="col-sm-9 d-flex justify-content-end">
-                                            <b><?php echo "Rp. ".number_format($history['totalCost']).""; ?></b>
+                                            <b><?php echo "Rp. ".number_format($history['totalPurchase']).""; ?></b>
                                         </div>
                                     </div>
                                 </div>
