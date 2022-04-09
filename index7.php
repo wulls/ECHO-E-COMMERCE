@@ -62,7 +62,7 @@ if (isset($_SESSION['user_id'])) {
   </div>
   <div class="container">
     <div class="row text-center py-5">
-      
+
         <form method="post" action="index7.php">
           <div class="input-group">
             <input type="text" class="form-control" name="searchName" placeholder="Cari Produk" style="width: 925px;">
@@ -91,7 +91,7 @@ if (isset($_SESSION['user_id'])) {
         $sql = "SELECT *, productUnit.productUnit FROM product JOIN productUnit ON product.productUnit_id = productUnit.productUnit_id WHERE merchant_id = '$merchant_id'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['producPrice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_GET['Buah'])) {
