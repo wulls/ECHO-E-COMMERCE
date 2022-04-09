@@ -36,7 +36,7 @@ include_once ('newnavbarlogin.php');
                     <?php
                     $user_id = $_SESSION['user_id'];
 
-                    $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, PR.productUnit, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti
+                    $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti
                                       FROM orderdetail OD 
                                       LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                       JOIN merchant ME ON OD.merchant_id=ME.merchant_id
@@ -77,7 +77,7 @@ include_once ('newnavbarlogin.php');
                                         <img src="<?php echo $history['image']; ?>" class="mb-0 product-display">
                                     </div>
                                     <p class="float-left" style="padding-left:25px;">
-                                        <b><?php echo $history['productName'] ?></b> <?php echo $history['quantity']." ".$history['productUnit']; ?>
+                                        <b><?php echo $history['productName'] ?></b> <?php echo $history['quantity']; ?>
                                         <br>
                                         <?php echo "Rp. ".number_format($history['productPrice']).""; ?>
                                         <br><br>
@@ -123,7 +123,7 @@ include_once ('newnavbarlogin.php');
                                 <div class="modal-body">
                                 </div>
                                 <?php
-                                    $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PR.productUnit
+                                    $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice
                                                     FROM orderdetail OD 
                                                     LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                     JOIN merchant ME ON OD.merchant_id=ME.merchant_id
@@ -148,7 +148,7 @@ include_once ('newnavbarlogin.php');
                                                         <img src="<?php echo $order['image']; ?>" class="mb-0 product-display">
                                                     </div>
                                                     <p class="float-left" style="padding-left:25px;">
-                                                        <b><?php echo $order['productName']; ?></b> <?php echo $order['quantity']." ".$order['productUnit']; ?>
+                                                        <b><?php echo $order['productName']; ?></b> <?php echo $order['quantity']; ?>
                                                         <br>
                                                         <?php echo "Rp. ".number_format($order['productPrice']).""; ?>
                                                     </p>
