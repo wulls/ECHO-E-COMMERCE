@@ -242,7 +242,7 @@
 								<div class="form-group">
 									<input type="hidden" name="id" value="<?php echo $id_invoice; ?>">
                   <h4 class="title">Upload Bukti Pembayaran</h4>
-									<input type="file" name="bukti" required="required"><br>
+									<input type="file" name="bukti" required="required" accept="image/png, image/jpg, image/jpeg"><br>
 									<small class="text-muted">File yang diperbolehkan hanya file gambar berfomat .png, .jpg, & .jpeg.</small>
 								</div>
 								<input type="submit" class="btn btn-primary px-4" value="Upload Bukti Pembayaran">
