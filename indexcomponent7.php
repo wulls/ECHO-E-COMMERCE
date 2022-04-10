@@ -37,7 +37,7 @@ function component($productname, $productprice, $productimg, $productamount, $pr
   echo $element;
 }
 
-/*function componentKosong()
+function componentKosong()
 {
   $element = "
   <div class=\"col-md-2 col-sm-6 my-3 my-md-2\">
@@ -47,4 +47,4 @@ function component($productname, $productprice, $productimg, $productamount, $pr
   </div>
   ";
   echo $element;
-}*/
+}
