@@ -51,8 +51,11 @@
               <?php
                 require 'database connection.php';
                 $user_id = $_SESSION['user_id'];
-                $stmt = $con->prepare("SELECT *, merchant.merchantName FROM cart
+                $stmt = $con->prepare("SELECT *, cart.productQuantity, merchant.merchantName, product.productUnit_id, productUnit.productUnit
+                  FROM cart
                   JOIN merchant ON cart.merchant_id = merchant.merchant_id
+                  JOIN product ON cart.product_id = product.product_id
+                  JOIN productUnit ON product.productUnit_id = productunit.productUnit_id
                   WHERE customer_id='$user_id'");
                 $stmt->execute();
                 $result = $stmt->get_result();

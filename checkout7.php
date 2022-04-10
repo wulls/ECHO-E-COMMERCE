@@ -32,13 +32,122 @@
   <div class="col-lg-8 billing">
     <div class="card">
       <div class="card-body">
-        <h4>Detail Tagihan</h4><br>
+        <h4>Alamat Pengririman</h4>
+        <hr>
+        <div class="modal fade bd-example-modal-lg" id="addresslist" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="border-radius: 1rem;">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">Pilih Alamat Pengiriman</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <div id="noAddress" style="display:none;">
+                    <div class="d-flex justify-content-center">
+                      <img src="image/document.png" width="200px;">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                      <p style="padding-top:15px;">Belum ada alamat yang tersimpan</p>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                      <form action="test_userprofile.php">
+                        <input class="but-ton" type="submit" value="Tambah Alamat">
+                      </form>
+                    </div>
+                  </div>
+                    <?php
+                      $sql = "SELECT * FROM customeraddress WHERE customer_id='$user_id';";
+                      $result = mysqli_query($con,$sql);
+                      $count = mysqli_num_rows($result);
+
+                      if($count == 0){
+                        echo "<script type=\"text/javascript\">
+                                document.getElementById('noAddress').style.display='block';
+                              </script>
+                     ";
+                      }
+
+                      if($count > 0){
+                        while($row=mysqli_fetch_array($result)){
+                    ?>
+                    <div class="card" style="width:100%;">
+                      <div class="card-body" style="padding-top:30px;">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th class="border-0"><h4><?php echo $row['addressName']; ?></h4></th>
+                              <th class="border-0"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><strong>Nama Penerima</strong></td>
+                              <td><?php echo $row['recipientName'];?></td>
+                            </tr>
+                            <tr>
+                              <td><strong>No. Handphone Penerima</strong></td>
+                              <td><?php echo $row['recipientPhone'];?></td>
+                            </tr>
+                            <tr>
+                              <td><strong>Provinsi</strong></td>
+                              <td><?php echo $row['region'];?></td>
+                            </tr>
+                            <tr>
+                              <td><strong>Kabupaten/Kota</strong></td>
+                              <td><?php echo $row['city'];?></td>
+                            </tr>
+                            <tr>
+                              <td><strong>Detail Alamat</strong></td>
+                              <td><?php echo $row['addressDetail'];?></td>
+                            </tr>
+                            <tr>
+                              <td><strong>Kode Pos</strong></td>
+                              <td><?php echo $row['postalCode'];?></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="ml-auto p-2 d-flex justify-content-end">
+                          <form action="" method="get">
+                            <input type="submit" value="Pilih Alamat">
+                            <input type="hidden" name="addressID" value=<?php echo $row['address_id']; ?>>
+                          </form>
+                        </div>
+                      </div>
+                    </div><br>
+                    <?php } } ?>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+            <div class="mb-3">
+                <input type="button" value="Pilih Alamat Pengiriman" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#addresslist" class="" id="floatingInputValue" placeholder="Jaka" style="width:210px;">
+            </div>
+        </div>
+        <?php
+          if(isset($_GET['addressID'])){
+            $addressid = $_GET['addressID'];
+            $selectAddress = "SELECT * FROM customeraddress WHERE address_id='$addressid'";
+            $resultAddress = mysqli_query($con,$selectAddress);
+            while ($address = mysqli_fetch_array($resultAddress)){
+        ?>
+        <div class="row mb-3">
+          <div class="col-sm-3">
+            <h4 class="mb-0"><?php echo $address['addressName']; ?></h4>
+          </div>
+          <div class="col-sm-9 text-secondary">
+          </div>
+        </div>
         <div class="row mb-3">
           <div class="col-sm-3">
             <h6 class="mb-0">Nama Penerima</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="text" name="Name" class="form-control input-field" value="">
+            <input type="text" name="Name" class="form-control input-field" value="<?php echo $address['recipientName']; ?>">
           </div>
         </div>
         <div class="row mb-3">
@@ -46,7 +155,7 @@
             <h6 class="mb-0">No. Handphone Penerima</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="tel" name="Phone" class="form-control input-field" value="">
+            <input type="tel" name="Phone" class="form-control input-field" value="<?php echo $address['recipientPhone']; ?>">
           </div>
         </div>
         <div class="row mb-3">
@@ -54,7 +163,7 @@
             <h6 class="mb-0">Provinsi</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
+            <input type="tel" name="Phone" class="form-control input-field" value="<?php echo $address['region']; ?>" readonly>
           </div>
         </div>
         <div class="row mb-3">
@@ -62,7 +171,7 @@
             <h6 class="mb-0">Kabupaten/Kota</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
+            <input type="tel" name="Phone" class="form-control input-field" value="<?php echo $address['city']; ?>" readonly>
           </div>
         </div>
         <div class="row mb-3">
@@ -70,7 +179,7 @@
             <h6 class="mb-0">Detail Alamat</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
+            <input type="tel" name="Phone" class="form-control input-field" value="<?php echo $address['addressDetail']; ?>" readonly>
           </div>
         </div>
         <div class="row mb-3">
@@ -78,9 +187,10 @@
             <h6 class="mb-0">Kode Pos</h6>
           </div>
           <div class="col-sm-9 text-secondary">
-            <input type="tel" name="Phone" class="form-control input-field" value="" readonly>
+            <input type="tel" name="Phone" class="form-control input-field" value="<?php echo $address['postalCode']; ?>" readonly>
           </div>
         </div>
+        <?php } } ?>
       </div>
     </div>
   </div>
@@ -173,7 +283,12 @@
                     <?php
                       require 'database connection.php';
                       $user_id = $_SESSION['user_id'];
-                      $stmt = $con->prepare("SELECT *, merchant.merchantName FROM cart JOIN merchant ON cart.merchant_id = merchant.merchant_id WHERE customer_id='$user_id'");
+                      $stmt = $con->prepare("SELECT *, cart.productQuantity, merchant.merchantName, product.productUnit_id, productUnit.productUnit
+                        FROM cart
+                        JOIN merchant ON cart.merchant_id = merchant.merchant_id
+                        JOIN product ON cart.product_id = product.product_id
+                        JOIN productUnit ON product.productUnit_id = productunit.productUnit_id
+                        WHERE customer_id='$user_id'");
                       $stmt->execute();
                       $result = $stmt->get_result();
                       $grand_total = 0;
@@ -231,7 +346,7 @@
                     <td></td>
                     <td></td>
                     <td class="pull-right">
-                      <input type="submit" class="btn btn-primary px-4" value="Beli">
+                      <input type="submit" class="btn btn-primary px-4" style="width:210px;" value="Beli">
                     </td>
                   </tr>
                  </tbody>
@@ -246,5 +361,35 @@
 
 </form>
 </div>
+
+<style type="text/css">
+  .logotoko{
+    border-radius: 10px;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid transparent;
+    border-radius: .9rem;
+  }
+  .card {
+  box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+  }
+  .but-ton{
+  background-color: #2F86A6;
+  border-radius: 3px;
+  border:0;
+  color:white;
+  min-width: 8rem;
+  max-width: 15rem;
+  height: 2.5rem;
+  }
+</style>
+
 </body>
 </html>
