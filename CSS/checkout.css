@@ -1,7 +1,28 @@
 
-.billing { grid-area: billing; }
+/*.billing { grid-area: billing; }
 .method { grid-area: method; }
 .review { grid-area: review; }
 
 .grid-container {
+  display: grid;
+  grid-template-areas:
+  'billing method'
+  'review review';
+  gap: 10px;
+}*/
+.col-lg-12{
+  margin: auto;
+}
+
+.col-sm-9{
+  padding-left: 0;
+}
+
+.label:after{
+  content:" *";
+  color: red;
+}
+
+.inputfile{
+  padding-top: 10px;
 }
