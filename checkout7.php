@@ -311,7 +311,7 @@
                     <input type="hidden" name="id" value="<?php echo $id_invoice; ?>">
                     <h4 class="title label">Upload Bukti Pembayaran</h4>
                     <small class="text-muted">File yang diperbolehkan hanya file gambar berfomat .png, .jpg, & .jpeg.</small><br>
-        						<input type="file" class="inputfile" name="bukti" accept="image/png, image/jpg, image/jpeg"><br>
+        						<input type="file" class="inputfile" name="bukti" required="required" accept="image/png, image/jpg, image/jpeg"><br>
         					</div>
                   <!-- <input type="submit" class="btn btn-primary px-4" value="Upload Bukti Pembayaran"> -->
     				    <!-- </form> -->
@@ -378,7 +378,6 @@
                         <td class="border-0">
                           Rp <?= number_format($row['productPrice']); ?>
                         </td>
-                        <input type="hidden" class="pprice" value="<?= $row['productPrice'] ?>">
                         <td class="border-0">
                           <?= $row['productQuantity'] ?>
                         </td>

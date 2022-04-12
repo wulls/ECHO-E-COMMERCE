@@ -26,28 +26,29 @@ if (isset($_POST['submit'])){
   $folder = "uploads/".$filename;
 
 
-$insertinvoice = "INSERT INTO invoice (invoice_customer, invoice_nama, invoice_hp, invoice_nama_alamat, invoice_alamat, invoice_provinsi, invoice_kabupaten, invoice_kurir, invoice_berat, invoice_ongkir, invoice_total_bayar, invoice_status, invoice_resi, invoice_bukti)
-                  VALUES ('$user_id', '$namapenerima', '$handphonepenerima', '$labelalamat', '$detailalamat', '$provinsi', '$kabupaten', '$shippingmethod', '1', '$biayapengiriman', '$purchasetotal', '0', '0', '$filename')";
+  $insertinvoice = "INSERT INTO invoice (invoice_customer, invoice_nama, invoice_hp, invoice_nama_alamat, invoice_alamat, invoice_provinsi, invoice_kabupaten, invoice_kurir, invoice_berat, invoice_ongkir, invoice_total_bayar, invoice_status, invoice_resi, invoice_bukti)
+                    VALUES ('$user_id', '$namapenerima', '$handphonepenerima', '$labelalamat', '$detailalamat', '$provinsi', '$kabupaten', '$shippingmethod', '1', '$biayapengiriman', '$purchasetotal', '0', '0', '$filename')";
 
-$query = mysqli_query($con,$insertinvoice);
+  $query = mysqli_query($con,$insertinvoice);
 
-if (move_uploaded_file($tempname, $folder)){
-  $msg = "Image uploaded successfully ";
-}else{
-  $msg = "Failed to upload image";
+  if (move_uploaded_file($tempname, $folder)){
+    $msg = "Image uploaded successfully ";
+  }else{
+    $msg = "Failed to upload image";
+  }
 }
 
-}
+$insertorderdetail = "INSERT INTO orderdetail (order_id, product_id, merchant_id, productName, productPrice, quantity)
+                      SELECT invoice.invoice_id, product_id, merchant_id, productName, productPrice, productQuantity
+                      FROM cart
+                      JOIN invoice ON cart.customer_id = invoice.invoice_customer
+                      WHERE customer_id='$user_id'";
 
-echo $labelalamat; echo "<br>";
-echo $namapenerima; echo "<br>";
-echo $handphonepenerima; echo "<br>";
-echo $provinsi; echo "<br>";
-echo $kabupaten; echo "<br>";
-echo $detailalamat; echo "<br>";
-echo $shippingmethod; echo "<br>";
-echo $paymentmethod; echo "<br>";
-echo $grandtotal; echo "<br>";
-echo $biayapengiriman; echo "<br>";
-echo $purchasetotal;
+$deletecart = "DELETE FROM cart WHERE customer_id='$user_id'";
+
+$query = mysqli_query($con,$insertorderdetail);
+$query = mysqli_query($con,$deletecart);
+
+header("location:main page.php");
+
 ?>
