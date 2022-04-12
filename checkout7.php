@@ -41,9 +41,9 @@
     $addressDetail = 'Masukkan Alamat';
   }
   ?>
-
+  <form action="checkoutaction.php" method="post" enctype="multipart/form-data">
   <div class="grid-container">
-  <form action="" method="post">
+
 
     <br>
     <div class="col-lg-12 billing">
@@ -156,41 +156,42 @@
           <div class="row mb-3">
             <div class="col-sm-3">
               <h4 class="mb-0"><?php echo $address['addressName']; ?></h4>
+              <input type="hidden" name="labelalamat" value="<?php echo $address['addressName']; ?>">
             </div>
           </div>
           <div class="col-sm-9">
             <div class="form-floating mb-3">
-              <input type="text" name="Name" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['recipientName']; ?>" readonly required>
+              <input type="text" name="namapenerima" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['recipientName']; ?>" readonly required>
               <label for="floatingInputValue" class="label">Nama Penerima</label>
             </div>
           </div>
           <div class="col-sm-9">
             <div class="form-floating mb-3">
-              <input type="text" name="Name" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['recipientPhone']; ?>" readonly required>
+              <input type="text" name="handphonepenerima" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['recipientPhone']; ?>" readonly required>
               <label for="floatingInputValue" class="label">No. Handphone Penerima</label>
             </div>
           </div>
           <div class="col-sm-9">
             <div class="form-floating mb-3">
-              <input type="text" name="Name" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['region']; ?>" readonly required>
+              <input type="text" name="provinsi" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['region']; ?>" readonly required>
               <label for="floatingInputValue" class="label">Provinsi</label>
             </div>
           </div>
           <div class="col-sm-9">
             <div class="form-floating mb-3">
-              <input type="text" name="Name" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['city']; ?>" readonly required>
+              <input type="text" name="kabupaten" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['city']; ?>" readonly required>
               <label for="floatingInputValue" class="label">Kabupaten/Kota</label>
             </div>
           </div>
           <div class="col-sm-9">
             <div class="form-floating mb-3">
-              <input type="text" name="Name" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['addressDetail']; ?>" readonly required>
+              <input type="text" name="detailalamat" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['addressDetail']; ?>" readonly required>
               <label for="floatingInputValue" class="label">Detail Alamat</label>
             </div>
           </div>
           <div class="col-sm-9">
             <div class="form-floating mb-3">
-              <input type="text" name="Name" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['postalCode']; ?>" readonly required>
+              <input type="text" name="kodepos" id="floatingInputValue" class="form-control input-field" value="<?php echo $address['postalCode']; ?>" readonly required>
               <label for="floatingInputValue" class="label">Kode Pos</label>
             </div>
           </div>
@@ -201,10 +202,10 @@
 
             echo "<div class=\"col-sm-9\">";
             echo "<div class=\"form-floating mb-3\">";
-            echo "<select name=\"label\" id=\"floatingInputValue\" class=\"form-control input-field\" required>";
-            echo "<option value=\"Home\">Home</option>";
-            echo "<option value=\"Apartment\">Apartment</option>";
-            echo "<option value=\"Office\">Office</option>";
+            echo "<select name=\"labelalamat\" id=\"floatingInputValue\" class=\"form-control input-field\" required>";
+            echo "<option value=\"Rumah\">Rumah</option>";
+            echo "<option value=\"Apartmen\">Apartmen</option>";
+            echo "<option value=\"Kantor\">Kantor</option>";
             echo "</select>";
             echo "<label for=\"floatingSelectGrid\" class=\"label\">Label Alamat</label>";
             echo "</div>";
@@ -212,21 +213,21 @@
 
             echo "<div class=\"col-sm-9\">";
             echo "<div class=\"form-floating mb-3\">";
-            echo "<input type=\"text\" name=\"Name\" id=\"floatingInputValue\" class=\"form-control input-field\" value=\"\" required>";
+            echo "<input type=\"text\" name=\"namapenerima\" id=\"floatingInputValue\" class=\"form-control input-field\" value=\"\" required>";
             echo "<label for=\"floatingInputValue\" class=\"label\">Nama Penerima</label>";
             echo "</div>";
             echo "</div>";
 
             echo "<div class=\"col-sm-9\">";
             echo "<div class=\"form-floating mb-3\">";
-            echo "<input type=\"text\" name=\"Name\" id=\"floatingInputValue\" class=\"form-control input-field\" value=\"\" required>";
+            echo "<input type=\"text\" name=\"handphonepenerima\" id=\"floatingInputValue\" class=\"form-control input-field\" value=\"\" required>";
             echo "<label for=\"floatingInputValue\" class=\"label\">No. Handphone Penerima</label>";
             echo "</div>";
             echo "</div>";
 
             echo "<div class=\"col-sm-9\">";
             echo "<div class=\"form-floating mb-3\">";
-            echo "<select name=\"label\" id=\"floatingInputValue\" class=\"form-control input-field\" required>";
+            echo "<select name=\"provinsi\" id=\"floatingInputValue\" class=\"form-control input-field\" required>";
             echo "<option value=\"Banten\">Banten</option>";
             echo "</select>";
             echo "<label for=\"floatingSelectGrid\" class=\"label\">Provinsi</label>";
@@ -235,7 +236,7 @@
 
             echo "<div class=\"col-sm-9\">";
             echo "<div class=\"form-floating mb-3\">";
-            echo "<select name=\"label\" id=\"floatingInputValue\" class=\"form-control input-field\" required>";
+            echo "<select name=\"kabupaten\" id=\"floatingInputValue\" class=\"form-control input-field\" required>";
             echo "<option value=\"Kabupaten Tangerang\">Kabupaten Tangerang</option>";
             echo "<option value=\"Kota Tangerang\">Kota Tangerang</option>";
             echo "<option value=\"Kota Tangerang Selatan\">Kota Tangerang Selatan</option>";
@@ -246,14 +247,14 @@
 
             echo "<div class=\"col-sm-9\">";
             echo "<div class=\"form-floating mb-3\">";
-            echo "<input type=\"text\" name=\"Name\" id=\"floatingInputValue\" class=\"form-control input-field\" value=\"\" required>";
+            echo "<input type=\"text\" name=\"detailalamat\" id=\"floatingInputValue\" class=\"form-control input-field\" value=\"\" required>";
             echo "<label for=\"floatingInputValue\" class=\"label\">Detail Alamat</label>";
             echo "</div>";
             echo "</div>";
 
             echo "<div class=\"col-sm-9\">";
             echo "<div class=\"form-floating mb-3\">";
-            echo "<input type=\"text\" name=\"Name\" id=\"floatingInputValue\" class=\"form-control input-field\" value=\"\" required>";
+            echo "<input type=\"text\" name=\"kodepos\" id=\"floatingInputValue\" class=\"form-control input-field\" value=\"\" required>";
             echo "<label for=\"floatingInputValue\" class=\"label\">Kode Pos</label>";
             echo "</div>";
             echo "</div>";
@@ -272,7 +273,7 @@
               <h4 class="title">Metode Pengiriman</h4>
             </div>
             <div class="input-checkbox">
-              <input type="radio" name="shipping" id="shipping-1" checked>
+              <input type="radio" name="shippingmethod" id="shipping-1" value="GoSend" checked>
               <label for="shipping-1"><strong>GoSend</strong></label>
               <div class="caption">
                 <p>Barang belanja dikirim langsung oleh pengantar GoSend.
@@ -286,7 +287,7 @@
               <h4 class="title">Metode Pembayaran</h4>
             </div>
             <div class="input-checkbox">
-              <input type="radio" name="payments" id="payments-1" checked>
+              <input type="radio" name="paymentmethod" id="payments-1" value="Bank Transfer" checked>
               <label for="payments-1"><strong>Bank Transfer</strong></label>
               <div class="caption">
                 <p>Silahkan lakukan pembayaran ke nomor rekening berikut:</p>
@@ -305,15 +306,15 @@
                   </tr>
                 </table>
                 <hr>
-                <form action="customer_pembayaran_act.php" method="post" enctype="multipart/form-data">
+                <!-- <form action="customer_pembayaran_act.php" method="post" enctype="multipart/form-data"> -->
         					<div class="form-group">
                     <input type="hidden" name="id" value="<?php echo $id_invoice; ?>">
                     <h4 class="title label">Upload Bukti Pembayaran</h4>
                     <small class="text-muted">File yang diperbolehkan hanya file gambar berfomat .png, .jpg, & .jpeg.</small><br>
-        						<input type="file" class="inputfile" name="bukti" required="required" accept="image/png, image/jpg, image/jpeg" required><br>
+        						<input type="file" class="inputfile" name="bukti" accept="image/png, image/jpg, image/jpeg"><br>
         					</div>
-                  <input type="submit" class="btn btn-primary px-4" value="Upload Bukti Pembayaran">
-    				    </form>
+                  <!-- <input type="submit" class="btn btn-primary px-4" value="Upload Bukti Pembayaran"> -->
+    				    <!-- </form> -->
               </div>
             </div>
           </div>
@@ -391,6 +392,7 @@
                        <td></td>
                        <td class="text-muted pull-left"><small>Total Harga</td>
                        <td class="text-muted pull-right"><small>Rp <?= number_format($grand_total); ?></td>
+                       <input type ="hidden" name="grandtotal" value="<?= $grand_total; ?>">
                      </tr>
                      <tr>
                       <td></td>
@@ -398,6 +400,7 @@
                       <td></td>
                       <td class="text-muted pull-left"><small>Biaya Pengiriman</td>
                       <td class="text-muted pull-right"><small>Rp 10,000</td>
+                      <input type ="hidden" name="biayapengiriman" value="10000">
                      </tr>
                      <tr>
                       <?php $purchase_total = $grand_total + 10000; ?>
@@ -406,6 +409,7 @@
                       <td></td>
                       <td class="pull-left"><b>Total Belanja</b></td>
                       <td class="pull-right"><b>Rp <?= number_format($purchase_total); ?></b></td>
+                      <input type ="hidden" name="purchasetotal" value="<?= $purchase_total; ?>">
                      </tr>
                      <tr>
                       <td></td>
@@ -413,7 +417,7 @@
                       <td></td>
                       <td></td>
                       <td class="pull-right">
-                        <input type="submit" class="btn btn-primary px-4" style="width:210px;" value="Beli">
+                        <input type="submit" name="submit" class="btn btn-primary px-4" style="width:210px;" value="Beli">
                       </td>
                     </tr>
                    </tbody>
@@ -426,8 +430,9 @@
       </div>
     </div>
 
-  </form>
+
   </div>
+  </form>
 
 <style type="text/css">
   .logotoko{
