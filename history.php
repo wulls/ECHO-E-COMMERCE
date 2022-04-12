@@ -25,6 +25,16 @@ include_once ('newnavbarlogin.php');
             <div class="justify-content-center"><br>
                 <div class="history">
                     <h3>Order History</h3><br>
+                    <?php
+                    if(isset($_GET['Message'])){
+                    ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?php echo $_GET['Message']; ?>.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php } ?>
                     <div id="noOrder" class="card" style="display:none;border-width:5px;border-color:lightgrey;background-color:transparent;border-style: dashed;box-shadow:0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);">
                         <div class="card-body d-flex justify-content-center" style="padding-top:30px;">
                             <img src="image/empty.png" style="height:200px;width:200px;">
