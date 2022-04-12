@@ -38,17 +38,25 @@ if (isset($_POST['submit'])){
   }
 }
 
-$insertorderdetail = "INSERT INTO orderdetail (order_id, product_id, merchant_id, productName, productPrice, quantity)
-                      SELECT invoice.invoice_id, product_id, merchant_id, productName, productPrice, productQuantity
-                      FROM cart
-                      JOIN invoice ON cart.customer_id = invoice.invoice_customer
-                      WHERE customer_id='$user_id'";
+$selectlatest = "SELECT invoice_id FROM invoice ORDER BY invoice_id DESC LIMIT 1";
+$query = mysqli_query($con,$selectlatest);
+while($row=mysqli_fetch_array($query)){
+  $insertorderdetail = "INSERT INTO orderdetail (order_id, product_id, merchant_id, productName, productPrice, quantity)
+                        SELECT invoice.invoice_id, product_id, merchant_id, productName, productPrice, productQuantity
+                        FROM cart
+                        JOIN invoice ON cart.customer_id = invoice.invoice_customer
+                        WHERE customer_id='$user_id' AND invoice_id=$row[invoice_id]";
 
-$deletecart = "DELETE FROM cart WHERE customer_id='$user_id'";
+  $deletecart = "DELETE FROM cart WHERE customer_id='$user_id'";
 
-$query = mysqli_query($con,$insertorderdetail);
-$query = mysqli_query($con,$deletecart);
+  $query = mysqli_query($con,$insertorderdetail);
+  $query = mysqli_query($con,$deletecart);
 
-header("location:main page.php");
+  header("location:main page.php");
+}
+
+$insertreward = "UPDATE customerReward set rewardPoint = rewardPoint + 5
+                 WHERE customer_id='$user_id'";
+$query = mysqli_query($con,$insertreward);
 
 ?>
