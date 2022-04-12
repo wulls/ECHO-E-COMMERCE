@@ -20,7 +20,7 @@ $countProduct = mysqli_num_rows($resultProduct);
 if($countProduct==1){
 	header("location:produk_edit.php?alert=gagal");
 }else if($countProduct==0){
-	mysqli_query($con, "UPDATE product SET productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', productUnit='$unit',
+	mysqli_query($con, "UPDATE product SET productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', productUnit_id='$unit',
  	productQuantity='$quantity' WHERE product_id='$id'");
 
 	if($filename1 != ""){

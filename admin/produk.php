@@ -43,7 +43,7 @@
                   include '../database connection.php';
                   $no=1;
                   $result = mysqli_query(
-                                        $con, "SELECT merchant.merchantName, product.productName, product.product_id, category.categoryName, product.productPrice, product.productQuantity, product.productUnit_id, product.image
+                                        $con, "SELECT merchant.merchantName, product.productName, product.product_id, category.categoryName, product.productPrice, product.productQuantity, product.productUnit_id, product.productImage
                                         FROM product
                                         JOIN merchant ON
                                         product.merchant_id=merchant.merchant_id
@@ -62,10 +62,10 @@
 					  <td><?php echo $row['productUnit_id']; ?></td>
                       <td>
                         <center>
-                          <?php if($row['image'] == ""){ ?>
+                          <?php if($row['productImage'] == ""){ ?>
                             <img src="../gambar/sistem/produk.png" style="width: 80px;height: auto">
                           <?php }else{ ?>
-                            <img src="../image/Merchant/<?php echo $row['image'] ?>" style="width: 80px;height: auto">
+                            <img src="../image/Merchant/<?php echo $row['productImage'] ?>" style="width: 80px;height: auto">
                           <?php } ?>
                         </center>
                       </td>

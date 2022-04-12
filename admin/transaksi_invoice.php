@@ -65,7 +65,7 @@
                     <?php 
                     $no = 1;
                     $total = 0;
-                    $transaksi = mysqli_query($con,"SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.image, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice
+                    $transaksi = mysqli_query($con,"SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice
                                                     FROM orderdetail OD 
                                                     LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                     JOIN merchant ME ON OD.merchant_id=ME.merchant_id
@@ -78,10 +78,10 @@
                         <td class="text-center"><?php echo $no++; ?></td>
                         <td>
                           <center>
-                            <?php if($d['image'] == ""){ ?>
+                            <?php if($d['productImage'] == ""){ ?>
                               <img src="../gambar/sistem/produk.png" style="width: 50px;height: auto">
                             <?php }else{ ?>
-                              <img src="../image/Merchant/<?php echo $d['image'] ?>" style="width: 50px;height: auto">
+                              <img src="../image/Merchant/<?php echo $d['productImage'] ?>" style="width: 50px;height: auto">
                             <?php } ?>
                           </center>
                         </td>

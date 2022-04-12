@@ -109,8 +109,8 @@
                   <div class="col-lg-4">
                     <select name="unit" required="required" class="form-control">
                       <option value="">- Pilih Unit -</option>
-                      <option value="piece">piece</option>
-                      <option value="packet">packet</option>
+                      <option value="pcs">pcs</option>
+                      <option value="paket">paket</option>
                       <option value="g">g</option>
                       <option value="kg">Kg</option>
                       <option value="ml">ml</option>

@@ -95,12 +95,13 @@
                     <div class="col-lg-4">
                       <select name="unit" class="form-control">
                         <option value="">- Pilih Unit -</option>
-                        <option <?php if($d['productUnit'] == "piece"){echo "selected='selected'";} ?> value="piece">piece</option>
-                        <option <?php if($d['productUnit'] == "pakcet"){echo "selected='selected'";} ?> value="packet">packet</option>
-                        <option <?php if($d['productUnit'] == "g"){echo "selected='selected'";} ?> value="g">g</option>
-                        <option <?php if($d['productUnit'] == "Kg"){echo "selected='selected'";} ?> value="Kg">Kg</option>
-                        <option <?php if($d['productUnit'] == "Ml"){echo "selected='selected'";} ?> value="ml">ml</option>
-                        <option <?php if($d['productUnit'] == "L"){echo "selected='selected'";} ?> value="L">L</option>
+				<option <?php if($d['productUnit_id'] == "0"){echo "selected='selected'";} ?> value="0">Tidak Berkategori</option>
+                        <option <?php if($d['productUnit_id'] == "1"){echo "selected='selected'";} ?> value="1">pcs</option>
+                        <option <?php if($d['productUnit_id'] == "2"){echo "selected='selected'";} ?> value="2">paket</option>
+                        <option <?php if($d['productUnit_id'] == "3"){echo "selected='selected'";} ?> value="3">g</option>
+                        <option <?php if($d['productUnit_id'] == "4"){echo "selected='selected'";} ?> value="4">Kg</option>
+                        <option <?php if($d['productUnit_id'] == "5"){echo "selected='selected'";} ?> value="5">ml</option>
+                        <option <?php if($d['productUnit_id'] == "6"){echo "selected='selected'";} ?> value="6">L</option>
                       </select>
                     </div>
                   </div>
@@ -110,10 +111,10 @@
                   <label>Foto 1 (Foto Utama)</label>
                   <input type="file" name="foto1">
 
-                  <?php if($d['image'] == ""){ ?>
+                  <?php if($d['productImage'] == ""){ ?>
                     <img src="../image/produk.png" style="width: 120px;height: auto">
                   <?php }else{ ?>
-                    <img src="../image/Merchant/<?php echo $d['image'] ?>" style="width: 120px;height: auto">
+                    <img src="<?php echo $d['productImage'] ?>" style="width: 120px;height: auto">
                   <?php } ?>
 
                   <br/>
