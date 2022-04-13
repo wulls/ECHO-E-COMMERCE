@@ -20,11 +20,9 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
   <link rel="stylesheet" href="CSS/cart7.css">
   <link rel="stylesheet" href="CSS/checkout.css">
-
 </head>
 
 <body>
-
   <?php
   //SELECT ADDRESS
   $user_id = $_SESSION['user_id'];
