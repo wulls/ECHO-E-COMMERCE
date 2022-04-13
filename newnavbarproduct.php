@@ -107,7 +107,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item active">
-                        <a class="nav-link active" aria-current="page" href="cart7.php">
+                        <a class="nav-link active" aria-current="page" href="cart.php">
                         <i class="fas fa-shopping-cart cart"></i>
                         <?php
                             require 'database connection.php';

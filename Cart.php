@@ -1,106 +1,140 @@
 <?php
-
-session_start();
-
-include "database connection.php";
-require_once ('indexcomponent.php');
-
-if(isset($_POST['remove'])){
-  if($_GET['action'] == 'remove'){
-    foreach($_SESSION['cart'] as $key => $value){
-      if($value["productid"] == $_GET['product_id']){
-        unset($_SESSION['cart'][$key]);
-        echo "<script>alert('Product has been removed')</script>";
-        echo "<script>window.location = 'Cart.php'</script>";
-      }
-    }
+  session_start();
+  if(!isset($_SESSION['user_id'])){
+   include_once ('newnavbar.php');
   }
-}
 
+  if (isset($_SESSION['user_id'])) {
+    include_once ('newnavbarlogin.php');
+    //echo $_SESSION['user_id'];
+  }
 ?>
-
 
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cart</title>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
-
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="CSS/index.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Cart</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
+  <link rel="stylesheet" href="CSS/cart7.css">
 </head>
-<body class="bg-light">
-  <?php
-  require_once('Header.php');
-  ?>
 
-  <div class="container-fluid">
-    <div class="row px-5">
-      <div class="col-md-7">
-        <div class="shopping-cart">
-          <h6>My Cart</h6>
-          <hr>
-          <?php
-          $total=0;
-          if(isset($_SESSION['cart'])){
-            $productid = array_column($_SESSION['cart'], 'productid');
-
-            $sql = "SELECT * FROM product WHERE merchant_id = '6'";
-            $result = mysqli_query($con,$sql);
-            while($row=mysqli_fetch_array($result)){
-              foreach($productid as $id){
-                if ($row['product_id'] == $id){
-                  cartElement($row['image'], $row['productName'], number_format($row['productPrice']), $row['product_id']);
-                  $total = $total + (int)$row['productPrice'];
-                }
-              }
-            }
-          }else{
-            echo "<h5>Cart is Empty</h5>";
-          }
-          ?>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-15">
+        <div style="display:<?php if (isset($_SESSION['showAlert'])) {echo $_SESSION['showAlert'];} else {echo 'none';} unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong><?php if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+          } unset($_SESSION['showAlert']); ?></strong>
         </div>
-      </div>
-      <!-- <div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25">
-        <div class="pt-4">
-          <h6>PRICE DETAILS</h6>
-          <hr>
-          <div class="row price-details">
-            <div class="col-md-6">
-              </?php
-              if (isset($_SESSION['cart'])){
-                $count = count($_SESSION['cart']);
-                echo "<h6>Price ($count items)</h6>";
-              }else{
-                echo "<h6>Price (0 items)</h6>";
-              }
+        <br>
+        <div class="table-responsive mt-2">
+         <table class="table text-center">
+           <thead>
+             <tr>
+               <th class="border-0 bg-light pull-left">Produk</th>
+               <th class="border-0 bg-light">Toko</th>
+               <th class="border-0 bg-light">Harga</th>
+               <th class="border-0 bg-light">Jumlah</th>
+               <th class="border-0 bg-light">Total Harga</th>
+               <th class="border-0 bg-light">
+                 <a href="action.php?clear=all" class="p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i> Hapus Semua</a>
+               </th>
+             </tr>
+           </thead>
+           <tbody>
+              <?php
+                require 'database connection.php';
+                $user_id = $_SESSION['user_id'];
+                $stmt = $con->prepare("SELECT cart.product_id, cart.productImage, cart.productName, cart.productAmount, cart.productPrice, cart.totalPrice, cart.productQuantity, merchant.merchantName, product.productUnit_id, productUnit.productUnit
+                  FROM cart
+                  JOIN merchant ON cart.merchant_id = merchant.merchant_id
+                  JOIN product ON cart.product_id = product.product_id
+                  JOIN productUnit ON product.productUnit_id = productunit.productUnit_id
+                  WHERE customer_id='$user_id'");
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $grand_total = 0;
+                while ($row = $result->fetch_assoc()):
               ?>
-              <h6>Delivery Charges</h6>
-              <hr>
-              <h6>Amount Payable</h6>
-            </div>
-            <div class="col-md-6">
-              <h6>Rp </?php echo number_format($total);?></h6>
-              <h6 class="text-success">FREE</h6>
-              <hr>
-              <h6>Rp </?php echo number_format($total);?></h6>
-            </div>
-          </div>
-        </div>
+              <tr>
+                <td class="border-0">
+                  <input type="hidden" class="pid" value="<?= $row['product_id'] ?>">
+                  <div class = "pull-left">
+                    <img src="<?= $row['productImage'] ?>" width="50" height="50">
+                    <div class="ml-3 d-inline-block align-middle">
+                    <h6 class="mb-0"><?= $row['productName'] ?></h6><span class="text-muted font-weight-normal font-italic d-block"><small><?= $row['productAmount'], " ", $row['productUnit'] ?></small></span>
+                    </div>
+                 </div>
+                </td>
+                <td class="border-0">
+                  <?= $row['merchantName'] ?>
+                </td>
+                <td class="border-0">
+                  Rp <?= number_format($row['productPrice']); ?>
+                </td>
+                <input type="hidden" class="pprice" value="<?= $row['productPrice'] ?>">
+                <td class="border-0">
+                  <input type="number" min="1" class="form-control itemQty" value="<?= $row['productQuantity'] ?>" style="width:75px;">
+                </td>
+                <td class="border-0">Rp <?= number_format($row['totalPrice']); ?></td>
+                <td class="border-0">
+                  <a href="action.php?remove=<?= $row['cart_id'] ?>" class="text-dan lead " onclick=""><i class="fas fa-trash clear"></i></a>
+                </td>
+              </tr>
+              <?php $grand_total += $row['totalPrice']; ?>
+              <?php endwhile; ?>
+              <tr>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td><b>Total Harga</b></td>
+               <td><b>Rp <?= number_format($grand_total); ?></b></td>
+               <td>
+                 <a href="checkout.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class=""></i>Buat Pesanan</a>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+       </div>
       </div>
     </div>
-  </div> -->
+  </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      // Change the item quantity
+      $(".itemQty").on('change', function() {
+        var $el = $(this).closest('tr');
+
+        var pid = $el.find(".pid").val();
+        var pprice = $el.find(".pprice").val();
+        var productQuantity = $el.find(".itemQty").val();
+        location.reload(true);
+        $.ajax({
+          url: 'action.php',
+          method: 'post',
+          cache: false,
+          data: {
+            productQuantity: productQuantity,
+            pid: pid,
+            pprice: pprice
+          },
+          success: function(response) {
+            console.log(response);
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

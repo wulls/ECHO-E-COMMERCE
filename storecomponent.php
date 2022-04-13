@@ -18,7 +18,7 @@ function component($productname, $productprice, $productimg, $productamount, $pr
               </div>
           </div>
           <div class=\"card-footer p-2 pt-0 border-top-0 bg-transparent\">
-              <form action=\"action7.php\" class=\"form-submit\" method=\"post\">
+              <form action=\"action.php\" class=\"form-submit\" method=\"post\">
               <input type=\"hidden\" name=\"pid\" class=\"pid\" value=\"$productid\">
               <input type=\"hidden\" name=\"pname\" class=\"pname\" value=\"$productname\">
               <input type=\"hidden\" name=\"pprice\" class=\"pprice\" value=\"$productpprice\">

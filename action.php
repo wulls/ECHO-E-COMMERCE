@@ -1,50 +1,75 @@
-<?php
+<?php include "database connection.php";
 session_start();
-require_once "database connection2.php";
 
-if(isset($_POST["pid"]) && isset($_POST["pname"]) && isset($_POST["pprice"]) && isset($_POST["pimage"]) && isset($_POST["pamount"])
-&& isset($_POST["punit"]) && isset($_POST["pquantity"])){
+//add items to cart
+$user_id = $_SESSION['user_id'];
+$merchant_id = $_SESSION['merchant_id'];
+$pid = $_POST['pid'];
+$pname = $_POST['pname'];
+$pprice = $_POST['pprice'];
+$pimage = $_POST['pimage'];
+$pamount = $_POST['pamount'];
+$punit = $_POST['punit'];
+$pquantity = $_POST['pquantity'];
 
-  //$qty = 1;
+$totalPrice = $pprice * $pquantity;
 
-  $pid = $_POST['pid'];
-  $pname = $_POST['pname'];
-  $pprice = $_POST['pprice'];
-  $pimage = $_POST['pimage'];
-  $pamount = $_POST['pamount'];
-  $punit = $_POST['punit'];
-  $pquantity = $_POST['pquantity'];
+$stmt = $con->prepare("SELECT product_id FROM cart WHERE product_id=? AND customer_id='$user_id'");
+$stmt->bind_param('i', $pid);
+$stmt->execute();
+$res = $stmt->get_result();
+$r = $res->fetch_assoc();
+$product_id = $r['product_id'] ?? '';
 
-  $totalPrice = $pprice * $pquantity;
+if (!$product_id) {
+  $insertCart = "INSERT INTO cart (customer_id, merchant_id, product_id, productName, productPrice, productImage, productAmount, productQuantity, totalPrice)
+                 VALUES ('$user_id', '$merchant_id', '$pid', '$pname', '$pprice', '$pimage', '$pamount', '$pquantity', '$totalPrice')";
+  $query = mysqli_query($con, $insertCart);
 
-  $select_stmt=$con->("SELECT product_id FROM cart WHERE product_id=:pid");
-  $select_stmt->execute(array(":pid"=>$pid));
-  $row=$select_stmt->fetch(PDO::FETCH_ASSOC);
-
-  $check_code = $row["product_id"];
-
-  if(!$check_code)
-  {
-    $insert_stmt=$con->prepare("INSERT INTO cart (product_id,productName,productPrice,productImage,productAmount,productUnit,productQuantity,totalPrice) VALUES (:pid,:pname,:pprice,:pimage,:pamount,:punit,:pquantity,:totalPrice)");
-
-    $insert_stmt->bind_param(" :pid", $pid);
-    $insert_stmt->bind_param(" :pname", $pname);
-    $insert_stmt->bind_param(" :pprice", $pprice);
-    $insert_stmt->bind_param(" :pimage", $pimage);
-    $insert_stmt->bind_param(" :pamount", $pamount);
-    $insert_stmt->bind_param(" :punit", $punit);
-    $insert_stmt->bind_param(" :pquantity", $pquantity);
-
-    $insert_stmt->bind_param(" :totalPrice", $totalPrice);
-    $insert_stmt->execute();
-    echo '<div class="alert alert-success alert-dismissible mt-2">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Item added to your cart!</strong>
-          </div>';
+  $_SESSION['Alert'] = 'block';
+  $_SESSION['msg'] = 'Item added to your cart!';
   } else {
-    echo '<div class="alert alert-danger alert-dismissible mt-2">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong>Item already added to your cart!</strong>
-          </div>';
-  }
+  $_SESSION['Alert'] = 'block';
+  $_SESSION['msg'] = 'Item already added to your cart!';
 }
+header('location:store.php');
+
+//remove single items from cart
+if (isset($_GET['remove'])) {
+  $cart_id = $_GET['remove'];
+  $user_id = $_SESSION['user_id'];
+
+  $stmt = $con->prepare("DELETE FROM cart WHERE cart_id=? AND customer_id='$user_id'");
+  $stmt->bind_param('i',$cart_id);
+  $stmt->execute();
+
+  $_SESSION['showAlert'] = 'block';
+  $_SESSION['message'] = 'Item removed from the cart!';
+  header('location:cart.php');
+}
+
+//remove all items at once from cart
+if (isset($_GET['clear'])) {
+  $user_id = $_SESSION['user_id'];
+
+  $stmt = $con->prepare("DELETE FROM cart WHERE customer_id='$user_id'");
+  $stmt->execute();
+
+  $_SESSION['showAlert'] = 'block';
+  $_SESSION['message'] = 'All Item removed from the cart!';
+  header('location:cart.php');
+}
+
+//set total price of the product in the cart table
+if (isset($_POST['productQuantity'])) {
+  $productQuantity = $_POST['productQuantity'];
+  $pid = $_POST['pid'];
+  $pprice = $_POST['pprice'];
+
+  $tprice = $productQuantity * $pprice;
+
+  $stmt = $con->prepare("UPDATE cart SET productQuantity=?, totalPrice=? WHERE product_id=? AND customer_id='$user_id'");
+  $stmt->bind_param('iii',$productQuantity,$tprice,$pid);
+  $stmt->execute();
+}
+?>
