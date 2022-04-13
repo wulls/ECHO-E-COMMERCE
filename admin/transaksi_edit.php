@@ -29,10 +29,16 @@
               $data = mysqli_query($con, "select * from invoice where invoice_id='$id'");
               while($d = mysqli_fetch_array($data)){
                 ?>
+				<div class="form-group">
+                  <label>Nomor Resi</label>
+                  <input type="hidden" name="id" value="<?php echo $d['invoice_id'] ?>">
+                  <input type="number" class="form-control" name="resi" placeholder="Masukkan No.Resi" value="<?php echo $d['invoice_resi'] ?>">
+                </div>
+				
                <div class="form-group">
                   <label>Deskripsi</label>
                   <input type="hidden" name="id" value="<?php echo $d['invoice_id'] ?>">
-                  <input type="text" class="form-control" name="nama" placeholder="Jelaskan Deskripsi Status" value="<?php echo $d['invoice_deskripsi'] ?>">
+                  <input type="text" class="form-control" name="deskripsi" placeholder="Jelaskan Deskripsi Status" value="<?php echo $d['invoice_deskripsi'] ?>">
                 </div>
 
                 <div class="form-group">

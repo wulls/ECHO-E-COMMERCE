@@ -1,9 +1,10 @@
 <?php 
 include '../database connection.php';
 $id  = $_POST['id'];
-$nama  = $_POST['nama'];
+$deskripsi  = $_POST['deskripsi'];
+$resi  = $_POST['resi'];
 
-    $sql2 = "UPDATE invoice SET invoice_deskripsi='$nama' WHERE invoice_id='$id'";
+    $sql2 = "UPDATE invoice SET invoice_deskripsi='$deskripsi', invoice_resi='$resi' WHERE invoice_id='$id'";
     $query2 = mysqli_query($con, $sql2);
     header("location:transaksi.php");
 

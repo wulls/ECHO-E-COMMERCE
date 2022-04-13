@@ -33,6 +33,7 @@
                     <th>TOTAL BAYAR</th>
                     <th class="text-center">STATUS</th>
 					<th>DESKRIPSI</th>
+					<th>NO. RESI</th>
                     <th class="text-center">UPDATE STATUS</th>
                     <th class="text-center" width="25%">OPSI</th>
                   </tr>
@@ -45,10 +46,10 @@
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-                      <td>INVOICE-00<?php echo $i['invoice_id'] ?></td>
+                      <td>IVTRE-000<?php echo $i['invoice_id'] ?></td>
                       <td><?php echo date('d-m-Y', strtotime($i['invoice_tanggal'])); ?></td>
                       <td><?php echo $i['username'] ?></td>
-                      <td><?php echo "Rp. ".number_format($i['invoice_total_bayar'])." ,-" ?></td>
+                      <td><?php echo "Rp. ".number_format($i['invoice_total_bayar']); ?></td>
                       <td class="text-center">
                         <?php 
                         if($i['invoice_status'] == 0){
@@ -67,6 +68,7 @@
                         ?>
                       </td>
 					  <td><?php echo $i['invoice_deskripsi'] ?></td>
+					  <td><?php echo $i['invoice_resi'] ?></td>
                       <td class="text-center">
                         <form action="transaksi_status.php" method="post">
                           <input type="hidden" value="<?php echo $i['invoice_id'] ?>" name="invoice">
@@ -101,7 +103,7 @@
                                     echo "Bukti pembayaran belum diupload oleh pembeli/customer.";
                                   }else{
                                     ?>
-                                    <img src="../image/bukti_pembayaran/<?php echo $i['invoice_bukti']; ?>" alt="" style="width: 100%">
+                                    <img src="../uploads/<?php echo $i['invoice_bukti']; ?>" alt="" style="width: 100%">
                                     <?php
                                   }
                                   ?>

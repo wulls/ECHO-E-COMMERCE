@@ -32,7 +32,6 @@
                     <th>NAMA PRODUK</th>
                     <th>KATEGORI</th>
                     <th>HARGA</th>
-                    <th>JUMLAH</th>
 					<th>SATUAN</th>
                     <th width="15%">FOTO</th>
                     <th width="10%">OPSI</th>
@@ -43,12 +42,14 @@
                   include '../database connection.php';
                   $no=1;
                   $result = mysqli_query(
-                                        $con, "SELECT merchant.merchantName, product.productName, product.product_id, category.categoryName, product.productPrice, product.productQuantity, product.productUnit_id, product.productImage
+                                        $con, "SELECT merchant.merchantName, product.productName, product.product_id, category.categoryName, product.productPrice, product.productUnit_id, product.productImage, productunit.productUnit
                                         FROM product
                                         JOIN merchant ON
                                         product.merchant_id=merchant.merchant_id
                                         JOIN category ON
-                                        product.category_ID=category.category_id"
+                                        product.category_ID=category.category_id
+										JOIN productunit ON
+                                        product.productUnit_id=productunit.productUnit_id"
                                         );
                   while($row = mysqli_fetch_array($result)){
                     ?>
@@ -58,8 +59,7 @@
                       <td><?php echo $row['productName']; ?></td>
                       <td><?php echo $row['categoryName']; ?></td>
                       <td><?php echo "Rp. ".number_format($row['productPrice']).""; ?></td>
-                      <td><?php echo number_format($row['productQuantity']); ?></td>
-					  <td><?php echo $row['productUnit_id']; ?></td>
+					  <td><?php echo $row['productUnit']; ?></td>
                       <td>
                         <center>
                           <?php if($row['productImage'] == ""){ ?>

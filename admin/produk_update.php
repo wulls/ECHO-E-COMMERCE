@@ -5,7 +5,6 @@ $nama  = $_POST['nama'];
 $kategori = $_POST['kategori'];
 $harga = $_POST['harga'];
 $keterangan = $_POST['keterangan'];
-$quantity = $_POST['quantity'];
 $unit = $_POST['unit'];
 
 $rand = rand();
@@ -20,8 +19,7 @@ $countProduct = mysqli_num_rows($resultProduct);
 if($countProduct==1){
 	header("location:produk_edit.php?alert=gagal");
 }else if($countProduct==0){
-	mysqli_query($con, "UPDATE product SET productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', productUnit_id='$unit',
- 	productQuantity='$quantity' WHERE product_id='$id'");
+	mysqli_query($con, "UPDATE product SET productName='$nama', category_id='$kategori', productPrice='$harga', productDescription='$keterangan', productUnit_id='$unit',WHERE product_id='$id'");
 
 	if($filename1 != ""){
 		$ext = pathinfo($filename1, PATHINFO_EXTENSION);

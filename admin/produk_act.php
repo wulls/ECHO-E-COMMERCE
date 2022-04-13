@@ -20,7 +20,7 @@ $countProduct = mysqli_num_rows($resultProduct);
 if($countProduct==1){
 	header("location:produk_tambah.php?alert=gagal");
 }else if($countProduct==0){
-	mysqli_query($con, "INSERT INTO product values (NULL,'$merchant','$nama','$kategori','1','$jumlah','$unit','$harga','$keterangan','')");
+	mysqli_query($con, "INSERT INTO product values (NULL,'$merchant','$nama','$kategori','1','1','$unit','$harga','$keterangan','')");
 
 	$last_id = mysqli_insert_id($con);
 

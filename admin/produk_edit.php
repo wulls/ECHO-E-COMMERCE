@@ -81,20 +81,11 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Quantity</label>
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <input type="number" class="form-control" name="quantity" placeholder="Masukkan Quantity .." value=<?php echo $d['productQuantity']; ?>>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>Unit</label>
+                  <label>Satuan</label>
                   <div class="row">
                     <div class="col-lg-4">
                       <select name="unit" class="form-control">
-                        <option value="">- Pilih Unit -</option>
+                        <option value="">- Pilih Satuan -</option>
 				<option <?php if($d['productUnit_id'] == "0"){echo "selected='selected'";} ?> value="0">Tidak Berkategori</option>
                         <option <?php if($d['productUnit_id'] == "1"){echo "selected='selected'";} ?> value="1">pcs</option>
                         <option <?php if($d['productUnit_id'] == "2"){echo "selected='selected'";} ?> value="2">paket</option>

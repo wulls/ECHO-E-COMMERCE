@@ -35,8 +35,8 @@
 
     <header class="main-header">
       <a href="index.php" class="logo">
-        <span class="logo-mini"><b>TROL</b>LEY </span>
-        <span class="logo-lg"><b>TROL</b>LEY</span>
+        <span class="logo-mini"><b>TROLLEY </b></span>
+        <span class="logo-lg"><b>TROLLEY</b></span>
       </a>
       <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">

@@ -46,7 +46,7 @@ include '../database connection.php';
 
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" class="form-control" name="password" min="5" placeholder="Kosong Jika tidak ingin di ganti">
+                  <input type="password" class="form-control" name="password" placeholder="Kosong Jika tidak ingin di ganti">
                   <small class="text-muted">Kosongkan Jika tidak ingin di ganti</small>
                 </div>
 

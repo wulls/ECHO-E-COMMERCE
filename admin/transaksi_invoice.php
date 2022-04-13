@@ -39,7 +39,7 @@
               <br/>
               <br/>
 
-              <h4>INVOICE-00<?php echo $i['invoice_id'] ?></h4>
+              <h4>IVTRE-000<?php echo $i['invoice_id'] ?></h4>
 
 
               <br/>
@@ -86,9 +86,9 @@
                           </center>
                         </td>
                         <td><?php echo $d['productName']; ?></td>
-                        <td class="text-center"><?php echo "Rp. ".number_format($d['productPrice']).",-"; ?></td>
+                        <td class="text-center"><?php echo "Rp. ".number_format($d['productPrice']); ?></td>
                         <td class="text-center"><?php echo number_format($d['quantity']); ?></td>
-                        <td class="text-center"><?php echo "Rp. ".number_format($d['productPrice'] * $d['quantity'])." ,-"; ?></td>
+                        <td class="text-center"><?php echo "Rp. ".number_format($d['productPrice'] * $d['quantity']); ?></td>
                       </tr>
                       <?php 
                     }
@@ -98,22 +98,22 @@
                     <tr>
                       <td colspan="4" style="border: none"></td>
                       <th>Berat</th>
-                      <td class="text-center"><?php echo number_format($i['invoice_berat']); ?> gram</td>
+                      <td class="text-center"><?php echo number_format($i['invoice_berat']); ?> Kg</td>
                     </tr>
                     <tr>
                       <td colspan="4" style="border: none"></td>
                       <th>Total Belanja</th>
-                      <td class="text-center"><?php echo "Rp. ".number_format($total)." ,-"; ?></td>
+                      <td class="text-center"><?php echo "Rp. ".number_format($total); ?></td>
                     </tr>
                     <tr>
                       <td colspan="4" style="border: none"></td>
                       <th>Ongkir (<?php echo $i['invoice_kurir'] ?>)</th>
-                      <td class="text-center"><?php echo "Rp. ".number_format($i['invoice_ongkir'])." ,-"; ?></td>
+                      <td class="text-center"><?php echo "Rp. ".number_format($i['invoice_ongkir']); ?></td>
                     </tr>
                     <tr>
                       <td colspan="4" style="border: none"></td>
                       <th>Total Bayar</th>
-                      <td class="text-center"><?php echo "Rp. ".number_format ($total + $i['invoice_ongkir'])." ,-"; ?></td>
+                      <td class="text-center"><?php echo "Rp. ".number_format ($total + $i['invoice_ongkir']); ?></td>
                     </tr>
                   </tfoot>
                 </table>
