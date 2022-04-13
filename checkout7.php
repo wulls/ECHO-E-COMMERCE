@@ -72,6 +72,11 @@
                         <div class="d-flex justify-content-center">
                           <p class="text-muted"><small>Tambahkan alamat di halaman profile anda</small></p>
                         </div>
+                        <div class="d-flex justify-content-center">
+                          <form action="">
+                            <input class="but-ton" type="button" value="">
+                          </form>
+                        </div>
                       </div>
                         <?php
                           $sql = "SELECT * FROM customeraddress WHERE customer_id='$user_id';";
@@ -83,7 +88,7 @@
                                     document.getElementById('noAddress').style.display='block';
                                   </script>
                          ";
-                          }
+                       }
 
                           if($count > 0){
                             while($row=mysqli_fetch_array($result)){
@@ -205,7 +210,6 @@
             <?php } } ?>
             <?php
             if(!isset($_GET['addressID'])){
-              /*echo $addressDetail;*/
 
               echo "<div class=\"col-sm-9\">";
               echo "<div class=\"form-floating mb-3\">";
@@ -313,15 +317,12 @@
                     </tr>
                   </table>
                   <hr>
-                  <!-- <form action="customer_pembayaran_act.php" method="post" enctype="multipart/form-data"> -->
           					<div class="form-group">
                       <input type="hidden" name="id" value="<?php echo $id_invoice; ?>">
                       <h4 class="title label">Upload Bukti Pembayaran</h4>
                       <small class="text-muted">File yang diperbolehkan hanya file gambar berfomat .png, .jpg, & .jpeg.</small><br>
           						<input type="file" class="inputfile" name="bukti" required="required" accept="image/png, image/jpg, image/jpeg"><br>
           					</div>
-                    <!-- <input type="submit" class="btn btn-primary px-4" value="Upload Bukti Pembayaran"> -->
-      				    <!-- </form> -->
                 </div>
               </div>
             </div>
@@ -460,13 +461,13 @@
         padding: 1rem;
     }
     .but-ton{
-    background-color: #2F86A6;
+    background-color: transparent;
     border-radius: 3px;
     border:0;
     color:white;
     min-width: 8rem;
     max-width: 15rem;
-    height: 2.5rem;
+    height: 0px;
     }
   </style>
 
