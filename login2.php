@@ -13,5 +13,5 @@
 	    if($rows==1){
 		    session_start();
 		    $_SESSION['user_id']=$user_id['customer_id'];
-		    header("Location:main page.php");
+		    header("Location:index.php");
 	    }

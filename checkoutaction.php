@@ -52,7 +52,7 @@ while($row=mysqli_fetch_array($query)){
   $query = mysqli_query($con,$insertorderdetail);
   $query = mysqli_query($con,$deletecart);
 
-  header("location:main page.php");
+  header("location:index.php");
 }
 
 $insertreward = "UPDATE customerReward set rewardPoint = rewardPoint + 5
