@@ -10,7 +10,6 @@ if(!isset($_SESSION['user_id'])){
 
 if (isset($_SESSION['user_id'])) {
   include_once ('newnavbarproduct.php');
-  //echo $_SESSION['user_id'];
 }
 
 ?>
@@ -22,12 +21,6 @@ if (isset($_SESSION['user_id'])) {
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Shopping Cart</title>
-
-  <!-- Font Awesome -->
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" /> -->
-
-  <!-- Bootstrap CDN -->
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
@@ -63,7 +56,6 @@ if (isset($_SESSION['user_id'])) {
 
   <div class="container">
     <div class="row text-center py-5">
-
         <form method="post" action="index7.php">
           <div class="input-group">
             <input type="text" class="form-control" name="searchName" placeholder="Cari Produk" style="width: 925px;">
@@ -75,10 +67,8 @@ if (isset($_SESSION['user_id'])) {
 
   <div class="container">
     <div class="row text-center py-5">
-
       <?php
       $merchant_id = $_SESSION['merchant_id'];
-      //echo $merchant_id;
 
       if(isset($_GET['SemuaProduk'])) {
         $sql = "SELECT *, productUnit.productUnit FROM product JOIN productUnit ON product.productUnit_id = productUnit.productUnit_id WHERE merchant_id = '$merchant_id'";
@@ -136,18 +126,18 @@ if (isset($_SESSION['user_id'])) {
           component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
-	  else if (isset($_POST['search'])) {
-        $sql = "SELECT *, productUnit.productUnit FROM product JOIN productUnit ON product.productUnit_id = productUnit.productUnit_id WHERE merchant_id = '$merchant_id' AND productName like '%" . $_POST['searchName'] . "%'";
-        $result = mysqli_query($con, $sql);
-        while ($row = mysqli_fetch_array($result)) {
-          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
-        }
-        if (mysqli_num_rows($result) < 7) {
-          for ($i = mysqli_num_rows($result); $i < 7; $i++) {
-            componentKosong();
+  	  else if (isset($_POST['search'])) {
+          $sql = "SELECT *, productUnit.productUnit FROM product JOIN productUnit ON product.productUnit_id = productUnit.productUnit_id WHERE merchant_id = '$merchant_id' AND productName like '%" . $_POST['searchName'] . "%'";
+          $result = mysqli_query($con, $sql);
+          while ($row = mysqli_fetch_array($result)) {
+            component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
           }
-        }
-	  }
+          if (mysqli_num_rows($result) < 7) {
+            for ($i = mysqli_num_rows($result); $i < 7; $i++) {
+              componentKosong();
+            }
+          }
+  	  }
       else {
         $sql = "SELECT *, productUnit.productUnit FROM product JOIN productUnit ON product.productUnit_id = productUnit.productUnit_id WHERE merchant_id = '$merchant_id'";
         $result = mysqli_query($con,$sql);
