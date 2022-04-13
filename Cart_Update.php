@@ -15,6 +15,5 @@ for($a = 0;$a < $jumlah_isi_keranjang; $a++){
 	);
 
 }
-
 header("location:Cart2.php");
 ?>
