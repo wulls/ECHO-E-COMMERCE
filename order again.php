@@ -17,6 +17,6 @@ session_start();
     $cart = mysqli_query($con,$insertCart);
     
     $Message = urlencode("Produk berhasil ditambahkan ke dalam keranjang");
-    header("Location:history.php?Message=".$Message);
+    header("Location:history2.php?Message=".$Message);
     die;
 ?>
