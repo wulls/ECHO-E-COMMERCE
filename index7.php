@@ -98,7 +98,7 @@ if (isset($_SESSION['user_id'])) {
         $sql = "SELECT *, productUnit.productUnit FROM product JOIN productUnit ON product.productUnit_id = productUnit.productUnit_id WHERE merchant_id = '$merchant_id' AND category_id ='3'";
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
-          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productprice']);
+          component($row['productName'], number_format($row['productPrice']), $row['productImage'], $row['productAmount'], $row['productUnit'], $row['product_id'], $row['productQuantity'], $row['productPrice']);
         }
       }
       else if (isset($_GET['Dapur'])) {
