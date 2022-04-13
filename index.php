@@ -73,7 +73,7 @@ if (isset($_SESSION['user_id'])) {
   <section class="features-icons bg-light text-center">
     <div class="container">
       <div class="d-flex justify-content-center pstn">
-        <input type="text" class="form-control" id="" placeholder="Search Store" style="border-radius:4px;" onkeyup="load_data(this.value);" />
+        <input type="text" class="form-control" id="toko" placeholder="Search Store" style="border-radius:4px;" />
       </div>
       <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
       <div class="row" id="output">
@@ -132,38 +132,45 @@ if (isset($_SESSION['user_id'])) {
           </div>
          </div>
         </footer>
-
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous">
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <script type="text/javascript">
-        //GOOGLE GEOLOCATION
-         function activatePlacesSearch(){
-           var input = document.getElementById('search_address');
-           var autocomplete = new google.maps.places.Autocomplete(input);
-         }
-         google.maps.event.addDomListener(window, 'load', initialize);
+  
+         <script type="text/javascript">
+           $('#toko').on('keyup',searchToko);
+          function searchToko(){
+            const keyword = $('#toko').val();
+            const url = 'searchtoko.php';
+            $.get(url, {
+              keyword
+              }, function(response){
+                response = JSON.parse(response);
+                let element = '';
+                response.forEach((data) => {
+                    element += `
+                    <div class='col-lg-4'>
+                      <div class='features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3'>
+                        <div class='features-icons-icon d-flex'>
+                          <form action="main page2.php" method="get">
+                            <input type="hidden" name="merchant_id" value= "${data.merchant_id}" >
+                            <input type="image" src="${data.image}" alt="logo store" class="text-primary logotoko">
+                          </form>
+                        </div>
+                        <h4 style="padding-top:25px;padding-bottom:30px;">${data.merchantName}</h4>
+                      </div>
+                    </div>
+                    `;
+                });
+                $('#output').html(element);
 
-         //SEARCH STORE
-         $(document).ready(function(){
-           $("#search").keypress(function(){
-             $.ajax({
-               type:'POST',
-               url: 'searchstore.php',
-               data:{
-                 merchantName:$("#search").val(),
-               },
-               success:function(data){
-                 $("#output").html(data);
-               }
-             });
-           });
-         });
+            });
+        }
          </script>
+ 
+          
 
-         <script type="text/javascript"
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_sQp8WSMj7cYX6tpqBxfsDSsYJwauAJ4&libraries=places&callback=activatePlacesSearch">
-         </script>
       <!--?php } ?-->
     </body>
 </html>
