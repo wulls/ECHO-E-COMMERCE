@@ -86,24 +86,6 @@
                     <label for="floatingInputValue">Beli dari</label>
                 </div>
             </div>
-            <div style="padding-left: 50px;padding-top:10px">
-                <div class="form-floating mb-3">
-                    <button type="button" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#addresslist" class="form-control input-field text-left" id="floatingInputValue" placeholder="Jaka" style="border:0 solid transparent;border-radius:15px;width:210px;box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);">
-                      <?php
-                        if(isset($_GET['addressID'])){
-                          $addressid = $_GET['addressID'];
-                          $selectAddress = "SELECT addressDetail FROM customeraddress WHERE address_id='$addressid'";
-                          $resultAddress = mysqli_query($con,$selectAddress);
-                          $address = mysqli_fetch_array($resultAddress);
-                          echo $address['addressDetail'];
-                        }if(!isset($_GET['addressID'])){
-                          echo $addressDetail;
-                        }
-                      ?>
-                    </button>
-                    <label for="floatingInputValue">Antar ke</label>
-                </div>
-            </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item active">
@@ -133,7 +115,7 @@
                                 <a class="dropdown-item" href="test_userprofile.php">Profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="history.php">History</a>
+                                <a class="dropdown-item" href="history2.php">History</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">

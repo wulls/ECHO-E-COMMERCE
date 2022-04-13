@@ -69,7 +69,7 @@
                 <a class="dropdown-item" href="test_userprofile.php">Profile</a>
               </li>
               <li>
-                <a class="dropdown-item" href="history.php">History</a>
+                <a class="dropdown-item" href="history2.php">History</a>
               </li>
               <li>
                 <hr class="dropdown-divider">
