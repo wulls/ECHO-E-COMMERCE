@@ -26,8 +26,8 @@ if (isset($_POST['submit'])){
   $folder = "uploads/".$filename;
 
 
-  $insertinvoice = "INSERT INTO invoice (invoice_customer, invoice_nama, invoice_hp, invoice_nama_alamat, invoice_alamat, invoice_provinsi, invoice_kabupaten, invoice_kurir, invoice_berat, invoice_ongkir, invoice_total_bayar, invoice_status, invoice_resi, invoice_bukti)
-                    VALUES ('$user_id', '$namapenerima', '$handphonepenerima', '$labelalamat', '$detailalamat', '$provinsi', '$kabupaten', '$shippingmethod', '1', '$biayapengiriman', '$purchasetotal', '1', '0', '$filename')";
+  $insertinvoice = "INSERT INTO invoice (invoice_customer, invoice_nama, invoice_hp, invoice_nama_alamat, invoice_alamat, invoice_provinsi, invoice_kabupaten, invoice_kode_pos, invoice_kurir, invoice_berat, invoice_ongkir, invoice_total_bayar, invoice_status, invoice_resi, invoice_bukti)
+                    VALUES ('$user_id', '$namapenerima', '$handphonepenerima', '$labelalamat', '$detailalamat', '$provinsi', '$kabupaten', '$kodepos' ,'$shippingmethod', '1', '$biayapengiriman', '$purchasetotal', '1', '0', '$filename')";
 
   $query = mysqli_query($con,$insertinvoice);
 
