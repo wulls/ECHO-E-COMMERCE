@@ -42,8 +42,6 @@
   ?>
   <form action="checkoutaction.php" method="post" enctype="multipart/form-data">
     <div class="grid-container">
-
-
       <br>
       <div class="col-lg-12 billing">
         <div class="card">
@@ -89,7 +87,6 @@
                                   </script>
                          ";
                        }
-
                           if($count > 0){
                             while($row=mysqli_fetch_array($result)){
                         ?>
@@ -274,7 +271,6 @@
           </div>
         </div>
       </div>
-
       <br>
       <div class="col-lg-12 method">
         <div class="card">
@@ -329,7 +325,6 @@
           </div>
         </div>
       </div>
-
       <br>
       <div class="col-lg-12 review">
         <div class="card">
