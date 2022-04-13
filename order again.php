@@ -4,19 +4,6 @@ session_start();
     $invoice_id = $_POST['invoiceID'];
     $user_id = $_SESSION['user_id'];
 
-    //SELECT ORDER DETAIL
-    $selectOrder = "SELECT * FROM orderdetail WHERE order_id='$invoice_id'";
-    $resultOrder = mysqli_query($con,$selectOrder);
-    $order = mysqli_fetch_array($resultOrder);
-
-    $id = $order['orderDetail_id'];
-    $orderId = $order['order_id'];
-    $productId = $order['product_id'];
-    $merchantId = $order['merchant_id'];
-    $productName = $order['productName'];
-    $productPrice = $order['productPrice'];
-    $quantity = $order['quantity'];
-
     //RE-ORDER
     //product_id customer_id merchant_id productName productImage productPrice productAmount productQuantity totalPrice
     $insertCart = "INSERT INTO cart (product_id, customer_id, merchant_id, productName, productImage, productPrice, productAmount, productQuantity, totalPrice)
