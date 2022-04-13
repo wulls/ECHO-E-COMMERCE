@@ -39,7 +39,7 @@
               <br/>
               <br/>
 
-              <h4>IVTRE-000<?php echo $i['invoice_id'] ?></h4>
+              <h4>INV/TRE/<?php echo date('ymd', strtotime($i['invoice_tanggal'])); ?>/000<?php echo $i['invoice_id'] ?></h4>
 
 
               <br/>

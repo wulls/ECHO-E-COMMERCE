@@ -104,7 +104,7 @@
                       ?>
                       <tr>
                         <td><?php echo $no++ ?></td>
-                        <td>INVOICE-00<?php echo $i['invoice_id'] ?></td>
+                        <td>INV/TRE/<?php echo date('ymd', strtotime($i['invoice_tanggal'])); ?>/000<?php echo $i['invoice_id'] ?></td>
                         <td><?php echo date('d-m-Y', strtotime($i['invoice_tanggal'])); ?></td>
                         <td><?php echo $i['username'] ?></td>
                         <td><?php echo "Rp. ".number_format($i['invoice_total_bayar'])." ,-" ?></td>

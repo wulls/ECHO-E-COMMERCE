@@ -46,7 +46,7 @@
                     ?>
                     <tr>
                       <td><?php echo $no++; ?></td>
-                      <td>IVTRE-000<?php echo $i['invoice_id'] ?></td>
+                      <td>INV/TRE/<?php echo date('ymd', strtotime($i['invoice_tanggal'])); ?>/000<?php echo $i['invoice_id'] ?></td>
                       <td><?php echo date('d-m-Y', strtotime($i['invoice_tanggal'])); ?></td>
                       <td><?php echo $i['username'] ?></td>
                       <td><?php echo "Rp. ".number_format($i['invoice_total_bayar']); ?></td>
@@ -82,7 +82,7 @@
                           </select>
                         </form>
                       </td>
-                      <td class="text-center">    
+                      <td class="text-left">    
 
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#buktiPembayaran_<?php echo $i['invoice_id']; ?>">
                           <i class="fa fa-search"></i> Bukti Pembayaran

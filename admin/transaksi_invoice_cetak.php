@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>INVOICE TRANSACTION</title>
 </head>
 <body>
 
@@ -23,6 +23,12 @@
 			padding: 5px 10px;
 			border: 1px solid black;
 		}
+		h3 {
+			text-align: right;
+		}
+		p {
+			text-align: right;
+		}
 	</style>
 
 	<div>
@@ -35,22 +41,21 @@
 
 
 			<div>
+			<img src="../image/Trolley1.png" height="100">
+				<h3>INV/TRE/<?php echo date('ymd', strtotime($i['invoice_tanggal'])); ?>/000<?php echo $i['invoice_id'] ?></h3>
 
-				<center>
-					<h3>TROLLEY SUPERMARKET</h3>
-				</center>
-
-				<h4>IVTRE-000<?php echo $i['invoice_id'] ?></h4>
-
-
-				<br/>
-				<?php echo $i['invoice_nama']; ?><br/>
-				<?php echo $i['invoice_alamat']; ?><br/>
-				<?php echo $i['invoice_provinsi']; ?><br/>
+			<b>Diterbitkan Oleh</b></br>
+				<a>TROLLEY MARKETPLACE</a>		
+			
+			<p>
+				Nama 		: <?php echo $i['invoice_nama']; ?><br/>
+				Alamat 		: <?php echo $i['invoice_alamat']; ?><br/>
+				Provinsi	: <?php echo $i['invoice_provinsi']; ?><br/>
 				<?php echo $i['invoice_kabupaten']; ?><br/>
-				Hp. <?php echo $i['invoice_hp']; ?><br/>
+				Hp			: <?php echo $i['invoice_hp']; ?><br/>
 				<br/>
-
+				</p>
+				
 				<table class="table">
 					<thead>
 						<tr>
@@ -98,7 +103,7 @@
                     <tr>
                       <td colspan="4" style="border: none"></td>
                       <th>Berat</th>
-                      <td class="text-center"><?php echo number_format($i['invoice_berat']); ?> gram</td>
+                      <td class="text-center"><?php echo number_format($i['invoice_berat']); ?> Kg</td>
                     </tr>
                     <tr>
                       <td colspan="4" style="border: none"></td>
