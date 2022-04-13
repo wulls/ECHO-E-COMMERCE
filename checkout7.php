@@ -16,7 +16,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Cart</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
   <link rel="stylesheet" href="CSS/cart7.css">
@@ -57,7 +56,7 @@
                 <div class="modal-content" style="border-radius: 1rem;">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Pilih Alamat Pengiriman</h5>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -71,9 +70,7 @@
                           <p style="padding-top:15px;">Belum ada alamat yang tersimpan</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                          <form action="test_userprofile.php">
-                            <input class="but-ton" type="submit" value="Tambah Alamat">
-                          </form>
+                          <p class="text-muted"><small>Tambahkan alamat di halaman profile anda</small></p>
                         </div>
                       </div>
                         <?php
@@ -441,9 +438,6 @@
     </div>
   </form>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
-
   <style type="text/css">
     .logotoko{
       border-radius: 10px;
@@ -458,9 +452,12 @@
       background-clip: border-box;
       border: 0 solid transparent;
       border-radius: .9rem;
+      box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
     }
-    .card {
-    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1rem;
     }
     .but-ton{
     background-color: #2F86A6;
