@@ -88,18 +88,19 @@ include_once ('newnavbarlogin.php');
                                 history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
-                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit
+                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
                                                  FROM orderdetail OD
                                                  LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                  JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                                  JOIN product PR ON OD.product_id=PR.product_id
                                                  JOIN productunit PU ON PU.productUnit_id=PR.productUnit_id
+                                                 JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                                  WHERE OD.order_id='$history[invoice_id]'";
                                 $resultOd = mysqli_query($con, $selectOrder);
                                     while($order = mysqli_fetch_array($resultOd)){
                                         detail1($order['productImage'], $order['productName'], $order['quantity'], $order['productUnit'], $order['productPrice'], $order['totalPrice']);
                                     }
-                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase']);
+                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase'], $history['status']);
 
                             detail_down();
                              if($countHistory == 0){
@@ -126,18 +127,19 @@ include_once ('newnavbarlogin.php');
                                 history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
-                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit
+                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
                                                  FROM orderdetail OD
                                                  LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                  JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                                  JOIN product PR ON OD.product_id=PR.product_id
                                                  JOIN productunit PU ON PU.productUnit_id=PR.productUnit_id
+                                                 JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                                  WHERE OD.order_id='$history[invoice_id]'";
                                 $resultOd = mysqli_query($con, $selectOrder);
                                     while($order = mysqli_fetch_array($resultOd)){
                                         detail1($order['productImage'], $order['productName'], $order['quantity'], $order['productUnit'], $order['productPrice'], $order['totalPrice']);
                                     }
-                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase']);
+                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase'], $history['status']);
 
                             detail_down();
                              if($countHistory == 0){
@@ -164,18 +166,19 @@ include_once ('newnavbarlogin.php');
                                 history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
-                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit
+                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
                                                  FROM orderdetail OD
                                                  LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                  JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                                  JOIN product PR ON OD.product_id=PR.product_id
                                                  JOIN productunit PU ON PU.productUnit_id=PR.productUnit_id
+                                                 JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                                  WHERE OD.order_id='$history[invoice_id]'";
                                 $resultOd = mysqli_query($con, $selectOrder);
                                     while($order = mysqli_fetch_array($resultOd)){
                                         detail1($order['productImage'], $order['productName'], $order['quantity'], $order['productUnit'], $order['productPrice'], $order['totalPrice']);
                                     }
-                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase']);
+                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase'], $history['status']);
 
                             detail_down();
                              if($countHistory == 0){
@@ -202,18 +205,19 @@ include_once ('newnavbarlogin.php');
                                 history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
-                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit
+                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
                                                  FROM orderdetail OD
                                                  LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                  JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                                  JOIN product PR ON OD.product_id=PR.product_id
                                                  JOIN productunit PU ON PU.productUnit_id=PR.productUnit_id
+                                                 JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                                  WHERE OD.order_id='$history[invoice_id]'";
                                 $resultOd = mysqli_query($con, $selectOrder);
                                     while($order = mysqli_fetch_array($resultOd)){
                                         detail1($order['productImage'], $order['productName'], $order['quantity'], $order['productUnit'], $order['productPrice'], $order['totalPrice']);
                                     }
-                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase']);
+                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase'], $history['status']);
 
                             detail_down();
                              if($countHistory == 0){
@@ -240,18 +244,19 @@ include_once ('newnavbarlogin.php');
                                 history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
-                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit
+                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
                                                  FROM orderdetail OD
                                                  LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                  JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                                  JOIN product PR ON OD.product_id=PR.product_id
                                                  JOIN productunit PU ON PU.productUnit_id=PR.productUnit_id
+                                                 JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                                  WHERE OD.order_id='$history[invoice_id]'";
                                 $resultOd = mysqli_query($con, $selectOrder);
                                     while($order = mysqli_fetch_array($resultOd)){
                                         detail1($order['productImage'], $order['productName'], $order['quantity'], $order['productUnit'], $order['productPrice'], $order['totalPrice']);
                                     }
-                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase']);
+                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase'], $history['status']);
 
                             detail_down();
                              if($countHistory == 0){
@@ -278,18 +283,19 @@ include_once ('newnavbarlogin.php');
                                 history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
-                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit
+                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
                                                  FROM orderdetail OD
                                                  LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                  JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                                  JOIN product PR ON OD.product_id=PR.product_id
                                                  JOIN productunit PU ON PU.productUnit_id=PR.productUnit_id
+                                                 JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                                  WHERE OD.order_id='$history[invoice_id]'";
                                 $resultOd = mysqli_query($con, $selectOrder);
                                     while($order = mysqli_fetch_array($resultOd)){
                                         detail1($order['productImage'], $order['productName'], $order['quantity'], $order['productUnit'], $order['productPrice'], $order['totalPrice']);
                                     }
-                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase']);
+                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase'], $history['status']);
 
                             detail_down();
                              if($countHistory == 0){
@@ -316,18 +322,19 @@ include_once ('newnavbarlogin.php');
                                 history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
-                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit
+                                 $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
                                                  FROM orderdetail OD
                                                  LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                                  JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                                  JOIN product PR ON OD.product_id=PR.product_id
                                                  JOIN productunit PU ON PU.productUnit_id=PR.productUnit_id
+                                                 JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                                  WHERE OD.order_id='$history[invoice_id]'";
                                 $resultOd = mysqli_query($con, $selectOrder);
                                     while($order = mysqli_fetch_array($resultOd)){
                                         detail1($order['productImage'], $order['productName'], $order['quantity'], $order['productUnit'], $order['productPrice'], $order['totalPrice']);
                                     }
-                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase']);
+                                    detail2($history['invoice_kurir'], $history['invoice_nama'], $history['invoice_hp'], $history['invoice_alamat'], $history['invoice_provinsi'], $history['invoice_kabupaten'], $history['totalCost'], $history['invoice_ongkir'], $history['totalPurchase'], $history['status']);
 
                             detail_down();
                              if($countHistory == 0){

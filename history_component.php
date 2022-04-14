@@ -31,7 +31,7 @@ function history($day, $month, $yearr, $invoiceId, $invoiceStatus, $merchantName
                                     </p>
                                     <div class=\"ml-auto p-2\">
                                         <p class=\"text-secondary\" style=\"padding-right:2rem;\">
-                                            Total Price
+                                            Total Harga
                                         </p>
                                         <p style=\"padding-right:2rem;\">
                                             <b>Rp. ".number_format($totalCost). "</b>
@@ -44,12 +44,12 @@ function history($day, $month, $yearr, $invoiceId, $invoiceStatus, $merchantName
                                     <div class=\"float-right\">
                                         <form action=\"order again.php\" method=\"post\">
                                             <input type=\"hidden\" name=\"invoiceID\" value=\"$invoiceId1\" >
-                                            <input type=\"submit\" value=\"Order Again\" data-toggle=\"modal\" class=\"but-ton\">
+                                            <input type=\"submit\" value=\"Pesan Ulang\" data-toggle=\"modal\" class=\"but-ton\">
                                         </form>
                                     </div>
                                     <div class=\"float-right\" style=\"padding-right:8px;\">
                                         <button type=\"button\" data-target=\"#myModal$invoiceId2\" data-toggle=\"modal\" class=\"but-ton detail\">
-                                            Transaction Detail
+                                            Detail Transaksi
                                         </button>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@ function detail_up($historyId){
         <div class=\"modal-dialog modal-dialog-centered\" role=\"document\" style=\"max-width:40rem;\">
             <div class=\"modal-content\">
                 <div class=\"modal-header\">
-                    <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Transaction Detail</h5>
+                    <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Detail Transaksi</h5>
                         <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
                             <span aria-hidden=\"true\">&times;</span>
                         </button>
@@ -88,13 +88,13 @@ function detail1($productImage, $productName, $productQuantity, $productUnit, $p
                             <img src=\"$productImage\" class=\"mb-0 product-display\">
                         </div>
                         <p class=\"float-left\" style=\"padding-left:25px;\">
-                            <b>$productName</b> $productQuantity $productUnit
+                            <b>$productName</b> <i>$productQuantity $productUnit</i>
                             <br>
                             Rp. ".number_format($productPrice). "
                         </p>
                         <div class=\"ml-auto p-2\">
                             <p class=\"text-secondary\" style=\"padding-right:0.5rem;\">
-                                Total Price
+                                Total Harga
                             </p>
                             <p style=\"padding-right:2rem;\">
                                 <b>Rp. ".number_format($totalPrice). "</b>
@@ -107,14 +107,14 @@ function detail1($productImage, $productName, $productQuantity, $productUnit, $p
     </div>";
     echo $element_detail1;
 }
-function detail2($invoiceKurir, $invoiceNama, $invoiceHp, $invoiceAlamat, $invoiceProvinsi, $invoiceKabupaten, $totalCost, $invoiceOngkir, $totalPurchase){
+function detail2($invoiceKurir, $invoiceNama, $invoiceHp, $invoiceAlamat, $invoiceProvinsi, $invoiceKabupaten, $totalCost, $invoiceOngkir, $totalPurchase, $invoiceStatus){
     $element_detail2="
     <hr style=\"border: 5px solid lightgrey;background-color:lightgrey;\">
-    <div class=\"modal-body\" style=\"padding-left:30px;padding-right:35px;height:12rem;\">
-        <h5>Deliver to</h5>
+    <div class=\"modal-body\" style=\"padding-left:30px;padding-right:35px;height:16rem;\">
+        <h5>Status dan Pengiriman</h5>
         <div class=\"row\">
             <div class=\"col-sm-3\">
-                Courier :
+                Kurir  :
             </div>
             <div class=\"col-sm-9\">
                 $invoiceKurir
@@ -122,7 +122,7 @@ function detail2($invoiceKurir, $invoiceNama, $invoiceHp, $invoiceAlamat, $invoi
         </div>
         <div class=\"row\">
             <div class=\"col-sm-3\">
-                Address :
+                Alamat :
             </div>
             <div class=\"col-sm-9\">
                 <p>
@@ -133,13 +133,21 @@ function detail2($invoiceKurir, $invoiceNama, $invoiceHp, $invoiceAlamat, $invoi
                 </p>
             </div>
         </div>
+        <div class=\"row\">
+            <div class=\"col-sm-3\">
+                Status Pesanan :
+            </div>
+            <div class=\"col-sm-9\">
+                $invoiceStatus
+            </div>
+        </div>
     </div>
     <hr style=\"border: 5px solid lightgrey;background-color:lightgrey;\">
     <div class=\"modal-body\" style=\"padding-left:30px;padding-right:35px;\">
-        <h5>Payment detail</h5>
+        <h5>Detail Pembayaran</h5>
         <div class=\"row\">
             <div class=\"col-sm-3\">
-                Payment Method                                        
+                Metode Pembayaran                                        
             </div>
             <div class=\"col-sm-9 d-flex justify-content-end\">
                 Bank Transfer
@@ -148,7 +156,7 @@ function detail2($invoiceKurir, $invoiceNama, $invoiceHp, $invoiceAlamat, $invoi
         <hr style=\"height:1px;background-color:lightGrey;\">
         <div class=\"row\">
             <div class=\"col-sm-3\">
-                Total Price                                          
+                Total Harga                                          
             </div>
             <div class=\"col-sm-9 d-flex justify-content-end\">
                 Rp. ".number_format($totalCost). "
@@ -156,16 +164,16 @@ function detail2($invoiceKurir, $invoiceNama, $invoiceHp, $invoiceAlamat, $invoi
         </div>
         <div class=\"row\">
             <div class=\"col-sm-3\">
-                <h7>Delivery Fee</h7>                                            
+                <h7>Ongkos Kirim</h7>                                            
             </div>
             <div class=\"col-sm-9 d-flex justify-content-end\">
-                $invoiceOngkir
+                Rp. ".number_format($invoiceOngkir). "
             </div>
         </div> 
         <hr style=\"height:.5px;background-color:lightGrey;\">                                   
         <div class=\"row\">
             <div class=\"col-sm-3\">
-                <b>Total Purchases</b>                                           
+                <b>Total Belanja</b>                                           
             </div>
             <div class=\"col-sm-9 d-flex justify-content-end\">
                 <b>Rp. ".number_format($totalPurchase). "</b>
