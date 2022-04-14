@@ -49,7 +49,7 @@ if (isset($_GET['remove'])) {
   $stmt->execute();
 
   $_SESSION['showAlert'] = 'block';
-  $_SESSION['message'] = 'Item removed from the cart!';
+  $_SESSION['message'] = 'Produk dihapus dari keranjang!';
   header('location:cart.php');
 }
 
@@ -61,7 +61,7 @@ if (isset($_GET['clear'])) {
   $stmt->execute();
 
   $_SESSION['showAlert'] = 'block';
-  $_SESSION['message'] = 'Semua produk telah dihapus dari keranjang!';
+  $_SESSION['message'] = 'Semua produk dihapus dari keranjang!';
   header('location:cart.php');
 }
 
