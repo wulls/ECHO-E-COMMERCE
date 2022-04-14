@@ -16,6 +16,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
   <link rel="stylesheet" href="CSS/cart7.css">
@@ -48,7 +51,7 @@
             <small class="text-muted"> Isi alamat pengiriman atau pilih alamat yang tersimpan di profil anda </small>
             <hr>
             <div class="modal fade bd-example-modal-lg" id="addresslist" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content" style="border-radius: 1rem;">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Pilih Alamat Pengiriman</h5>
@@ -90,40 +93,40 @@
                         ?>
                         <div class="card" style="width:100%;">
                           <div class="card-body" style="padding-top:30px;">
-                            <table class="table">
-                              <thead>
-                                <tr>
-                                  <th class="border-0"><h4><?php echo $row['addressName']; ?></h4></th>
-                                  <th class="border-0"></th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td><strong>Nama Penerima</strong></td>
-                                  <td><?php echo $row['recipientName'];?></td>
-                                </tr>
-                                <tr>
-                                  <td><strong>No. Handphone Penerima</strong></td>
-                                  <td><?php echo $row['recipientPhone'];?></td>
-                                </tr>
-                                <tr>
-                                  <td><strong>Provinsi</strong></td>
-                                  <td><?php echo $row['region'];?></td>
-                                </tr>
-                                <tr>
-                                  <td><strong>Kabupaten/Kota</strong></td>
-                                  <td><?php echo $row['city'];?></td>
-                                </tr>
-                                <tr>
-                                  <td><strong>Detail Alamat</strong></td>
-                                  <td><?php echo $row['addressDetail'];?></td>
-                                </tr>
-                                <tr>
-                                  <td><strong>Kode Pos</strong></td>
-                                  <td><?php echo $row['postalCode'];?></td>
-                                </tr>
-                              </tbody>
-                            </table>
+                            <div class="row">
+                              <div class="col-sm-5"><h4><?php echo $row['addressName'];?></h4></div>
+                              <div class="col-sm-5"></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                              <div class="col-sm-5"><strong>Nama Penerima</strong></div>
+                              <div class="col-sm-5"><?php echo $row['recipientName'];?></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                              <div class="col-sm-5"><strong>No. Handphone Penerima</strong></div>
+                              <div class="col-sm-5"><?php echo $row['recipientPhone'];?></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                              <div class="col-sm-5"><strong>Provinsi</strong></div>
+                              <div class="col-sm-5"><?php echo $row['region'];?></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                              <div class="col-sm-5"><strong>Kabupaten/Kota</strong></div>
+                              <div class="col-sm-5"><?php echo $row['city'];?></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                              <div class="col-sm-5"><strong>Detail Alamat</strong></div>
+                              <div class="col-sm-5"><?php echo $row['addressDetail'];?></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                              <div class="col-sm-5"><strong>Kode Pos</strong></div>
+                              <div class="col-sm-5"><?php echo $row['postalCode'];?></div>
+                            </div>
                             <div class="ml-auto p-2 d-flex justify-content-end">
                               <form action="" method="get">
                                 <input type="submit" value="Pilih Alamat">
