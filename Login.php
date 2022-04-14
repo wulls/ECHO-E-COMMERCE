@@ -32,7 +32,7 @@
 
           <form action="signup2.php" class="sign-up-form" method="post">
             <h2 class="title">Sign up</h2>
-			<div class="input-field">
+			      <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Nama Awal" pattern="[A-Za-z ]{1,}" name="firstname" required  />
             </div>
