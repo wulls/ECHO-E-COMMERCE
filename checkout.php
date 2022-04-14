@@ -45,7 +45,7 @@
         <div class="card">
           <div class="card-body">
             <h4>Alamat Pengririman</h4>
-            <small class="text-muted"> Isi alamat pengiriman atau pilih alamat yang tersimpan di profile anda </small>
+            <small class="text-muted"> Isi alamat pengiriman atau pilih alamat yang tersimpan di profil anda </small>
             <hr>
             <div class="modal fade bd-example-modal-lg" id="addresslist" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg" role="document">
@@ -66,7 +66,7 @@
                           <p style="padding-top:15px;">Belum ada alamat yang tersimpan</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                          <p class="text-muted"><small>Tambahkan alamat di halaman profile anda</small></p>
+                          <p class="text-muted"><small>Tambahkan alamat di halaman profil</small></p>
                         </div>
                         <div class="d-flex justify-content-center">
                           <form action="">

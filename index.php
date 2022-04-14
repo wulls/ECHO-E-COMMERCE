@@ -73,7 +73,7 @@ if (isset($_SESSION['user_id'])) {
   <section class="features-icons bg-light text-center">
     <div class="container">
       <div class="d-flex justify-content-center pstn">
-        <input type="text" class="form-control" id="toko" placeholder="Search Store" style="border-radius:4px;" />
+        <input type="text" class="form-control" id="toko" placeholder="Cari Toko" style="border-radius:4px;" />
       </div>
       <h2 class="txtrekomtoko">Rekomendasi Toko</h2>
       <div class="row" id="output">
@@ -99,45 +99,12 @@ if (isset($_SESSION['user_id'])) {
   </section>
 
         <!-- Footer -->
-        <footer class="footer bg-light">
-         <div class="container">
-          <div class="row">
-           <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-            <ul class="list-inline mb-2">
-             <li class="list-inline-item"><a href="#!">About</a></li>
-             <li class="list-inline-item">⋅</li>
-             <li class="list-inline-item"><a href="#!">Contact</a></li>
-             <li class="list-inline-item">⋅</li>
-             <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-             <li class="list-inline-item">⋅</li>
-             <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
-            </ul>
-
-   <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2021. All Rights Reserved.</p>
-           </div>
-
-     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item me-4">
-               <a href="#!"><i class="bi-facebook fs-3"></i></a>
-              </li>
-              <li class="list-inline-item me-4">
-               <a href="#!"><i class="bi-twitter fs-3"></i></a>
-              </li>
-              <li class="list-inline-item">
-               <a href="#!"><i class="bi-instagram fs-3"></i></a>
-              </li>
-            </ul>
-           </div>
-          </div>
-         </div>
-        </footer>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous">
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-  
+
          <script type="text/javascript">
            $('#toko').on('keyup',searchToko);
           function searchToko(){
@@ -168,8 +135,8 @@ if (isset($_SESSION['user_id'])) {
             });
         }
          </script>
- 
-          
+
+
 
       <!--?php } ?-->
     </body>

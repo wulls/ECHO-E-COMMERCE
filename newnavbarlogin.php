@@ -66,10 +66,10 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li>
-                <a class="dropdown-item" href="test_userprofile.php">Profile</a>
+                <a class="dropdown-item" href="test_userprofile.php">Profil</a>
               </li>
               <li>
-                <a class="dropdown-item" href="history2.php">History</a>
+                <a class="dropdown-item" href="history2.php">Riwayat</a>
               </li>
               <li>
                 <hr class="dropdown-divider">
