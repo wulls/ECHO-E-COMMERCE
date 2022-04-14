@@ -152,7 +152,7 @@
             ?>
             <div class="col-sm-9">
               <div class="form-floating mb-3">
-                <select name="labelalamat" class="form-control input-field" required>
+                <select name="labelalamat" class="form control form-select input-field" required>
                     <option value="Rumah" <?php if($address['addressName']=='Rumah') echo 'selected="selected"'; ?>>Rumah</option>
                     <option value="Apartemen" <?php if($address['addressName']=='Apartemen') echo 'selected="selected"'; ?>>Apartemen</option>
                     <option value="Kantor" <?php if($address['addressName']=='Kantor') echo 'selected="selected"'; ?>>Kantor</option>
@@ -174,7 +174,7 @@
             </div>
             <div class="col-sm-9">
               <div class="form-floating mb-3">
-                <select name="provinsi" class="form-control input-field" required>
+                <select name="provinsi" class="form-control form-select input-field" required>
                     <option value="Banten" <?php if($address['region']=='Banten') echo 'selected="selected"'; ?>>Banten</option>
                 </select>
                 <label for="floatingSelectGrid" class="label">Provinsi</label>
@@ -182,7 +182,7 @@
             </div>
             <div class="col-sm-9">
               <div class="form-floating mb-3">
-                <select name="kabupaten" class="form-control input-field" required>
+                <select name="kabupaten" class="form-control form-select input-field" required>
                     <option value="Kabupaten Tangerang" <?php if($address['city']=='Kabupaten Tangerang') echo 'selected="selected"'; ?>>Kabupaten Tangerang</option>
                     <option value="Kota Tangerang" <?php if($address['city']=='Kota Tangerang') echo 'selected="selected"'; ?>>Kota Tangerang</option>
                     <option value="Kota Tangerang Selatan" <?php if($address['city']=='Kota Tangerang Selatan') echo 'selected="selected"'; ?>>Kota Tangerang Selatan</option>
@@ -208,7 +208,7 @@
 
               echo "<div class=\"col-sm-9\">";
               echo "<div class=\"form-floating mb-3\">";
-              echo "<select name=\"labelalamat\" class=\"form-control input-field\" required>";
+              echo "<select name=\"labelalamat\" class=\"form-control form-select input-field\" required>";
               echo "<option value=\"Rumah\">Rumah</option>";
               echo "<option value=\"Apartmen\">Apartemen</option>";
               echo "<option value=\"Kantor\">Kantor</option>";
@@ -233,7 +233,7 @@
 
               echo "<div class=\"col-sm-9\">";
               echo "<div class=\"form-floating mb-3\">";
-              echo "<select name=\"provinsi\" class=\"form-control input-field\" required>";
+              echo "<select name=\"provinsi\" class=\"form-control form-select input-field\" required>";
               echo "<option value=\"Banten\">Banten</option>";
               echo "</select>";
               echo "<label for=\"floatingSelectGrid\" class=\"label\">Provinsi</label>";
@@ -242,7 +242,7 @@
 
               echo "<div class=\"col-sm-9\">";
               echo "<div class=\"form-floating mb-3\">";
-              echo "<select name=\"kabupaten\" class=\"form-control input-field\" required>";
+              echo "<select name=\"kabupaten\" class=\"form-control form-select input-field\" required>";
               echo "<option value=\"Kabupaten Tangerang\">Kabupaten Tangerang</option>";
               echo "<option value=\"Kota Tangerang\">Kota Tangerang</option>";
               echo "<option value=\"Kota Tangerang Selatan\">Kota Tangerang Selatan</option>";
