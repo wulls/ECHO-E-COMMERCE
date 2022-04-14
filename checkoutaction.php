@@ -23,15 +23,19 @@ $msg = "";
 if (isset($_POST['submit'])){
   $filename = $_FILES["bukti"]["name"];
   $tempname = $_FILES["bukti"]["tmp_name"];
-  $folder = "uploads/".$filename;
 
+  /*$folder = "uploads/".$filename;*/
+  $folder = "uploads";
+
+  $temp = explode(".", $_FILES["bukti"]["name"]);
+  $nama_baru = round(microtime(true)) . '.' . end($temp);
 
   $insertinvoice = "INSERT INTO invoice (invoice_customer, invoice_nama, invoice_hp, invoice_nama_alamat, invoice_alamat, invoice_provinsi, invoice_kabupaten, invoice_kode_pos, invoice_kurir, invoice_berat, invoice_ongkir, invoice_total_bayar, invoice_status, invoice_deskripsi, invoice_resi, invoice_bukti)
-                    VALUES ('$user_id', '$namapenerima', '$handphonepenerima', '$labelalamat', '$detailalamat', '$provinsi', '$kabupaten', '$kodepos' ,'$shippingmethod', '1', '$biayapengiriman', '$purchasetotal', '1', '', '', '$filename')";
+                    VALUES ('$user_id', '$namapenerima', '$handphonepenerima', '$labelalamat', '$detailalamat', '$provinsi', '$kabupaten', '$kodepos' ,'$shippingmethod', '1', '$biayapengiriman', '$purchasetotal', '1', '', '', '$nama_baru')";
 
   $query = mysqli_query($con,$insertinvoice);
 
-  if (move_uploaded_file($tempname, $folder)){
+  if (move_uploaded_file($tempname, $folder."/" .$nama_baru)){
     $msg = "Image uploaded successfully ";
   }else{
     $msg = "Failed to upload image";
