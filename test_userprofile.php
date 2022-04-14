@@ -54,7 +54,7 @@ include_once ('newnavbarlogin.php');
                             <img src="image/magician.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
                                 <?php echo '<h4>'.$customer['username'].'</h4>'; ?>
-                                <p class="text-secondary mb-1"><?php echo $reward['levelName'];?> - <?php echo $reward['rewardPoint'];?></p>
+                                <p class="text-secondary mb-1"><?php echo $reward['levelName'];?> - <?php echo $reward['rewardPoint'];?> XP</p>
                             </div><br>
                             <img src=<?php echo $reward['image'];?> class="level-icon">
                         </div><br>
@@ -64,7 +64,7 @@ include_once ('newnavbarlogin.php');
                         <p>
                             <?php
                                 if($reward['rewardPoint'] < 150){
-                                    echo $reward['pointUntil']. " XP to your next level";
+                                    echo $reward['pointUntil']. " XP lagi untuk ke level berikut";
                                 }else{
                                     echo "You have reached the highest level";
                                 }
@@ -80,13 +80,13 @@ include_once ('newnavbarlogin.php');
                         <div class="d-flex flex-column align-items-center text-center">
                             <div class="row">
                                 <div class="col">
-                                    <p class="mb-0"><button onclick="replace('dataAlamat','dataAkun','dataDiri')" class="navProfile">Profile</button></p>
+                                    <p class="mb-0"><button onclick="replace('dataAlamat','dataAkun','dataDiri')" class="navProfile">Profil</button></p>
                                 </div>
                                 <div class="col">
-                                    <p class="mb-0"><button onclick="replace('dataDiri','dataAkun','dataAlamat')" class="navProfile navMid">Address</button></p>
+                                    <p class="mb-0"><button onclick="replace('dataDiri','dataAkun','dataAlamat')" class="navProfile navMid">Alamat</button></p>
                                 </div>
                                 <div class="col">
-                                    <p class="mb-0"><button onclick="replace('dataDiri','dataAlamat','dataAkun')"class="navProfile">Account</button></p>
+                                    <p class="mb-0"><button onclick="replace('dataDiri','dataAlamat','dataAkun')"class="navProfile">Akun</button></p>
                                 </div>
                             </div>
                         </div><br>
@@ -95,7 +95,7 @@ include_once ('newnavbarlogin.php');
                             <form action="userprofile_update.php" method="post">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">First Name</h6>
+                                        <h6 class="mb-0">Nama Depan</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="firstName" class="form-control input-field" value="<?php echo $customer['firstName']; ?>">
@@ -103,7 +103,7 @@ include_once ('newnavbarlogin.php');
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Last Name</h6>
+                                        <h6 class="mb-0">Nama Belakang</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="lastName" class="form-control input-field" value="<?php echo $customer['lastName']; ?>">
@@ -130,7 +130,7 @@ include_once ('newnavbarlogin.php');
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Phone Number</h6>
+                                        <h6 class="mb-0">Nomor Telepon</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="tel" name="phone" class="form-control input-field" value="<?php echo $customer['phone']; ?>">
@@ -140,7 +140,7 @@ include_once ('newnavbarlogin.php');
                                     <div class="col-sm-3">
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="submit" class="btn btn-info but-ton" value="SAVE CHANGES">
+                                        <input type="submit" class="btn btn-info but-ton" value="SIMPAN PERUBAHAN">
                                     </div>
                                 </div>
                             </form>
@@ -150,7 +150,7 @@ include_once ('newnavbarlogin.php');
                         <!--***********************DATA ALAMAT START***********************-->
                         <div id="dataAlamat" class="data-alamat">
                             <div class="d-flex flex-column align-items-end text-center">
-                                <button id="addAddress" disabled="disabled" data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-primary px-4 but-ton">ADD ADDRESS</button>
+                                <button id="addAddress" disabled="disabled" data-toggle="modal" data-target="#exampleModalScrollable" class="btn btn-primary px-4 but-ton">TAMBAH ALAMAT</button>
                                 <br><p id="alert" style="display:none;color:red;">Maximum number of addresses has been reached</p>
                             </div>
                             <br>
@@ -210,13 +210,13 @@ include_once ('newnavbarlogin.php');
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalCenterTitle">Confirm Deleting Address</h5>
+                                                        <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Penghapusan Alamat</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure you want to delete this address? This action is irreversible.
+                                                        Apakah anda yakin ingin menghapus alamat ini? Tindakan ini tidak dapat dikembalikan.
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -235,7 +235,7 @@ include_once ('newnavbarlogin.php');
                                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                                     <div class="modal-content" style="border-radius: .9rem;">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Address</h5>
+                                            <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Alamat</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -248,40 +248,48 @@ include_once ('newnavbarlogin.php');
                                             ?>
                                             <input name="id" type="hidden" value="<?php echo $address['address_id']; ?>" required>
                                             <div class="form-floating mb-3">
-                                                <input name="name" type="text" value="<?php echo $detail['recipientName']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">Recipient Name</label>
+                                                <input name="name" type="text" pattern="[A-Za-z ]{1,}" value="<?php echo $detail['recipientName']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">Nama Penerima</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input name="phone" type="tel" value="<?php echo $detail['recipientPhone']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">Recipient Phone Number</label>
+                                                <input name="phone" type="tel" pattern="[0-9]{1,}" value="<?php echo $detail['recipientPhone']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">Nomor Telepon Penerima</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <select name="label" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                    <option value="Home" <?php if($detail['addressName']=='Home') echo 'selected="selected"'; ?>>Home</option>
-                                                    <option value="Apartment" <?php if($detail['addressName']=='Apartment') echo 'selected="selected"'; ?>>Apartment</option>
-                                                    <option value="Office" <?php if($detail['addressName']=='Office') echo 'selected="selected"'; ?>>Office</option>
+                                                    <option value="Rumah" <?php if($detail['addressName']=='Rumah') echo 'selected="selected"'; ?>>Rumah</option>
+                                                    <option value="Apartemen" <?php if($detail['addressName']=='Apartemen') echo 'selected="selected"'; ?>>Apartemen</option>
+                                                    <option value="Kantor" <?php if($detail['addressName']=='Kantor') echo 'selected="selected"'; ?>>Kantor</option>
                                                 </select>
-                                                <label for="floatingSelectGrid">Address Label</label>
+                                                <label for="floatingSelectGrid">Label Alamat</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input name="city" type="text" value="<?php echo $detail['city']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">City</label>
+                                                <select name="provinsi" class="form-control form-select input-field" required>
+                                                    <option value="Banten" <?php if($detail['region']=='Banten') echo 'selected="selected"'; ?>>Banten</option>
+                                                </select>
+                                                <!-- <input name="city" type="text" value="<//?php echo $detail['city']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required> -->
+                                                <label for="floatingInputValue">Provinsi</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input name="district" type="text" value="<?php echo $detail['region']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">District</label>
+                                                <select name="kabupaten" class="form-control form-select input-field" required>
+                                                    <option value="Kabupaten Tangerang" <?php if($detail['city']=='Kabupaten Tangerang') echo 'selected="selected"'; ?>>Kabupaten Tangerang</option>
+                                                    <option value="Kota Tangerang" <?php if($detail['city']=='Kota Tangerang') echo 'selected="selected"'; ?>>Kota Tangerang</option>
+                                                    <option value="Kota Tangerang Selatan" <?php if($detail['city']=='Kota Tangerang Selatan') echo 'selected="selected"'; ?>>Kota Tangerang Selatan</option>
+                                                </select>
+                                                <!-- <input name="district" type="text" value="<//?php echo $detail['region']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required> -->
+                                                <label for="floatingInputValue">Kabupaten</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input name="detail" type="text" value="<?php echo $detail['addressDetail']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">Address Details</label>
+                                                <label for="floatingInputValue">Detail Alamat</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input name="postalcode" type="text" value="<?php echo $detail['postalCode']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">Postal Code</label>
+                                                <input name="postalcode" pattern="[0-9]{5}" maxlength="5" type="text" value="<?php echo $detail['postalCode']; ?>" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">Kode Pos</label>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 45px;">Close</button>
-                                                <input type="submit" class="btn btn-primary" style="background-color:#2F86A6;border-radius: 45px;" value="Save Address">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 45px;">Tutup</button>
+                                                <input type="submit" class="btn btn-primary" style="background-color:#2F86A6;border-radius: 45px;" value="Simpan Alamat">
                                             </div>
                                             <?php ?>
                                         </div>
@@ -299,7 +307,7 @@ include_once ('newnavbarlogin.php');
                             <div class="modal-dialog modal-dialog-scrollable" role="document">
                                 <div class="modal-content" style="border-radius: .9rem;">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalScrollableTitle">Add New Address</h5>
+                                        <h5 class="modal-title" id="exampleModalScrollableTitle">Tambah Alamat Baru</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -307,40 +315,46 @@ include_once ('newnavbarlogin.php');
                                     <div class="modal-body">
                                         <form action="userprofile_add_address.php" method="post">
                                             <div class="form-floating mb-3">
-                                                <input name="name" type="text" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">Recipient Name</label>
+                                                <input name="name" pattern="[A-Za-z ]{1,}" type="text" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">Nama Penerima</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input name="phone" type="text" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">Recipient Phone Number</label>
+                                                <input name="phone" type="tel" pattern="[0-9]{1,}" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
+                                                <label for="floatingInputValue">Nomor Telepon Penerima</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <select name="label" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                    <option value="Home">Home</option>
-                                                    <option value="Apartment">Apartment</option>
-                                                    <option value="Office">Office</option>
+                                                    <option value="Rumah">Rumah</option>
+                                                    <option value="Apartemen">Apartemen</option>
+                                                    <option value="Kantor">Kantor</option>
                                                 </select>
-                                                <label for="floatingSelectGrid">Address Label</label>
+                                                <label for="floatingSelectGrid">Label Alamat</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input name="city" type="text" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">City</label>
+                                                <select name="provinsi" class="form-control form-select input-field" required>
+                                                    <option value="Banten">Banten</option>
+                                                </select>                   
+                                                <label for="floatingInputValue">Provinsi</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input name="district" type="text" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">District</label>
+                                                <select name="kabupaten" class="form-control form-select input-field" required>
+                                                    <option value="Kabupaten Tangerang">Kabupaten Tangerang</option>
+                                                    <option value="Kota Tangerang">Kota Tangerang</option>
+                                                    <option value="Kota Tangerang Selatan">Kota Tangerang Selatan</option>
+                                                </select>
+                                                <label for="floatingInputValue">Kabupaten</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input name="detail" type="text" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">Address Details</label>
+                                                <label for="floatingInputValue">Detail Alamat</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input name="postalcode" type="text" class="form-control input-field" id="floatingInputValue" placeholder="name@example.com" required>
-                                                <label for="floatingInputValue">Postal Code</label>
+                                                <label for="floatingInputValue">Kode Pos</label>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 45px;">Close</button>
-                                                <input type="submit" class="btn btn-primary" style="background-color:#2F86A6;border-radius: 45px;" value="Save Address">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border-radius: 45px;">Tutup</button>
+                                                <input type="submit" class="btn btn-primary" style="background-color:#2F86A6;border-radius: 45px;" value="Simpan Alamat">
                                             </div>
                                         </form>
                                     </div>
@@ -480,7 +494,6 @@ body{
     border-radius: 45px;
     height: 3rem;
     font-weight: bold;
-    width: 35%;
 }
 .data-alamat{
     display:none;
