@@ -32,7 +32,7 @@
 
           <form action="signup2.php" class="sign-up-form" method="post">
             <h2 class="title">Sign up</h2>
-			<div class="input-field">
+			      <div class="input-field">
               <i class="fas fa-user"></i>
               <input type="text" placeholder="Nama Awal" pattern="[A-Za-z ]{1,}" name="firstname" required  />
             </div>
@@ -54,7 +54,7 @@
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" name="password2" required />
+              <input type="password" placeholder="Password (8-12 Karakter)" name="password2" minlength="8" maxlength="12" required />
             </div>
             <input type="submit" class="btn" value="Sign up" />
           </form>

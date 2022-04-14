@@ -26,9 +26,7 @@
 		h3 {
 			text-align: right;
 		}
-		p {
-			text-align: right;
-		}
+		
 	</style>
 
 	<div>
