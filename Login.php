@@ -34,11 +34,11 @@
             <h2 class="title">Sign up</h2>
 			<div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Nama Awal" name="firstname" required  />
+              <input type="text" placeholder="Nama Awal" pattern="[A-Za-z ]{1,}" name="firstname" required  />
             </div>
 			      <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Nama Akhir" name="lastname" />
+              <input type="text" placeholder="Nama Akhir" pattern="[A-Za-z ]{1,}" name="lastname" />
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
@@ -46,7 +46,7 @@
             </div>
 			      <div class="input-field">
               <i class="fas fa-phone"></i>
-              <input type="text" placeholder="No. Handphone" name="phone" required />
+              <input type="text" placeholder="No. Handphone" pattern="[0-9]{1,}" name="phone" required />
             </div>
             <div class="input-field">
               <i class="fas fa-user"></i>
@@ -90,5 +90,30 @@
     </div>
 
     <script src="js/loginjs.js"></script>
+    <!-- <script>
+      var firstname = document.querySelector("input[name=firstname]");
+      firstname.addEventListener("invalid", function(){
+        this.setCustomValidity('');
+        if (!this.validity.valid) {
+            this.setCustomValidity('Hanya boleh menggunakan alfabet');
+          }
+      });
+
+      var lastname = document.querySelector("input[name=lastname]");
+      lastname.addEventListener("invalid", function(){
+        this.setCustomValidity('');
+        if (!this.validity.valid) {
+            this.setCustomValidity('Hanya boleh menggunakan alfabet');
+          }
+      });
+
+      var handphone = document.querySelector("input[name=phone]");
+      handphone.addEventListener("invalid", function(){
+        this.setCustomValidity('');
+        if (!this.validity.valid) {
+            this.setCustomValidity('Hanya boleh menggunakan angka');
+          }
+      });
+    </script> -->
   </body>
 </html>

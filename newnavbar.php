@@ -42,10 +42,6 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="Login.php">Login</a></li>
-              <!--li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li-->
             </ul>
           </li>
         </ul>

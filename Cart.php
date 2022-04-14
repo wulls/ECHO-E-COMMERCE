@@ -80,7 +80,7 @@
                 </td>
                 <input type="hidden" class="pprice" value="<?= $row['productPrice'] ?>">
                 <td class="border-0">
-                  <input type="number" min="1" class="form-control itemQty" value="<?= $row['productQuantity'] ?>" style="width:75px;">
+                  <input type="number" onKeyDown="return false" min="1" class="form-control itemQty" value="<?= $row['productQuantity'] ?>" style="width:75px;">
                 </td>
                 <td class="border-0">Rp <?= number_format($row['totalPrice']); ?></td>
                 <td class="border-0">
