@@ -43,7 +43,7 @@
                <th class="border-0 bg-light">Jumlah</th>
                <th class="border-0 bg-light">Total Harga</th>
                <th class="border-0 bg-light">
-                 <a href="action.php?clear=all" class="p-1 clearall" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i> Hapus Semua</a>
+                 <a href="action.php?clear=all" class="p-1 clearall" onclick="return confirm('Apakah anda yakin ingin mengkosongkan keranjang?');"><i class="fas fa-trash"></i> Hapus Semua</a>
                </th>
              </tr>
            </thead>

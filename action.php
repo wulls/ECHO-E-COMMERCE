@@ -21,16 +21,21 @@ $res = $stmt->get_result();
 $r = $res->fetch_assoc();
 $product_id = $r['product_id'] ?? '';
 
-if (!$product_id) {
-  $insertCart = "INSERT INTO cart (customer_id, merchant_id, product_id, productName, productPrice, productImage, productAmount, productQuantity, totalPrice)
-                 VALUES ('$user_id', '$merchant_id', '$pid', '$pname', '$pprice', '$pimage', '$pamount', '$pquantity', '$totalPrice')";
-  $query = mysqli_query($con, $insertCart);
+if(isset($_SESSION['user_id'])){
+  if (!$product_id) {
+    $insertCart = "INSERT INTO cart (customer_id, merchant_id, product_id, productName, productPrice, productImage, productAmount, productQuantity, totalPrice)
+                   VALUES ('$user_id', '$merchant_id', '$pid', '$pname', '$pprice', '$pimage', '$pamount', '$pquantity', '$totalPrice')";
+    $query = mysqli_query($con, $insertCart);
 
-  $_SESSION['Alert'] = 'block';
-  $_SESSION['msg'] = 'Item added to your cart!';
-  } else {
-  $_SESSION['Alert'] = 'block';
-  $_SESSION['msg'] = 'Item already added to your cart!';
+    $_SESSION['Alert'] = 'block';
+    $_SESSION['msg'] = 'Produk ditambahkan ke keranjang anda!';
+    } else {
+    $_SESSION['Alert'] = 'block';
+    $_SESSION['msg'] = 'Produk sebelumnya telah ditambahkan ke keranjang!';
+  }
+}else{
+    $_SESSION['Alert'] = 'block';
+    $_SESSION['msg'] = 'Login untuk memulai berbelanja!';
 }
 header('location:store.php');
 
