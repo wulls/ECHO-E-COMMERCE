@@ -54,7 +54,7 @@
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" name="password2" required />
+              <input type="password" placeholder="Password (8-12 Karakter)" name="password2" minlength="8" maxlength="12" required />
             </div>
             <input type="submit" class="btn" value="Sign up" />
           </form>
