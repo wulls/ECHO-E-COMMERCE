@@ -21,10 +21,11 @@ if (isset($_SESSION['user_id'])) {
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Shopping Cart</title>
-
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
-
   <link rel="stylesheet" href="CSS/index.css">
 </head>
 
@@ -188,7 +189,7 @@ if (isset($_SESSION['user_id'])) {
       <div class="modal-content" style="border-radius: 1rem;">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalScrollableTitle">Pilih Alamat Pengantaran</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -271,9 +272,7 @@ if (isset($_SESSION['user_id'])) {
       background-clip: border-box;
       border: 0 solid transparent;
       border-radius: .9rem;
-    }
-    .card {
-    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+      box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
     }
     .but-ton{
     background-color: #2F86A6;

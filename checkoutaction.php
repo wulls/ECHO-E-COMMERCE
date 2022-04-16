@@ -60,8 +60,6 @@ while($row=mysqli_fetch_array($query)){
   $query = mysqli_query($con,$insertorderdetail);
   $query = mysqli_query($con,$deletecart);
 
-
-
   header("location:index.php");
 }
 

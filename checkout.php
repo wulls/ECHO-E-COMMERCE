@@ -23,25 +23,11 @@
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
   <link rel="stylesheet" href="CSS/cart7.css">
   <link rel="stylesheet" href="CSS/checkout.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 </head>
 
 <body>
-  <?php
-  //SELECT ADDRESS
-  $user_id = $_SESSION['user_id'];
-  $selectAddress = "SELECT addressDetail FROM customeraddress WHERE customer_id='$user_id' GROUP BY addressName";
-  $resultAddress = mysqli_query($con,$selectAddress);
-  $address = mysqli_fetch_array($resultAddress);
-  $count = mysqli_num_rows($resultAddress);
-
-  if($count > 0){
-    $addressDetail = $address['addressDetail'];
-  }
-  if($count == 0){
-    $addressDetail = 'Masukkan Alamat';
-  }
-  ?>
-  <form action="checkoutaction.php" method="post" enctype="multipart/form-data">
+  <form action="checkoutaction.php" id="checkoutform" method="post" enctype="multipart/form-data">
     <div class="grid-container">
       <br>
       <div class="col-lg-12 billing">
@@ -55,7 +41,7 @@
                 <div class="modal-content" style="border-radius: 1rem;">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalScrollableTitle">Pilih Alamat Pengiriman</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
@@ -85,9 +71,8 @@
                           if($count == 0){
                             echo "<script type=\"text/javascript\">
                                     document.getElementById('noAddress').style.display='block';
-                                  </script>
-                         ";
-                       }
+                                  </script>";
+                          }
                           if($count > 0){
                             while($row=mysqli_fetch_array($result)){
                         ?>
@@ -165,14 +150,16 @@
             </div>
             <div class="col-sm-9">
               <div class="form-floating mb-3">
-                <input type="text" name="namapenerima" pattern="[A-Za-z ]{1,}" class="form-control input-field" value="<?php echo $address['recipientName']; ?>" required>
+                <input type="text" id="namapenerima" name="namapenerima" pattern="[A-Za-z ]{1,}" class="form-control input-field" value="<?php echo $address['recipientName']; ?>" required>
                 <label for="floatingInputValue" class="label">Nama Penerima</label>
+                <span class="error_form" id="name_error_message"></span>
               </div>
             </div>
             <div class="col-sm-9">
               <div class="form-floating mb-3">
-                <input type="text" name="handphonepenerima" pattern="[0-9]{1,}" class="form-control input-field" value="<?php echo $address['recipientPhone']; ?>" required>
+                <input type="tel" id="handphonepenerima" name="handphonepenerima" pattern="[0-9]{1,}" class="form-control input-field" value="<?php echo $address['recipientPhone']; ?>" required>
                 <label for="floatingInputValue" class="label">No. Handphone Penerima</label>
+                <span class="error_form" id="phone_error_message"></span>
               </div>
             </div>
             <div class="col-sm-9">
@@ -201,8 +188,9 @@
             </div>
             <div class="col-sm-9">
               <div class="form-floating mb-3">
-                <input type="text" name="kodepos" pattern="[0-9]{5}" maxlength="5" class="form-control input-field" value="<?php echo $address['postalCode']; ?>"  required>
+                <input type="text" id="kodepos" name="kodepos" pattern="[0-9]{5}" maxlength="5" class="form-control input-field" value="<?php echo $address['postalCode']; ?>"  required>
                 <label for="floatingInputValue" class="label">Kode Pos (5 Digit)</label>
+                <span class="error_form" id="pos_error_message"></span>
               </div>
             </div>
             <?php } } ?>
@@ -222,15 +210,17 @@
 
               echo "<div class=\"col-sm-9\">";
               echo "<div class=\"form-floating mb-3\">";
-              echo "<input type=\"text\" name=\"namapenerima\" pattern=\"[A-Za-z ]{1,}\" class=\"form-control input-field\" value=\"\" required>";
+              echo "<input type=\"text\" id=\"namapenerima\" name=\"namapenerima\" pattern=\"[A-Za-z ]{1,}\" class=\"form-control input-field\" value=\"\" required>";
               echo "<label for=\"floatingInputValue\" class=\"label\">Nama Penerima</label>";
+              echo "<span class=\"error_form\" id=\"name_error_message\"></span>";
               echo "</div>";
               echo "</div>";
 
               echo "<div class=\"col-sm-9\">";
               echo "<div class=\"form-floating mb-3\">";
-              echo "<input type=\"text\" name=\"handphonepenerima\" pattern=\"[0-9]{1,}\" class=\"form-control input-field\" value=\"\" required>";
+              echo "<input type=\"tel\" id=\"handphonepenerima\" name=\"handphonepenerima\" pattern=\"[0-9]{1,}\" class=\"form-control input-field\" value=\"\" required>";
               echo "<label for=\"floatingInputValue\" class=\"label\">No. Handphone Penerima</label>";
+              echo "<span class=\"error_form\" id=\"phone_error_message\"></span>";
               echo "</div>";
               echo "</div>";
 
@@ -263,8 +253,9 @@
 
               echo "<div class=\"col-sm-9\">";
               echo "<div class=\"form-floating mb-3\">";
-              echo "<input type=\"text\" name=\"kodepos\" pattern=\"[0-9]{5}\" maxlength=\"5\" class=\"form-control input-field\" required>";
+              echo "<input type=\"text\" id=\"kodepos\" name=\"kodepos\" pattern=\"[0-9]{5}\" maxlength=\"5\" class=\"form-control input-field\" required>";
               echo "<label for=\"floatingInputValue\" class=\"label\">Kode Pos (5 Digit)</label>";
+              echo "<span class=\"error_form\" id=\"pos_error_message\"></span>";
               echo "</div>";
               echo "</div>";
             }
@@ -435,10 +426,78 @@
     </div>
   </form>
 
+  <script type="text/javascript">
+   $(function() {
+     $("#name_error_message").hide();
+     $("#phone_error_message").hide();
+     $("#pos_error_message").hide();
+
+     var error_name = false;
+     var error_phone = false;
+     var error_pos = false;
+
+     $("#namapenerima").focusout(function(){
+           check_name();
+     });
+     $("#handphonepenerima").focusout(function(){
+           check_phone();
+     });
+     $("#kodepos").focusout(function(){
+           check_pos();
+     });
+
+    function check_name() {
+      var pattern = /^[a-zA-Z ]*$/;
+      var name = $("#namapenerima").val();
+      if (pattern.test(name) && name !== '') {
+         $("#name_error_message").hide();
+         $("#namapenerima").css("border-bottom","");
+      } else {
+         $("#name_error_message").html("Hanya boleh terdiri dari karakter alfabet");
+         $("#name_error_message").show();
+         $("#namapenerima").css("border-bottom","2px solid #F90A0A");
+         error_name = true;
+      }
+    }
+
+   function check_phone() {
+     var pattern = /^[0-9]*$/;
+     var phone = $("#handphonepenerima").val();
+     if (pattern.test(phone) && phone !== '') {
+        $("#phone_error_message").hide();
+        $("#handphonepenerima").css("border-bottom","");
+     } else {
+        $("#phone_error_message").html("Hanya boleh terdiri dari angka");
+        $("#phone_error_message").show();
+        $("#handphonepenerima").css("border-bottom","2px solid #F90A0A");
+        error_phone = true;
+     }
+   }
+
+  function check_pos() {
+    var pos_length = $("#kodepos").val().length;
+    var pattern = /^[0-9]*$/;
+    var pos = $("#kodepos").val();
+    if (pos_length == 5 && pattern.test(pos) && pos !== '') {
+       $("#pos_error_message").hide();
+       $("#kodepos").css("border-bottom","");
+    } else {
+       $("#pos_error_message").html("Hanya boleh terdiri dari 5 digit angka");
+       $("#pos_error_message").show();
+       $("#kodepos").css("border-bottom","2px solid #F90A0A");
+       error_pos = true;
+    }
+  }
+
+   });
+  </script>
+
   <style type="text/css">
+
     .logotoko{
       border-radius: 10px;
     }
+
     .card {
       position: relative;
       display: flex;
@@ -451,19 +510,28 @@
       border-radius: .9rem;
       box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
     }
+
     .card-body {
-        flex: 1 1 auto;
-        min-height: 1px;
-        padding: 1rem;
+      flex: 1 1 auto;
+      min-height: 1px;
+      padding: 1rem;
     }
+
     .but-ton{
-    background-color: transparent;
-    border-radius: 3px;
-    border:0;
-    color:white;
-    min-width: 8rem;
-    max-width: 15rem;
-    height: 0px;
+      background-color: transparent;
+      border-radius: 3px;
+      border:0;
+      color:white;
+      min-width: 8rem;
+      max-width: 15rem;
+      height: 0px;
+    }
+
+    .error_form{
+      top: 12px;
+      color: rgb(216, 15, 15);
+      font-size: 15px;
+      font-family: Helvetica;
     }
   </style>
 
