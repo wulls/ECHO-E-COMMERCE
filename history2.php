@@ -74,18 +74,19 @@ include_once ('newnavbarlogin.php');
 
                         //SHOW ALL HISTORY
                         if(isset($_GET['all'])){
-                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
+                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, MONTH(INV.invoice_tanggal) AS monthnum, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
                                               FROM orderdetail OD
                                               LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                               JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                               JOIN product PR ON OD.product_id=PR.product_id
                                               JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                               WHERE INV.invoice_customer='$user_id'
-                                              GROUP BY OD.order_id";
+                                              GROUP BY OD.order_id
+                                              ORDER BY INV.invoice_tanggal DESC";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
-                                history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
+                                history($history['day'], $history['month'], $history['monthnum'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
                                  $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
@@ -113,18 +114,19 @@ include_once ('newnavbarlogin.php');
                         }
                         //MENUNGGU KONFIRMASI
                         if(isset($_GET['mk'])){
-                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
+                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, MONTH(INV.invoice_tanggal) AS monthnum, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
                                           FROM orderdetail OD
                                           LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                           JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='1'
-                                          GROUP BY OD.order_id";
+                                          GROUP BY OD.order_id
+                                          ORDER BY INV.invoice_tanggal DESC";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
-                                history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
+                                history($history['day'], $history['month'], $history['monthnum'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
                                  $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
@@ -152,18 +154,19 @@ include_once ('newnavbarlogin.php');
                         }
                         //DITOLAK
                         else if(isset($_GET['dt'])){
-                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
+                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, MONTH(INV.invoice_tanggal) AS monthnum, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
                                           FROM orderdetail OD
                                           LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                           JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='2'
-                                          GROUP BY OD.order_id";
+                                          GROUP BY OD.order_id
+                                          ORDER BY INV.invoice_tanggal DESC";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
-                                history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
+                                history($history['day'], $history['month'], $history['monthnum'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
                                  $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
@@ -191,18 +194,19 @@ include_once ('newnavbarlogin.php');
                         }
                         //DIKONFIRMASI DAN SEDANG DIPROSES
                         else if(isset($_GET['dkd'])){
-                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
+                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, MONTH(INV.invoice_tanggal) AS monthnum, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
                                           FROM orderdetail OD
                                           LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                           JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='3'
-                                          GROUP BY OD.order_id";
+                                          GROUP BY OD.order_id
+                                          ORDER BY INV.invoice_tanggal DESC";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
-                                history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
+                                history($history['day'], $history['month'], $history['monthnum'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
                                  $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
@@ -230,18 +234,19 @@ include_once ('newnavbarlogin.php');
                         }
                         //DIKIRIM
                         else if(isset($_GET['dk'])){
-                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
+                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, MONTH(INV.invoice_tanggal) AS monthnum, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
                                           FROM orderdetail OD
                                           LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                           JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='4'
-                                          GROUP BY OD.order_id";
+                                          GROUP BY OD.order_id
+                                          ORDER BY INV.invoice_tanggal DESC";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
-                                history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
+                                history($history['day'], $history['month'], $history['monthnum'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
                                  $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
@@ -269,18 +274,19 @@ include_once ('newnavbarlogin.php');
                         }
                         //SELESAI
                         else if(isset($_GET['s'])){
-                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
+                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, MONTH(INV.invoice_tanggal) AS monthnum, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
                                           FROM orderdetail OD
                                           LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                           JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='5'
-                                          GROUP BY OD.order_id";
+                                          GROUP BY OD.order_id
+                                          ORDER BY INV.invoice_tanggal DESC";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
-                                history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
+                                history($history['day'], $history['month'], $history['monthnum'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
                                  $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
@@ -308,18 +314,19 @@ include_once ('newnavbarlogin.php');
                         }
                         //DEFAULT
                         else if(!isset($_GET['all'])){
-                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
+                            $selectHistory = "SELECT INV.invoice_id, OD.orderDetail_id, DAY(INV.invoice_tanggal) AS day, MONTHNAME(INV.invoice_tanggal) AS month, MONTH(INV.invoice_tanggal) AS monthnum, YEAR(INV.invoice_tanggal) AS yearr, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND(OD.productPrice * OD.quantity, 0) AS totalPrice, SUM(OD.productPrice * OD.quantity) AS totalCost, SUM(OD.productPrice * OD.quantity)+INV.invoice_ongkir AS totalPurchase, COUNT(OD.order_id)-1 AS itemAmount, INV.invoice_nama, INV.invoice_hp, INV.invoice_alamat, INV.invoice_provinsi, INV.invoice_kabupaten, INV.invoice_kurir, INV.invoice_berat, INV.invoice_ongkir, INV.invoice_status, INV.invoice_resi, INV.invoice_bukti, INVS.status
                                           FROM orderdetail OD
                                           LEFT JOIN invoice INV ON INV.invoice_id=OD.order_id
                                           JOIN merchant ME ON OD.merchant_id=ME.merchant_id
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id'
-                                          GROUP BY OD.order_id";
+                                          GROUP BY OD.order_id
+                                          ORDER BY INV.invoice_tanggal DESC";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
-                                history($history['day'], $history['month'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
+                                history($history['day'], $history['month'], $history['monthnum'], $history['yearr'], $history['invoice_id'], $history['status'], $history['merchantName'], $history['productImage'], $history['productName'], $history['quantity'], $history['productPrice'], $history['itemAmount'], $history['totalCost'], $history['invoice_id'], $history['invoice_id']);
                                 //TRANSACTION DETAIL
                                  detail_up($history['invoice_id']);
                                  $selectOrder = "SELECT OD.order_id, OD.orderDetail_id, OD.merchant_id, ME.merchantName, OD.productName, OD.productPrice, OD.quantity, PR.productImage, ROUND (OD.productPrice * OD.quantity, 0) AS totalPrice, PU.productUnit, INVS.status
