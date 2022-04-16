@@ -51,16 +51,18 @@ while($row=mysqli_fetch_array($query)){
                         JOIN invoice ON cart.customer_id = invoice.invoice_customer
                         WHERE customer_id='$user_id' AND invoice_id=$row[invoice_id]";
 
+  $insertreward = "UPDATE customerReward set rewardPoint = rewardPoint + 5
+                   WHERE customer_id='$user_id'";
+  $query = mysqli_query($con,$insertreward);
+
   $deletecart = "DELETE FROM cart WHERE customer_id='$user_id'";
 
   $query = mysqli_query($con,$insertorderdetail);
   $query = mysqli_query($con,$deletecart);
 
+
+
   header("location:index.php");
 }
-
-$insertreward = "UPDATE customerReward set rewardPoint = rewardPoint + 5
-                 WHERE customer_id='$user_id'";
-$query = mysqli_query($con,$insertreward);
 
 ?>
