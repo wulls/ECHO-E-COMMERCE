@@ -81,8 +81,7 @@ include_once ('newnavbarlogin.php');
                                               JOIN product PR ON OD.product_id=PR.product_id
                                               JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                               WHERE INV.invoice_customer='$user_id'
-                                              GROUP BY OD.order_id
-                                              ORDER BY INV.invoice_tanggal DESC";
+                                              GROUP BY OD.order_id";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
@@ -121,8 +120,7 @@ include_once ('newnavbarlogin.php');
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='1'
-                                          GROUP BY OD.order_id
-                                          ORDER BY INV.invoice_tanggal DESC";
+                                          GROUP BY OD.order_id";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
@@ -161,8 +159,7 @@ include_once ('newnavbarlogin.php');
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='2'
-                                          GROUP BY OD.order_id
-                                          ORDER BY INV.invoice_tanggal DESC";
+                                          GROUP BY OD.order_id";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
@@ -201,8 +198,7 @@ include_once ('newnavbarlogin.php');
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='3'
-                                          GROUP BY OD.order_id
-                                          ORDER BY INV.invoice_tanggal DESC";
+                                          GROUP BY OD.order_id";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
@@ -241,8 +237,7 @@ include_once ('newnavbarlogin.php');
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='4'
-                                          GROUP BY OD.order_id
-                                          ORDER BY INV.invoice_tanggal DESC";
+                                          GROUP BY OD.order_id";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
@@ -281,8 +276,7 @@ include_once ('newnavbarlogin.php');
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id' && INV.invoice_status='5'
-                                          GROUP BY OD.order_id
-                                          ORDER BY INV.invoice_tanggal DESC";
+                                          GROUP BY OD.order_id";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
@@ -321,8 +315,7 @@ include_once ('newnavbarlogin.php');
                                           JOIN product PR ON OD.product_id=PR.product_id
                                           JOIN invoicestatus INVS ON INV.invoice_status=INVS.invoiceStatus_id
                                           WHERE INV.invoice_customer='$user_id'
-                                          GROUP BY OD.order_id
-                                          ORDER BY INV.invoice_tanggal DESC";
+                                          GROUP BY OD.order_id";
                             $resultHistory = mysqli_query($con, $selectHistory);
                             $countHistory = mysqli_num_rows($resultHistory);
                             while($history = mysqli_fetch_array($resultHistory)){
