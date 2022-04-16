@@ -1,5 +1,5 @@
 <?php
-function history($day, $month, $yearr, $invoiceId, $invoiceStatus, $merchantName, $productImage, $productName, $quantity, $productPrice, $itemAmount, $totalCost, $invoiceId1, $invoiceId2){
+function history($day, $month, $monthnum, $yearr, $invoiceId, $invoiceStatus, $merchantName, $productImage, $productName, $quantity, $productPrice, $itemAmount, $totalCost, $invoiceId1, $invoiceId2){
     $element1="
     <div class=\"card\" style=\"box-shadow:0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);border:0;\">
                         <div class=\"card-body list-address\" style=\"padding-left:35px;padding-top:30px;\">
@@ -8,7 +8,7 @@ function history($day, $month, $yearr, $invoiceId, $invoiceStatus, $merchantName
                                     <p>
                                         <img src=\"image/small icons/invoice.png\" style=\"height:20px;width:20px;\">
                                         <b style=\"padding-left:10px;padding-right:10px;\">$day $month $yearr</b>
-                                        ID: $invoiceId
+                                        ID: INV/TRE/$yearr$monthnum$day/000$invoiceId
                                         <small style=\"background-color:#2F86A6;color:white;padding:1px;border-radius:5px;margin-left:3px;padding-left:4px;padding-right:4px;\">$invoiceStatus</small>
                                     </p>
                                     <p>
