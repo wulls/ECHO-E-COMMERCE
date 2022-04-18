@@ -364,23 +364,47 @@ include_once ('newnavbarlogin.php');
                         <!--**********************DATA ALAMAT ADD END*********************-->
 
                         <!--************************DATA AKUN START***********************-->
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
                         <div id="dataAkun" class="data-akun">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class=mb-0>Username</h6>
+                            <form action="userprofile_edit_akun.php" method="post">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Password Lama</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input id="oldPass" type="password" name="oldPassword" class="form-control input-field">
+                                        <?php if(isset($_GET['err'])){ ?>
+                                            <small>Password salah</small>
+                                        <?php } ?>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="username" class="form-control input-field" value="<?php echo $customer['username']; ?>">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Password Baru</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input id="newPass" type="password" name="newPassword" class="form-control input-field">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Password</h6>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Konfirmasi Password Baru</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input id="conPass" type="password" name="conPassword" class="form-control input-field">
+                                        <?php if(isset($_GET['err2'])){ ?>
+                                            <small>Password salah</small>
+                                        <?php } ?>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="password" name="password" class="form-control input-field" value="<?php echo $customer['password']; ?>">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input id="buttonSubmit" type="submit" class="btn btn-info but-ton" value="SIMPAN PERUBAHAN" disabled="disabled">
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <!--*************************DATA AKUN END*************************-->
                     </div>
@@ -405,6 +429,18 @@ include_once ('newnavbarlogin.php');
         var id = $(this).data('id');
         $('#modalDelete').attr('href','userprofile_delete_address.php?id='+id);
     });
+
+    //PASSWORD FIELD
+    $(document).ready(function(){
+        function validateButton(){
+            var disable = $('#oldPass').val().trim === '' || $('#newPass').val().trim() === '' || $('#conPass').val().trim() === '';
+            $('#buttonSubmit').prop('disabled', disable);
+        }
+        $('#oldPass').on('keyup', validateButton);
+        $('#newPass').on('keyup', validateButton);
+        $('#conPass').on('keyup', validateButton);
+    });
+
 </script>
 
 <style type="text/css">
@@ -507,6 +543,9 @@ body{
     display:none;
     padding-left:25px;
     padding-right:25px;
+}
+small{
+    color:red;
 }
 </style>
 
